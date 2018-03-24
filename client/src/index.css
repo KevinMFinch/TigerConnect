@@ -4,13 +4,19 @@ html, body {
 
 body {
   padding-top: 2.8%;
-  padding-left: 0%;
+  padding-left: 0;
+  height:100%;
 }
 
 /* Navbar styling  */
 
 .navbar-brand {
   font-size: 175%;
+}
+
+.icon-bar {
+  background-color: white;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
 }
 
 .navbar-toggle.navbar-form {
@@ -100,6 +106,7 @@ input[type="text"]:focus {
 
 .side-and-main {
   height: 100%;
+  width: 100%;
 }
 
 .search-divider {
@@ -109,7 +116,9 @@ input[type="text"]:focus {
   z-index: 1;
   min-height: 60px;
   background-color: #B29E8A;
-  border-bottom: 1px solid #ABA095;
+  border-bottom: 1px solid #56422f;
+  border-right: 1px solid #56422f;
+  max-width: 50%;
 }
 
 .sidenav {
@@ -125,10 +134,12 @@ input[type="text"]:focus {
     padding-right: 0.5%;
     background-color: #FFFDFA;
     border-right: 1px solid #ABA095;
+    min-width: 20%;
+    max-width: 50%;
 }
 
 .placeholder {
-  margin-top: 80px;
+  margin-top: 85px;
 }
 
 .sidebar-form {
@@ -156,13 +167,24 @@ span.glyphicon-search {
   margin-right: auto;
   border-radius: 3%;
   width: 95%;
-  background-color: #eab6b6;
+  /* background-color: #eab6b6; */
+  background-color: #edba6a;
   height: 15%;
   min-height: 60px;
   border: 1px solid #ABA095;
   box-shadow: 2px 2px 4px #888888;
   padding-left: 4%;
   padding-top: 1%;
+}
+
+.class:hover {
+  background-color: #e5a747;
+}
+
+.class:focus {
+  box-shadow: none;
+  border-left: 2px solid #ABA095;
+  border-top: 2px solid #ABA095;
 }
 
 .class h1, h2 {
@@ -186,6 +208,7 @@ span.glyphicon-search {
 .pin {
   float: right;
   color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .pin:hover {
@@ -194,17 +217,21 @@ span.glyphicon-search {
 
 /* Styling for main panel */
 
+.side-and-main-bg {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-image: url("../src/images/map.gif");
+  opacity:0.09;
+  filter:alpha(opacity=9);
+  z-index: -1;
+}
+
 .main-panel {
   overflow: auto;
   height: 100%;
   width: auto;
   float:left;
   padding-left: 5%;
-}
-
-img {
-    max-width: 50%;
-    height: auto;
-    display: block;
-    width: auto\9; /* ie8 */
+  padding-top: 5%;
 }
