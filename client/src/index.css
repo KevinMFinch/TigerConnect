@@ -1,8 +1,8 @@
 body {
-  margin: 0;
   padding-top: 2.5%;
-  font-family: sans-serif;
 }
+
+/* Navbar styling  */
 
 .navbar-brand {
   font-size: 175%;
@@ -37,6 +37,60 @@ a {
 a:hover {
   text-shadow: -2px 0 #FF8C80, 0 2px #FF8C80, 2px 0 #FF8C80, 0 -2px #FF8C80;
   color: white;
+}
+
+/* Wifi Symbol Styling  */
+.wifi {
+	padding: 5px;
+  position: absolute;
+  margin-top: .5%
+}
+
+.wifi, .wifi:before {
+	display: inline-block;
+	border: 15px double transparent;
+	border-top-color: orange;
+	border-radius: 50%;
+}
+
+.wifi:before {
+	content: '';
+	width: 0; height: 0;
+}
+
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-o-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+.wifi {
+   -webkit-animation: flickerAnimation 3s infinite;
+   -moz-animation: flickerAnimation 3s infinite;
+   -o-animation: flickerAnimation 3s infinite;
+    animation: flickerAnimation 3s infinite;
+}
+
+/* Side bar styling */
+
+input[type="text"]:focus {
+  border-color: rgba(255, 169, 87, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 169, 87, 0.8);
+  outline: 0 none;
 }
 
 .search-divider {

@@ -10,45 +10,45 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- This is the top nav bar html -->
-<nav class="navbar navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <form class="navbar-form navbar-toggle"  action="/action_page.php">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search for classes..." name="search">
-        </div>
-      </form>
-      <a class="navbar-brand" href="#">TigerConnect</a>
+  <!-- This is the top nav bar html -->
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <form class="navbar-form navbar-toggle"  action="/action_page.php">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search for classes..." name="search">
+          </div>
+        </form>
+        <a class="navbar-brand hidden-xs" href="#">TigerConnect</a>
+        <span class="wifi hidden-xs" /></span>
+        <a class="navbar-brand visible-xs" href="#">TC</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
-      </ul>
+  </nav>
+  <!-- This is the side bar html -->
+    <div class="sidenav hidden-xs">
+      <div class="search-divider">
+        <form class="sidebar-form"  action="/action_page.php">
+          <div class="form-group">
+            <span class="glyphicon glyphicon-search"></span>
+            <input type="text" class="form-control" placeholder="Search for classes..." name="search">
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-</nav>
-<!-- This is the side bar html -->
-
-  <div class="sidenav hidden-xs">
-    <div class="search-divider">
-      <form class="sidebar-form"  action="/action_page.php">
-        <div class="form-group">
-          <span class="glyphicon glyphicon-search"></span>
-          <input type="search" class="form-control" placeholder="Search for classes..." name="search">
-        </div>
-      </form>
-    </div>
-  </div>
-
-</body>
+  </body>
 </html>
