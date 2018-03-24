@@ -1,10 +1,74 @@
 body {
   margin: 0;
-  padding: 0;
+  padding-top: 2.5%;
   font-family: sans-serif;
+}
+
+.navbar-brand {
+  font-size: 175%;
 }
 
 .navbar-toggle.navbar-form {
   padding: 0px;
   margin-right: 5%;
+  width: 60%;
+}
+
+.navbar {
+  background-color: black;
+  color: white;
+
+  border-bottom: 1px solid black;
+
+  font-size: 100%;
+  font-family: "Verdana";
+  color: white;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  text-shadow: -2px 0 #FF8C80, 0 2px #FF8C80, 2px 0 #FF8C80, 0 -2px #FF8C80;
+  color: white;
+}
+
+.search-divider {
+  width: 100%;
+  height: 10%;
+  background-color: #B29E8A;
+  border-bottom: 1px solid #ABA095;
+}
+
+.sidenav {
+    height: 100%;
+    width: 25%;
+    float: top;
+    position: absolute;
+    top: 5.5%;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 0.5%;
+    background-color: #FFFDFA;
+    border-right: 1px solid #ABA095;
+}
+
+.sidebar-form {
+  width: 90%;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+span.glyphicon-search {
+  top: 28px;
+  left: 90%;
+  font-size: 15px;
 }
