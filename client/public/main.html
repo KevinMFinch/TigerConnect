@@ -9,45 +9,66 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+  <body>
   <!-- This is the top nav bar html -->
-  <nav class="navbar navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <form class="navbar-form navbar-toggle"  action="/action_page.php">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search for classes..." name="search">
-          </div>
-        </form>
-        <a class="navbar-brand hidden-xs" href="#">TigerConnect</a>
-        <span class="wifi hidden-xs" /></span>
-        <a class="navbar-brand visible-xs" href="#">TC</a>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <form class="navbar-form navbar-toggle"  action="/action_page.php">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Find your class! (e.g. MAT103)" name="search">
+            </div>
+          </form>
+          <a class="navbar-brand hidden-xs" href="#">TigerConnect</a>
+          <span class="wifi hidden-xs" /></span>
+          <a class="navbar-brand visible-xs" href="#">TC</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    </nav>
   <!-- This is the side bar html -->
-    <div class="sidenav hidden-xs">
-      <div class="search-divider">
-        <form class="sidebar-form"  action="/action_page.php">
-          <div class="form-group">
-            <span class="glyphicon glyphicon-search"></span>
-            <input type="text" class="form-control" placeholder="Search for classes..." name="search">
-          </div>
-        </form>
+    <div class="side-and-main">
+      <div class="sidenav hidden-xs">
+        <div class="search-divider">
+          <form class="sidebar-form"  action="/action_page.php">
+            <div class="form-group">
+              <span class="glyphicon glyphicon-search"></span>
+              <input type="text" class="form-control" placeholder="Find your class! (e.g. MAT103)" name="search">
+            </div>
+          </form>
+        </div>
+        <div class ="placeholder"></div>
+        <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div><h1 class="class-title">MAT103</h1><h2>Multivariable Calculus</h2></div>
+        <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+        <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+        <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+        <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+        <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+        <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+        <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+      </div>
+      <div class="container main-panel">
+        <h1> TigerConnect </h1>
+        <p> Connect with other students on P-Set Problems! </p>
+        <ol>
+          <li>Search up the class that you're in!</li>
+          <li>Look for groups that other people have set up!</li>
+          <li>Join or make your own!</li>
+        </ol>
       </div>
     </div>
   </body>

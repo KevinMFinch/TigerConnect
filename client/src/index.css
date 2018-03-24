@@ -1,5 +1,10 @@
+html, body {
+  height: 100%;
+}
+
 body {
-  padding-top: 2.5%;
+  padding-top: 2.8%;
+  padding-left: 0%;
 }
 
 /* Navbar styling  */
@@ -35,7 +40,7 @@ a {
 }
 
 a:hover {
-  text-shadow: -2px 0 #FF8C80, 0 2px #FF8C80, 2px 0 #FF8C80, 0 -2px #FF8C80;
+  text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
   color: white;
 }
 
@@ -93,25 +98,37 @@ input[type="text"]:focus {
   outline: 0 none;
 }
 
+.side-and-main {
+  height: 100%;
+}
+
 .search-divider {
-  width: 100%;
+  width: inherit;
+  position: absolute;
   height: 10%;
+  z-index: 1;
+  min-height: 60px;
   background-color: #B29E8A;
   border-bottom: 1px solid #ABA095;
 }
 
 .sidenav {
+    overflow: auto;
+    resize: horizontal;
     height: 100%;
-    width: 25%;
-    float: top;
-    position: absolute;
+    width: 35%;
+    float: left;
     top: 5.5%;
     left: 0;
-    background-color: #111;
     overflow-x: hidden;
     padding-top: 0.5%;
+    padding-right: 0.5%;
     background-color: #FFFDFA;
     border-right: 1px solid #ABA095;
+}
+
+.placeholder {
+  margin-top: 80px;
 }
 
 .sidebar-form {
@@ -121,8 +138,73 @@ input[type="text"]:focus {
   margin-right:auto;
 }
 
+.form-control {
+  padding-right: 12%;
+}
+
 span.glyphicon-search {
   top: 28px;
   left: 90%;
   font-size: 15px;
+}
+
+/* Styling for class elements */
+
+.class {
+  margin-bottom: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3%;
+  width: 95%;
+  background-color: #eab6b6;
+  height: 15%;
+  min-height: 60px;
+  border: 1px solid #ABA095;
+  box-shadow: 2px 2px 4px #888888;
+  padding-left: 4%;
+  padding-top: 1%;
+}
+
+.class h1, h2 {
+  display: inline-block;
+  font-family: "Verdana";
+  font-size: 200%;
+  color: white;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  margin: 0;
+}
+
+.class h2 {
+  display: block;
+  font-size: 100%;
+}
+
+.class-title {
+  font-size: 35%;
+}
+
+.pin {
+  float: right;
+  color: black;
+}
+
+.pin:hover {
+  color: red;
+}
+
+/* Styling for main panel */
+
+.main-panel {
+  overflow: auto;
+  height: 100%;
+  width: auto;
+  float:left;
+  padding-left: 5%;
+}
+
+img {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    width: auto\9; /* ie8 */
 }
