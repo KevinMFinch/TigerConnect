@@ -1,10 +1,19 @@
 const express = require('express');
 const path = require('path');
+const {mongoose} = require('./db/mongoose');
+const {CourseEvent} = require('./models/CourseEvent');
 
 const app = express();
 
+var courseEvents = require('./routes/courseEvents');
+var courses = require('./routes/courses');
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Set up routes to be handles in other files
+app.use('/api/courses', courses);
+app.use('/api/courseEvents', courseEvents);
 
 // Put API endpoints under '/api' (will likely be refactored to be more modular in other files
 app.get('/api/message', (req, res) => {
