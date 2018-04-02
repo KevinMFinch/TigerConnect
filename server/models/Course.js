@@ -13,8 +13,12 @@ var Course = mongoose.model('Course', {
     trim: true
   },
   courseNumber: {
-    type: Number,
+    type: String,
     required: true
+  },
+  crossListings: {
+    type: String,
+    required: false
   }
 });
 

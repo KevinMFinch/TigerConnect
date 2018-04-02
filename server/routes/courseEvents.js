@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  var event = new CourseEvent({ // Obviously a dummy event, will need to be changed
+  var event = new CourseEvent({
     advertiser: 'kfinch',
     time: 'Monday at 6pm',
     location: 'Butler ISpace',
