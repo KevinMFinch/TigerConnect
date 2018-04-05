@@ -25,6 +25,7 @@ var addCoursesToDatabase = (courseJSON) => {
   var coursesToPush = []
   var numberOfCourses = 0;
   var numberSaved = 0;
+  var promises = []
   subjects.forEach((dept) => {
     // Name, department, course Number
     var code = dept.code;
@@ -32,7 +33,7 @@ var addCoursesToDatabase = (courseJSON) => {
     courses.forEach((course) => {
       numberOfCourses++;
       var number = course.catalog_number;
-      var title = course.title;
+      var title = unescape(course.title);
       var crossListings = '';
       if ("crosslistings" in course) {
         var cl = course.crosslistings;
@@ -47,15 +48,12 @@ var addCoursesToDatabase = (courseJSON) => {
           department: code,
           crossListings
         });
-        courseRecord.save().then((doc) => {
-          numberSaved++;
-          console.log(`Save #${numberSaved}`);
-        }, (e) => {
-          console.log(e);
-          console.log(code);
-          console.log(number);
-        });
+        promises.push(courseRecord.save());
       }
     });
+  });
+  Promise.all(promises).then((values) => {
+    console.log(`Saved ${values.length} courses`);
+    mongoose.disconnect();
   });
 };
