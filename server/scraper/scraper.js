@@ -13,7 +13,10 @@ http.get(courseURL, (res) => {
   res.on('end', () => {
     try {
       const parsedData = JSON.parse(rawData);
-      addCoursesToDatabase(parsedData);
+      Course.remove({}, () => {
+        console.log('Deleted');
+        addCoursesToDatabase(parsedData);
+      });
     } catch (e) {
       console.error(e.message);
     }
