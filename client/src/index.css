@@ -140,10 +140,11 @@ input[type="text"]:focus {
 
 .class h1, h2 {
   display: inline-block;
-  font-family: "Verdana";
+
   font-size: 200%;
   color: white;
   text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  font-family: "Verdana";
   margin: 0;
 }
 
@@ -183,10 +184,67 @@ input[type="text"]:focus {
 .main-panel {
   overflow: auto;
   height: 100%;
-  width: 65%;
+  width: 75%;
   float:left;
   padding-left: 5%;
   padding-top: 5%;
+  padding-right: 5%;
+}
+
+/* Group element styling */
+.group-container {
+  width: 100%;
+  height: 35%;
+  padding-top: 3%;
+}
+.group {
+  height: 95%;
+  width: 100%;
+  border:1px solid #ABA095;
+  margin-top: 0%;
+  position: relative;
+  border-radius: 2%;
+  background-color: white;
+}
+
+.group-header {
+  border-top-left-radius: 4%;
+  border-top-right-radius: 4%;
+  width: 100%;
+  height: 12%;
+  border-bottom: 1px solid black;
+  background-color: black;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+}
+
+.join {
+  margin-top:10%;
+  position: absolute;
+  bottom: 5%;
+  right: 3%;
+  float: right;
+  width: 15%;
+  height: 18%;
+  border-radius: 8%;
+  color: white;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  font-family: "Verdana";
+  background-color: orange;
+}
+
+@media screen and (max-width: 767px) {
+    .main-panel {
+        width: 100%;
+    }
+
+    .join {
+      right: 40%;
+    }
+}
+
+.group:hover {
+  margin-top: -1%;
 }
 
 .connect-circle {
