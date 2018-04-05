@@ -25,15 +25,14 @@
         </div>
       </form>
       <a class="navbar-brand hidden-xs" href="#">TigerConnect</a>
-      <span class="wifi hidden-xs" /></span>
       <a class="navbar-brand visible-xs" href="#">TC</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li> -->
         <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
       </ul>
@@ -46,9 +45,9 @@
   <div class="sidenav hidden-xs">
     <div class="search-divider">
       <form class="sidebar-form"  action="/action_page.php">
-        <div class="form-group">
-          <span class="glyphicon glyphicon-search"></span>
-          <input type="text" class="form-control" placeholder="Find your class! (e.g. MAT103)" name="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Find your class! (e.g. MAT103)" name="search" aria-describedby="basic-addon2">
+          <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon2"></span>
         </div>
       </form>
     </div>
@@ -56,6 +55,8 @@
     <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div>
       <h1 class="class-title">MAT103</h1>
       <h2>Calculus I</h2>
+      <br>
+      <h2>1 problem-set group</h2>
     </div>
     <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
     <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
@@ -66,7 +67,7 @@
     <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
   </div>
   <div class="main-panel">
-    <!-- <img src="map.gif" alt="Picture of World"/> -->
+    <div class="connect-circle"></div>
     <p> Connect with other students on P-Set Problems! </p>
     <ol>
       <li>Search up the class that you're in!</li>
