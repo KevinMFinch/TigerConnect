@@ -1,0 +1,101 @@
+ #landing {
+   width: 100%
+  height: 100%;
+
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../src/images/firestone.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header {
+  position: relative;
+  width: 100%;
+
+  top: 15%;
+  transform: translateY(-15%);
+  -ms-transform: translateY(-15%);
+  -moz-transform: translateY(-15%);
+  -webkit-transform: translateY(-15%);
+  -o-transform: translateY(-15%);
+}
+
+header h1, a {
+  font-size: calc(235% + 3.3vw);
+
+  font-family: "Verdana";
+  text-align: center;
+
+  min-width: auto;
+  min-height: 50px;
+
+  color: white;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+}
+
+header a {
+  font-size: calc(110% + .3vw);
+  vertical-align: center;
+}
+
+.landing-btn {
+  position: relative;
+  float: left;
+
+  left: 50%;
+  transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+
+  text-color: white;
+  background-color: transparent;
+
+  line-height: 50px;
+  width: calc(170px + .5vw);
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid #edba6a;
+}
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+
+  border-bottom: 1px solid black;
+
+  font-size: 100%;
+  font-family: "Verdana";
+  color: white;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+}
+
+#btns {
+  position: relative;
+  float: left;
+  left: 50%;
+  transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+
+.login:hover {
+  background-color: #e5a747;
+}
+
+
+.login h1 {
+  font-family: "Verdana";
+  margin-top: 6px;
+  marginleft: auto;
+  margin-right: auto;
+  color: white;
+  font-size: 170%;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+}
