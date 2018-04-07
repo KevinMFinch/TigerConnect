@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="../src/index.css">
+  <link rel="stylesheet" href="../src/animation.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -25,14 +26,13 @@
         </div>
       </form>
       <a class="navbar-brand hidden-xs" href="#">TigerConnect</a>
-      <span class="wifi hidden-xs" /></span>
       <a class="navbar-brand visible-xs" href="#">TC</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li> -->
         <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
@@ -46,27 +46,46 @@
   <div class="sidenav hidden-xs">
     <div class="search-divider">
       <form class="sidebar-form"  action="/action_page.php">
-        <div class="form-group">
-          <span class="glyphicon glyphicon-search"></span>
-          <input type="text" class="form-control" placeholder="Find your class! (e.g. MAT103)" name="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Find your class! (e.g. MAT103)" name="search" aria-describedby="basic-addon2">
+          <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon2"></span>
         </div>
       </form>
     </div>
     <div class ="placeholder"></div>
-    <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div>
+    <div class ="class slideRight"><div class="pin glyphicon glyphicon-pushpin"></div>
       <h1 class="class-title">MAT103</h1>
       <h2>Calculus I</h2>
+      <br>
+      <h2>1 p-set group online</h2>
     </div>
-    <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
-    <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
-    <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
-    <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
-    <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
-    <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
-    <div class ="class"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+    <div class ="class slideRight"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+    <div class ="class slideRight"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+    <div class ="class slideRight"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+    <div class ="class slideRight"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+    <div class ="class slideRight"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+    <div class ="class slideRight"><div class="pin glyphicon glyphicon-pushpin"></div></div>
+    <div class ="class slideRight"><div class="pin glyphicon glyphicon-pushpin"></div></div>
   </div>
   <div class="main-panel">
-    <!-- <img src="map.gif" alt="Picture of World"/> -->
+    <div class="group-container"><div class="group slideUp">
+      <div class="group-header"></div>
+      <p>JOIN MAT103 PSET GROUP!!!!</p>
+      <button class="join">JOIN</button>
+    </div>
+  </div>
+  <div class="group-container"><div class="group slideUp"><div class="group-header"><p>pset mat103 tonight</p></div>
+  <p>Author: jedouard</p>
+  <p>Course: MAT103</p>
+  <p>Description: stuff's due tonight let's hurry up and get on it lol</p>
+  <p>3/5 people joined!</p>
+  <button class="join">JOIN</button>
+</div>
+</div>
+    <div class="group-container"><div class="group slideUp"><div class="group-header"><p>LETS WORK ON STUFF</p></div><p>Author: jedouard</p><button class="join">JOIN</button></div></div>
+    <div class="group-container"><div class="group slideUp"><div class="group-header"></div><p>pset mat103</p><button class="join">JOIN</button></div></div>
+    <!-- <div class="connect-circle"></div> -->
+
     <p> Connect with other students on P-Set Problems! </p>
     <ol>
       <li>Search up the class that you're in!</li>

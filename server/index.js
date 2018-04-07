@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+
 const {mongoose} = require('./db/mongoose');
 const {CourseEvent} = require('./models/CourseEvent');
 
@@ -14,6 +15,15 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // Set up routes to be handles in other files
 app.use('/api/courses', courses);
 app.use('/api/courseEvents', courseEvents);
+
+app.get('/', (req, res) => {
+  res.send('authed');
+});
+
+app.get('/api/login', (req, res) => {
+  console.log(req);
+  res.redirect('/')
+});
 
 // Put API endpoints under '/api' (will likely be refactored to be more modular in other files
 app.get('/api/message', (req, res) => {

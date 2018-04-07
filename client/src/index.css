@@ -5,7 +5,6 @@ html, body {
 body {
   padding-top: 2.8%;
   padding-left: 0;
-  height:100%;
 }
 
 /* Navbar styling  */
@@ -50,50 +49,8 @@ a:hover {
   color: white;
 }
 
-/* Wifi Symbol Styling  */
-.wifi {
-	padding: 5px;
-  position: absolute;
-  margin-top: .5%
-}
-
-.wifi, .wifi:before {
-	display: inline-block;
-	border: 15px double transparent;
-	border-top-color: orange;
-	border-radius: 50%;
-}
-
-.wifi:before {
-	content: '';
-	width: 0; height: 0;
-}
-
-@keyframes flickerAnimation {
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-@-o-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-@-moz-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-@-webkit-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-.wifi {
-   -webkit-animation: flickerAnimation 3s infinite;
-   -moz-animation: flickerAnimation 3s infinite;
-   -o-animation: flickerAnimation 3s infinite;
-    animation: flickerAnimation 3s infinite;
+a:visited {
+  color: white;
 }
 
 /* Side bar styling */
@@ -123,19 +80,16 @@ input[type="text"]:focus {
 
 .sidenav {
     overflow: auto;
-    resize: horizontal;
     height: 100%;
-    width: 35%;
+    width: 25%;
     float: left;
-    top: 5.5%;
+    top: 5%;
     left: 0;
     overflow-x: hidden;
     padding-top: 0.5%;
     padding-right: 0.5%;
     background-color: #FFFDFA;
     border-right: 1px solid #ABA095;
-    min-width: 20%;
-    max-width: 50%;
 }
 
 .placeholder {
@@ -144,19 +98,12 @@ input[type="text"]:focus {
 
 .sidebar-form {
   width: 90%;
-  display:block;
   margin-left:auto;
   margin-right:auto;
 }
 
-.form-control {
-  padding-right: 12%;
-}
-
-span.glyphicon-search {
-  top: 28px;
-  left: 90%;
-  font-size: 15px;
+.input-group {
+  margin-top: 5%;
 }
 
 /* Styling for class elements */
@@ -175,24 +122,29 @@ span.glyphicon-search {
   box-shadow: 2px 2px 4px #888888;
   padding-left: 4%;
   padding-top: 1%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .class:hover {
   background-color: #e5a747;
 }
 
-.class:focus {
+.class:active {
   box-shadow: none;
+  color: red;
   border-left: 2px solid #ABA095;
   border-top: 2px solid #ABA095;
 }
 
 .class h1, h2 {
   display: inline-block;
-  font-family: "Verdana";
+
   font-size: 200%;
   color: white;
   text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  font-family: "Verdana";
   margin: 0;
 }
 
@@ -209,6 +161,8 @@ span.glyphicon-search {
   float: right;
   color: black;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  border: 1px solid black;
+  background-color: #cc9a4d;
 }
 
 .pin:hover {
@@ -221,7 +175,7 @@ span.glyphicon-search {
   height: 100%;
   width: 100%;
   position: fixed;
-  background-image: url("../src/images/map.gif");
+  background-image: url("images/map.gif");
   opacity:0.09;
   filter:alpha(opacity=9);
   z-index: -1;
@@ -230,8 +184,137 @@ span.glyphicon-search {
 .main-panel {
   overflow: auto;
   height: 100%;
-  width: auto;
+  width: 75%;
   float:left;
   padding-left: 5%;
   padding-top: 5%;
+  padding-right: 5%;
+}
+
+/* Group element styling */
+.group-container {
+  width: 100%;
+  height: 35%;
+  padding-top: 1%;
+  padding-bottom: 3%;
+}
+.group {
+  color: #5b4f43;
+  font-weight: bold;
+  /* text-shadow: -1px 0 #5b4f43, 0 1px #5b4f43, 1px 0 #5b4f43, 0 -1px #5b4f43; */
+  font-family: "Verdana";
+  padding-left: 2%;
+  padding-top: 5.5%;
+
+  height: 95%;
+  width: 100%;
+  border:1px solid #ABA095;
+  margin-top: 0%;
+  position: relative;
+  border-radius: 2%;
+  background-color: white;
+  box-shadow: 2px 2px 4px #888888;
+}
+
+.group-header {
+  color: orange;
+  text-shadow: -1px 0 #5b4f43, 0 1px #5b4f43, 1px 0 #5b4f43, 0 -1px #5b4f43;
+  border-top-left-radius: 4%;
+  border-top-right-radius: 4%;
+  width: 100%;
+  height: 18%;
+  font-size: 150%;
+  border-bottom: 1px solid black;
+  padding-left: 1.5%;
+  padding-top: .5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+}
+
+.join {
+  margin-top:10%;
+  position: absolute;
+  bottom: 5%;
+  right: 3%;
+  float: right;
+  width: 15%;
+  height: 18%;
+  border-radius: 8%;
+  color: white;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  font-family: "Verdana";
+  background-color: orange;
+}
+
+@media screen and (max-width: 767px) {
+    .main-panel {
+        width: 100%;
+    }
+
+    .join {
+      right: 40%;
+    }
+}
+
+.group-container:hover {
+  padding-top: .5%;
+  padding-bottom: 3.5%;
+}
+
+.connect-circle {
+  height:15%;
+  width:15%;
+  border-radius:50%;
+  background-color: orange;
+
+  opacity:0.7;
+  filter:alpha(opacity=70);
+
+  /* position:relative;
+  top:100px;
+  left:300px; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+
+  -webkit-transition:height .25s ease, width .25s ease;
+  transition:height .25s ease, width .25s ease;
+
+  -webkit-transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%);
+}
+
+.connect-circle:before,
+.connect-circle:after {
+  content:'';
+  display:block;
+  position:absolute;
+  top:0; right:0; bottom:0; left:0;
+  border-radius:50%;
+  border:1px solid orange;
+}
+
+.connect-circle:before {
+  -webkit-animation: ripple 2s linear infinite;
+  animation: ripple 2s linear infinite;
+}
+.connect-circle:after {
+  -webkit-animation: ripple 2s linear 1s infinite;
+  animation: ripple 2s linear 1s infinite;
+}
+
+@-webkit-keyframes ripple{
+  0% {-webkit-transform:scale(1); }
+  75% {-webkit-transform:scale(1.75); opacity:1;}
+  100% {-webkit-transform:scale(2); opacity:0;}
+}
+
+@keyframes ripple{
+  0% {transform:scale(1); }
+  75% {transform:scale(1.75); opacity:1;}
+  100% {transform:scale(2); opacity:0;}
 }
