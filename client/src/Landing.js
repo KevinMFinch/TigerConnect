@@ -4,13 +4,21 @@ import './landing.css';
 import logo from './images/tclogo.png';
 
 class Landing extends Component {
+  // puts correct body styling
+  componentDidMount() {
+    document.body.id = 'landing-body';
+  }
+
+  // removes the body styling when on a different page
+  componentWillUnmount() {
+    document.body.id = '';
+  }
 
   // renders the landing page
   render() {
     return (
         <header>
             <h1>TigerConnect</h1>
-            <br />
             <img src={logo} className="logo" />
             <br /><br />
             <div id="left-side">
