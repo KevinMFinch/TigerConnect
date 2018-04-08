@@ -1,8 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './landing.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import Landing from './Landing';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Router>
+    <div>
+      <Route exact path="/" component={Landing} />
+    </div>
+  </Router>,
+  document.getElementById('root')
+)
 registerServiceWorker();

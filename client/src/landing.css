@@ -1,5 +1,14 @@
- #landing {
-   width: 100%
+html, body {
+  height: 100%;
+}
+
+body {
+  padding-top: 2.8%;
+  padding-left: 0;
+}
+
+ #landing-body {
+  width: 100%;
   height: 100%;
 
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../src/images/firestone.jpg") no-repeat center center fixed;
@@ -13,16 +22,16 @@ header {
   position: relative;
   width: 100%;
 
-  top: 15%;
-  transform: translateY(-15%);
-  -ms-transform: translateY(-15%);
-  -moz-transform: translateY(-15%);
-  -webkit-transform: translateY(-15%);
-  -o-transform: translateY(-15%);
+  top: 13%;
+  transform: translateY(-13%);
+  -ms-transform: translateY(-13%);
+  -moz-transform: translateY(-13%);
+  -webkit-transform: translateY(-13%);
+  -o-transform: translateY(-13%);
 }
 
 header h1, a {
-  font-size: calc(235% + 3.3vw);
+  font-size: calc(205% + 3.4vw);
 
   font-family: "Verdana";
   text-align: center;
@@ -35,67 +44,55 @@ header h1, a {
 }
 
 header a {
-  font-size: calc(110% + .3vw);
+  font-size: calc(90% + .3vw);
   vertical-align: center;
+}
+
+header a:hover, a:link {
+  text-decoration: none;
+  color: white;
+}
+
+#left-side {
+  width: 50%;
+  float: left;
+}
+
+#right-side {
+  width: 50%;
+  float: right;
 }
 
 .landing-btn {
   position: relative;
-  float: left;
-
-  left: 50%;
-  transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
+  display: inline-block;
 
   text-color: white;
   background-color: transparent;
 
   line-height: 50px;
-  width: calc(170px + .5vw);
-
-  margin-left: auto;
-  margin-right: auto;
+  width: calc(110px + 1.2vw);
 
   border: 1px solid #edba6a;
 }
 
-.navbar {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-
-  border-bottom: 1px solid black;
-
-  font-size: 100%;
-  font-family: "Verdana";
-  color: white;
-  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+.landing-btn:hover {
+  border: 1px solid white;
 }
 
-#btns {
-  position: relative;
+.login-btn {
+  float: right;
+  margin-right: 5%;
+}
+
+.about-btn {
   float: left;
-  left: 50%;
-  transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
+  margin-left: 5%;
 }
 
-.login:hover {
-  background-color: #e5a747;
-}
-
-
-.login h1 {
-  font-family: "Verdana";
-  margin-top: 6px;
-  marginleft: auto;
+.logo {
+  display: block;
+  margin-left: auto;
   margin-right: auto;
-  color: white;
-  font-size: 170%;
-  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  max-width: 190px;
 }
