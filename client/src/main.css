@@ -62,7 +62,7 @@ input[type="text"]:focus {
 }
 
 .side-and-main {
-  height: 100%;
+  height: 100vh;
   width: 100%;
 }
 
@@ -214,6 +214,10 @@ input[type="text"]:focus {
   border-radius: 2%;
   background-color: white;
   box-shadow: 2px 2px 4px #888888;
+}
+
+#root {
+  width: 100%;
 }
 
 .group-header {

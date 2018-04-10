@@ -17,15 +17,15 @@ class Landing extends Component {
   // renders the landing page
   render() {
     return (
-        <header>
+        <header className="landing-component">
             <h1>TigerConnect</h1>
             <img src={logo} className="logo" />
             <br /><br />
             <div id="left-side">
-              <a href="#" className="landing-btn login-btn">Login</a>
+              <a href="main" className="landing-component landing-btn login-btn">Login</a>
             </div>
             <div id="right-side">
-              <a href="#" className="landing-btn about-btn">About</a>
+              <a href="about" className="landing-component landing-btn about-btn">About</a>
             </div>
         </header>
     );
