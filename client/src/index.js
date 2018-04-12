@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './landing.css';
+import './test.js';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Landing from './Landing';
@@ -16,4 +17,5 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root')
 )
+
 registerServiceWorker();

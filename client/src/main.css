@@ -122,9 +122,6 @@ input[type="text"]:focus {
   box-shadow: 2px 2px 4px #888888;
   padding-left: 4%;
   padding-top: 1%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .class:hover {
@@ -214,6 +211,10 @@ input[type="text"]:focus {
   border-radius: 2%;
   background-color: white;
   box-shadow: 2px 2px 4px #888888;
+}
+
+.group-header-text {
+  font-size: 3.0vh;
 }
 
 #root {
