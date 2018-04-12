@@ -28,7 +28,7 @@ function handleCourses(course) {
   document.getElementById("class-placement").innerHTML = "";
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
-    innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i][_id] + "\"><div class=\"pin glyphicon glyphicon-pushpin\" />" + "</div>";
+    innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + "\"><div class=\"pin glyphicon glyphicon-pushpin\" />" + "</div>";
     innerHTMLChange = innerHTMLChange + "<h1 class=\"class-title\">" + course[i]['department'] + course[i]['courseNumber'] + "</h1>";
     innerHTMLChange = innerHTMLChange + "<h2 class=\"hidden-sm\">" + course[i]['name'] + "</h2>" + "</div>";
 
