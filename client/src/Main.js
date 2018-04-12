@@ -4,23 +4,28 @@ import './main.css';
 import './animation.css';
 
 class Main extends Component {
-  state = { }
 
-  handleForm(event) { event.preventDefault(); return false;}
+  constructor() {
+    super();
+    this.state = {value: ''};
+
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+  }
+
+  handleSearchChange = (event) => {
+    console.log('Search change');
+  };
+
 
   // puts correct body styling
   componentDidMount() {
     document.body.id = 'main-body';
-    this.getCourses();
-    document.querySelector('#desktop-course-finder').addEventListener('change', this.myFunction);
+    this.getAllCourses();
+
+    document.getElementById('desktop-course-finder').addEventListener('input', this.handleSearchChange);
   }
 
-  myFunction(value) {
-    alert(value); //to avoid alert spam...
-  }
-
-
-  getCourses = () => {
+  getAllCourses = () => {
     // Get the message and store in state
     fetch('/api/courses/')
       .then(res => res.json())
@@ -82,7 +87,7 @@ class Main extends Component {
                 <div className="sidenav hidden-xs" id="class-placement">
                   <div className="search-divider">
                       <div className="input-group">
-                        <input type="text" value="hihi" className="form-control" id="desktop-course-finder" placeholder="Find your class! (e.g. MAT103)" name="search" aria-describedby="basic-addon2"/>
+                        <input type="text" value={this.state.value} onChange={this.handleSearchChange} className="form-control" id="desktop-course-finder" placeholder="Find your class! (e.g. MAT103)" name="search"/>
                         <span className="input-group-addon glyphicon glyphicon-search" id="basic-addon2" />
                       </div>
                   </div>
