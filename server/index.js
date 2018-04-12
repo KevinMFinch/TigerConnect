@@ -4,6 +4,8 @@ const path = require('path');
 const {mongoose} = require('./db/mongoose');
 const {CourseEvent} = require('./models/CourseEvent');
 
+var bodyParser = require('body-parser')
+
 const app = express();
 
 var courseEvents = require('./routes/courseEvents');
@@ -11,6 +13,8 @@ var courses = require('./routes/courses');
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+// Enable bodyParser
+app.use(bodyParser.json());
 
 // Set up routes to be handles in other files
 app.use('/api/courses', courses);
@@ -37,6 +41,7 @@ app.get('/api/message', (req, res) => {
 
 // The 'catchall' handler: for any request that doesn't match one above, send back React's index.html
 app.get('*', (req, res) => {
+  console.log(req.url);
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 

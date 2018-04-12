@@ -23,10 +23,15 @@ var CourseEvent = mongoose.model('CourseEvent', {
     required: true,
     trim: true
   },
-  course: {
+  courseID: {
     type: String, // Will most likely be the _id of the course that corresponds to this course in the courses collection
     required: true,
     trim: true
+  },
+  members: {
+    type: Number,
+    required: true,
+    default: 1
   }
 });
 
