@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
   Course.find().then((courses) => {
     res.send(courses);
   });
-  console.log(JSON.stringify(courses));
 });
 
 router.get('/:query', (req, res) => {
