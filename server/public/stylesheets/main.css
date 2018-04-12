@@ -172,7 +172,7 @@ input[type="text"]:focus {
   height: 100%;
   width: 100%;
   position: fixed;
-  background-image: url("images/map.gif");
+  background-image: url("../images/map.gif");
   opacity:0.09;
   filter:alpha(opacity=9);
   z-index: -1;

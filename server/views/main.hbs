@@ -43,24 +43,15 @@
   <div class="side-and-main-bg"></div>
   <div class="sidenav hidden-xs">
     <div class="search-divider">
-      <form class="sidebar-form"  action="/action_page.php">
+      <!-- <form class="sidebar-form" > -->
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Find your class! (e.g. MAT103)" name="search" aria-describedby="basic-addon2">
+          <input type="text" onkeydown="searchCourses(this.value)" class="form-control" placeholder="Find your class! (e.g. MAT103)" name="search" aria-describedby="basic-addon2">
           <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon2"></span>
         </div>
-      </form>
+      <!-- </form> -->
     </div>
-    <div class ="placeholder"></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
-    <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div>
+    <div class ="placeholder" id="class-placement"></div>
+    <!-- <div class="class slideRight"><div class="pin glyphicon glyphicon-pushpin" /></div><h1 class="class-title">MAT102</h1><h2 class="hidden-sm">Calclus I</h2></div> -->
   </div>
   <div class="main-panel">
     <div class="group-container"><div class="group slideUp"><div class="group-header"><p class="group-header-text">lol mathmathmath</p></div><button class="join">JOIN</button></div></div>

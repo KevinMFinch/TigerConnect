@@ -113,7 +113,7 @@ class Main extends Component {
                   <div className="group-container"><div className="group slideUp"><div className="group-header"><p className="group-header-text">pset mat103 tonight</p></div><button className="join">JOIN</button></div></div>
                   <div className="group-container"><div className="group slideUp"><div className="group-header"><p className="group-header-text">LETS WORK ON STUFF</p></div><button className="join">JOIN</button></div></div>
                   <div className="group-container"><div className="group slideUp"><div className="group-header" /><button className="join">JOIN</button></div></div>
-                  {/* <div class="connect-circle"></div> */}
+                  /* <div class="connect-circle"></div> */
                   <p> Connect with other students on P-Set Problems! </p>
                   <ol>
                     <li>Search up the class that you're in!</li>
