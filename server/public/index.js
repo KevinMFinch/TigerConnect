@@ -10,16 +10,22 @@ getAllCourses = () => {
 }
 
 // TODO: SEARCHED COURSES SEEM TO GIVE ALL WHEN NO COURSES ARE FOUND?
+
+var timeout = null;
+
 getSearchedCourses = query => {
-  // Get the message and store in state
-  var searchQuery = '/api/courses/' + query;
-  console.log("This is the search query: " + searchQuery);
-  fetch(searchQuery)
-    .then(res => res.json())
-    .then(course => handleCourses(course));
+  clearTimeout(timeout);
+
+  timeout = setTimeout(function () {
+    var searchQuery = '/api/courses/' + query;
+    fetch(searchQuery)
+      .then(res => res.json())
+      .then(course => handleCourses(course));
+    }, 150);
 }
 
 function handleCourses(course) {
+  document.getElementById("class-placement").innerHTML = "";
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
     innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\"><div class=\"pin glyphicon glyphicon-pushpin\" />" + "</div>";
