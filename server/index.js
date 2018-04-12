@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const hbs = require('hbs');
+
 const {mongoose} = require('./db/mongoose');
 const {CourseEvent} = require('./models/CourseEvent');
 
@@ -11,8 +13,9 @@ const app = express();
 var courseEvents = require('./routes/courseEvents');
 var courses = require('./routes/courses');
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
 // Enable bodyParser
 app.use(bodyParser.json());
 
@@ -21,8 +24,12 @@ app.use('/api/courses', courses);
 app.use('/api/courseEvents', courseEvents);
 
 app.get('/', (req, res) => {
-  res.send('authed');
+  res.render('landing');
 });
+
+app.get('/main', (req, res) => {
+  res.render('main')
+})
 
 app.get('/api/login', (req, res) => {
   console.log(req);
@@ -42,7 +49,6 @@ app.get('/api/message', (req, res) => {
 // The 'catchall' handler: for any request that doesn't match one above, send back React's index.html
 app.get('*', (req, res) => {
   console.log(req.url);
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;
