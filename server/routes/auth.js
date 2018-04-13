@@ -8,6 +8,8 @@ var CentralAuthenticationService = require('cas');
 // Load internal modules
 var config = require('../config.js');
 
+console.log('host', config.host);
+
 // Configure CAS authentication
 var casURL = 'https://fed.princeton.edu/cas/'
 var cas = new CentralAuthenticationService({
