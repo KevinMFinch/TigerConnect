@@ -14,7 +14,6 @@ function createGroup() {
 		})
 	}).then(res => res.json()).then(response => console.log(response));
 	document.getElementById("courseEvent-title").value = "";
-	document.getElementById("netid").value = "";
 	document.getElementById("courseEvent-time").value = "";
 	document.getElementById("courseEvent-location").value = "";
 	document.getElementById("courseEvent-description").value = "";
