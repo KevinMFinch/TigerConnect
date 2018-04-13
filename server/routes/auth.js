@@ -28,6 +28,7 @@ router.get('/login', function (req, res) {
 // Handle replies from Princeton's CAS server about authentication
 router.get('/verify', function (req, res) {
   // If the user already has a valid CAS session then send them to their destination
+  console.log("Verify function...");
   if (req.session.cas) {
     console.log('aready exists');
     res.redirect('/main')

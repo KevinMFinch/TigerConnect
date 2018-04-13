@@ -25,29 +25,34 @@ getSearchedCourses = query => {
 }
 
 function handleCourses(course) {
-  document.getElementById("class-placement").innerHTML = "";
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
-    innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + "\"><div class=\"pin glyphicon glyphicon-pushpin\" />" + "</div>";
-    innerHTMLChange = innerHTMLChange + "<h1 class=\"class-title\">" + course[i]['department'] + course[i]['courseNumber'] + "</h1>";
-    innerHTMLChange = innerHTMLChange + "<h2 class=\"hidden-sm\">" + course[i]['name'] + "</h2>" + "</div>";
-
-    // // add num of groups
-    console.log(getCourseGroupSize(course[i]['_id']));
+    innerHTMLChange += "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + "\"><div class=\"pin glyphicon glyphicon-pushpin\" />" + "</div>";
+    innerHTMLChange += "<h1 class=\"class-title\">" + course[i]['department'] + course[i]['courseNumber'] + "</h1>";
+    innerHTMLChange += "<h2 class=\"hidden-sm\">" + course[i]['name'] + "</h2>" + "<p class=\"groups-online\">click to search for groups...</p></div>";
   }
-  // console.log(document.getElementById('desktop-course-finder').value);
-  document.getElementById("class-placement").innerHTML += innerHTMLChange;
-  // return JSON.stringify(course);
-  // return "<p>YOOO!!!</p>"
+  document.getElementById("class-placement").innerHTML = innerHTMLChange;
+  // getCourseGroupSize(course);
 }
 
-function getCourseGroupSize(id) {
-
+function getCourseGroupSize(course) {
+  for(var i = 0; i < course.length; i++) {
+    var id = course[i]['_id']
+    fetch('/api/courseEvents/' + course[i]['_id'])
+      .then(res => res.json())
+      .then(courseGroups => Object.keys(courseGroups['courseEvents']).length)
+      .then(size => {
+        // console.log(document.getElementById(id).getElementsByClassName("groups-online").innerHTML);
+        document.getElementById(id).getElementsByClassName("groups-online").text = size + " groups online!";
+        // console.log(document.getElementById(id).getElementsByClassName("groups-online").innerHTML);
+        // document.getElementById(id).style.backgroundColor = "red";
+      }
+    );
+  }
 }
 
 function searchCourses(value) {
   getSearchedCourses(value);
 }
-
 
 getAllCourses();

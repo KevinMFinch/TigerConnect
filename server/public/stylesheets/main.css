@@ -109,13 +109,14 @@ input[type="text"]:focus {
 /* Styling for class elements */
 
 .class {
+  position: relative;
   margin-bottom: 2%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 3%;
   width: 95%;
   /* background-color: #eab6b6; */
-  background-color: #edba6a;
+  background-color: #f9af3b;
   height: 15%;
   min-height: 60px;
   border: 1px solid #ABA095;
@@ -125,7 +126,7 @@ input[type="text"]:focus {
 }
 
 .class:hover {
-  background-color: #e5a747;
+  background-color: #ffb542;
 }
 
 .class:active {
@@ -164,6 +165,21 @@ input[type="text"]:focus {
 
 .pin:hover {
   color: red;
+}
+
+.groups-online{
+  margin-top:10%;
+  position: absolute;
+  bottom: 5%;
+  right: 0%;
+  display: inline-block;
+
+  font-size: 100%;
+  color: white;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  font-family: "Verdana";
+  margin: 0;
+
 }
 
 /* Styling for main panel */
@@ -322,4 +338,29 @@ input[type="text"]:focus {
   0% {transform:scale(1); }
   75% {transform:scale(1.75); opacity:1;}
   100% {transform:scale(2); opacity:0;}
+}
+
+/* Modal header styling... */
+.modal-header {
+  background-color: #f9af3b;
+  text-align: center;
+}
+
+.modal-content {
+  font: Verdana;
+  width: 100%;
+}
+
+.modal-form-description {
+  /* display: inline; */
+}
+
+.modal-title {
+  color: white;
+  text-shadow: -1px 0 #B29E8A, 0 1px #B29E8A, 1px 0 #B29E8A, 0 -1px #B29E8A;
+}
+
+#courseEvent-description {
+  /* height: 30%;
+  width: 80%; */
 }
