@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
+var config = require('../config');
 
 mongoose.Promise = global.Promise;
+mongoose.connect(config.mongoURL)
 // mongoose.connect('mongodb://localhost:27017/TigerConnect');
-mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds247587.mlab.com:47587/heroku_jgzrkc10');
 
 module.exports = {mongoose};
