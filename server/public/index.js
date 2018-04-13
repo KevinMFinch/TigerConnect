@@ -70,15 +70,12 @@ function searchCourses(value) {
 }
 
 function searchCourseGroups(value) {
-<<<<<<< HEAD
-  document.getElementById("courseid").value = value;
-  // document.getElementById(value).classList.add('selected-class');
-  getSearchedCourseGroups(value);
-=======
   split = value.indexOf(" ");
-  document.getElementById("courseid").value = value.substring(0, split);
-  getSearchedCourseGroups("coursename").value = value.substring(split + 1);
->>>>>>> origin/master
+  id = value.substring(0, split);
+  name = value.substring(split + 1);
+  document.getElementById("courseid").value = id;
+  document.getElementById("coursename").value = name;
+  getSearchedCourseGroups(id);
 }
 
 getAllCourses();
