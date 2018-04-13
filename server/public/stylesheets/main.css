@@ -402,6 +402,14 @@ input[type="text"]:focus {
   text-shadow: -1px 0 #B29E8A, 0 1px #B29E8A, 1px 0 #B29E8A, 0 -1px #B29E8A;
 }
 
+.modal-header {
+  border-bottom: 1px solid #B29E8A;
+}
+
+.input-group {
+  margin-top: 0;
+}
+
 #courseEvent-description {
   /* height: 30%;
   width: 80%; */
