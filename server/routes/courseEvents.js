@@ -18,12 +18,10 @@ router.get('/', (req, res) => {
 
 router.get('/:courseID', (req, res) => {
   var courseID = req.params.courseID;
-  console.log(courseID);
   if (!ObjectID.isValid(courseID)) {
     return res.status(404).send('Invalid courseID');
   }
   CourseEvent.find({courseID}).then((courseEvents) => {
-    console.log(courseID);
     if (!courseEvents) {
       return res.json({message: 'No course events for that courseID'});
     }
@@ -53,13 +51,13 @@ router.post('/join/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log(req.body);
-  var {advertiser, time, location, description, courseID} = req.body; // ES6 object destructuring
+  var {title, advertiser, time, location, description, courseID} = req.body; // ES6 object destructuring
   if (!ObjectID.isValid(courseID)) {
     return res.status(404).send('Invalid courseID');
   }
 
   var event = new CourseEvent({
+    title,
     advertiser,
     time,
     location,

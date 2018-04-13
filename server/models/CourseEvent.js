@@ -1,6 +1,12 @@
 var mongoose = require('mongoose');
 
 var CourseEvent = mongoose.model('CourseEvent', {
+  title: {
+    type: String,
+    required: true,
+    minlength: 1,
+    trim: true
+  },
   advertiser: {
     type: String,
     required: true,
@@ -20,13 +26,18 @@ var CourseEvent = mongoose.model('CourseEvent', {
   },
   description: {
     type: String,
-    required: true,
+    required: false,
     trim: true
   },
   courseID: {
     type: String, // Will most likely be the _id of the course that corresponds to this course in the courses collection
     required: true,
     trim: true
+  },
+  timeCreated: {
+    type: Date,
+    required: true,
+    default: Date.now
   },
   members: {
     type: Number,
