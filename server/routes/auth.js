@@ -67,7 +67,7 @@ router.get('/verify', function (req, res) {
 
 // Log the user out
 router.get('/logout', function (req, res) {
-  req.session = null;
+  req.session.cas = null;
   res.redirect('/');
 });
 
@@ -76,6 +76,10 @@ module.exports.router = router
 
 // Determine whether the user sending this request is authenticated
 var userIsAuthenticated = function (req) {
-  return (typeof (req.session.cas) !== 'undefined')
+  console.log('cas', req.session.cas)
+  if (!req.session.cas || req.session.cas == null) {
+    return false;
+  }
+  return true;
 }
 module.exports.userIsAuthenticated = userIsAuthenticated
