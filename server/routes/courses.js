@@ -23,7 +23,7 @@ router.get('/:query', (req, res) => {
     var number = matches[2];
     var crossList = department + number;
     Course.find().or([
-      { department, courseNumber: number },
+      { department, courseNumber: {$regex: '^' + number, $options: 'i'} },
       { crossListings: {$regex: crossList, $options: 'i'}}
     ]).then((courses) => {
       if (courses.length === 0) {
@@ -40,7 +40,7 @@ router.get('/:query', (req, res) => {
     var number = matches[3];
     var crossList = department + number;
     Course.find().or([
-      { department, courseNumber: number  },
+      { department, courseNumber: {$regex: '^' + number, $options: 'i'} },
       { crossListings: {$regex: crossList, $options: 'i'}}
     ]).then((courses) => {
       if (courses.length === 0) {

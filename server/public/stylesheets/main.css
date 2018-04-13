@@ -204,6 +204,20 @@ input[type="text"]:focus {
   padding-right: 5%;
 }
 
+.main-panel-empty h1 {
+  color: black;
+  font-weight: bold;
+
+  font-family: "Verdana";
+  padding-left: 2%;
+  padding-top: 3%;
+
+  width: 100%;
+
+  font-size: 4.5vh;
+}
+
+
 /* Group element styling */
 .group-container {
   width: 100%;
