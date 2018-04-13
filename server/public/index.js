@@ -71,6 +71,7 @@ function searchCourses(value) {
 
 function searchCourseGroups(value) {
   document.getElementById("courseid").value = value;
+  // document.getElementById(value).classList.add('selected-class');
   getSearchedCourseGroups(value);
 }
 

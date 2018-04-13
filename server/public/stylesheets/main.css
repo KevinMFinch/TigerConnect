@@ -123,6 +123,8 @@ input[type="text"]:focus {
   box-shadow: 2px 2px 4px #888888;
   padding-left: 4%;
   padding-top: 1%;
+  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+
 }
 
 .class:hover {
@@ -141,7 +143,7 @@ input[type="text"]:focus {
 
   font-size: 200%;
   color: white;
-  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  text-shadow: inherit;
   font-family: "Verdana";
   margin: 0;
 }
@@ -153,6 +155,15 @@ input[type="text"]:focus {
 
 .class-title {
   font-size: 35%;
+}
+
+.selected-class {
+  background-color: #ed476b;
+  text-shadow: -1px 0 #a01937, 0 1px #a01937, 1px 0 #a01937, 0 -1px #a01937;
+}
+
+.selected-class:hover {
+  background-color: #f97794;
 }
 
 .pin {
@@ -176,7 +187,7 @@ input[type="text"]:focus {
 
   font-size: 100%;
   color: white;
-  text-shadow: -1px 0 #D07F31, 0 1px #D07F31, 1px 0 #D07F31, 0 -1px #D07F31;
+  text-shadow: inherit;
   font-family: "Verdana";
   margin: 0;
 
