@@ -62,7 +62,7 @@ input[type="text"]:focus {
 }
 
 .side-and-main {
-  height: 96vh;
+  height: 95vh;
   width: 100%;
 }
 
@@ -213,6 +213,23 @@ input[type="text"]:focus {
   padding-left: 5%;
   padding-top: 5%;
   padding-right: 5%;
+}
+
+.group-panel-bar {
+  position: absolute;
+  text-align: right;
+  width: 75%;
+  left: 25%;
+  top: 6.2%;
+  height: 6%;
+  z-index: 1;
+  border: 1px solid #afa492;
+  background-color: #f7f0e6;
+}
+
+.bar-button {
+  height: 100%;
+  margin-left: .5%;
 }
 
 .main-panel-empty h1 {

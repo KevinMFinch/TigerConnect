@@ -47,6 +47,7 @@ function handleGroups(groups) {
   document.getElementById("group-placement").innerHTML = "";
   var innerHTMLChange = "";
   var events = groups['courseEvents'];
+  innerHTMLChange = "<div class=\"group-panel-bar\"><button data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"bar-button\"><span class=\"glyphicon glyphicon-plus-sign\"></span>Create Group</button><button class=\"bar-button\"><span class=\"glyphicon glyphicon-filter\"></span>Filter Groups</button></div>"
   if (events.length == 0) {
     innerHTMLChange = innerHTMLChange + "<div class=\"main-panel-empty\"><h1>Be the first to create a group for this class!</h1></div>";
   }
