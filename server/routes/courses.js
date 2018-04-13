@@ -21,7 +21,11 @@ router.get('/:query', (req, res) => {
   if ((matches = oneWordRegexp.exec(query.toUpperCase())) !== null) {
     var department = matches[1];
     var number = matches[2];
-    Course.find({department, courseNumber: number}).then((courses) => {
+    var crossList = department + number;
+    Course.find().or([
+      { department, courseNumber: number },
+      { crossListings: {$regex: crossList, $options: 'i'}}
+    ]).then((courses) => {
       if (courses.length === 0) {
         return res.json({message: 'No courses found'});
       }
@@ -34,7 +38,11 @@ router.get('/:query', (req, res) => {
   else if ((matches = twoWordRegexp.exec(query.toUpperCase())) !== null) {
     var department = matches[1];
     var number = matches[3];
-    Course.find({department, courseNumber: number}).then((courses) => {
+    var crossList = department + number;
+    Course.find().or([
+      { department, courseNumber: number  },
+      { crossListings: {$regex: crossList, $options: 'i'}}
+    ]).then((courses) => {
       if (courses.length === 0) {
         return res.json({message: 'No courses found'});
       }
@@ -45,9 +53,10 @@ router.get('/:query', (req, res) => {
   } else {
     // If not a course search, do a regex on the fields of the Course documents.
     Course.find().or([
+      {department: query.toUpperCase()},
       {name: {$regex: query, $options: 'i'}},
       {courseNumber: {$regex: query}},
-      {department: query.toUpperCase()}
+      {crossListings: {$regex: query, $options: 'i'}}
     ]).then((courses) => {
       if (courses.length === 0) {
         return res.json({message: 'No courses found'});
