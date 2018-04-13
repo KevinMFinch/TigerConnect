@@ -51,6 +51,7 @@ router.post('/join/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log(req.body);
   var {title, advertiser, time, location, description, courseID} = req.body; // ES6 object destructuring
   if (!ObjectID.isValid(courseID)) {
     return res.status(404).send('Invalid courseID');

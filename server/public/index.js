@@ -70,6 +70,7 @@ function searchCourses(value) {
 }
 
 function searchCourseGroups(value) {
+  document.getElementById("courseid").value = value;
   getSearchedCourseGroups(value);
 }
 
