@@ -27,7 +27,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item d-none d-sm-none">
+                <li class="nav-item  d-none d-sm-block">
                   <span class="nav-link">Hey {{netid}}!</span>
                 </li>
                 <li class="nav-item">
@@ -43,19 +43,22 @@
             </div>
           </nav>
       <div class="row">
-        <div class="col-3" id="sidebar">
-          <!-- <div class="container-fluid p-0">
-            <div class="row" id="toolbar"></div>
-            <div class="row">yo?</div>
-          </div> -->
+        <div class="col-3 pr-0" id="sidebar">
+          <div class="container-fluid p-0">
+            <div class="row" id="search-box">
+              <input type="search" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (E.g. MAT103!)" aria-label="courses">
+            </div>
+              <div class="row search-divider ml-4"></div>
+            <div class="row" id="class-placement"></div>
+          </div>
         </div>
         <div class="col-9" id="main-panel">
           <div class="container-fluid p-0">
             <div class="row" id="toolbar">
-              <button type="button" class="ml-auto btn btn-primary" id="create-groups"> Create Group</button>
-              <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" disabled>Filter Groups</button>
+              <button type="button" class="ml-auto btn btn-primary" id="create-groups" aria-disabled="true" disabled><i class="fas fa-plus-circle"></i> Create Group</button>
+              <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true" disabled><i class="fas fa-filter"></i> Filter Groups</button>
             </div>
-            <div class="row text-right">yo?</div>
+            <div class="row">yo?</div>
           </div>
         </div>
       </div>

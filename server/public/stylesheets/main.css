@@ -1,7 +1,6 @@
 body, html {
   height: 100%;
   width: 100%;
-  background-color: #f7eee1;
 }
 
 /* Navbar styling */
@@ -52,13 +51,42 @@ body, html {
   border-right: 1px solid black;
 }
 
+#search-box {
+  height: 70px;
+  /* background-color: green; */
+}
+
+#desktop-course-search {
+  background-color: #2f3f4c;
+  border: 1px solid #3c5568;
+  font: Verdana;
+  color: #aebac4;
+  max-width: 85%;
+  border-bottom:
+}
+
+.search-divider {
+  height: 1px;
+  width: 80%;
+  background-color: #3c5568;
+}
+
+#class-placement{
+  height: 100%;
+  overflow-y: scroll;
+  -moz-box-shadow:    inset 0 0 20px #070d11;
+  -webkit-box-shadow: inset 0 0 20px #070d11;
+  box-shadow:         inset 0 0 20px #070d11;
+}
+
 /* Main panel styling */
 #main-panel {
   /* height: 100%; */
+  background-color: #fff2e2;
   border-left: 1px solid red;
-  -moz-box-shadow:    inset 0 0 30px #ccc0af;
-  -webkit-box-shadow: inset 0 0 30px #ccc0af;
-  box-shadow:         inset 0 0 30px #ccc0af;
+  -moz-box-shadow:    inset 0 0 30px #e8d4b9;
+  -webkit-box-shadow: inset 0 0 30px #e8d4b9;
+  box-shadow:         inset 0 0 30px #e8d4b9;
 }
 
 /* Tool bar styling */
