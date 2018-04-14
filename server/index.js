@@ -40,7 +40,7 @@ app.get('/main', (req, res) => {
   if (!auth.userIsAuthenticated(req)) {
     return res.redirect('/api/auth/login');
   }
-  res.render('main', {netid: req.session.cas.netid});
+  res.render('main2', {netid: req.session.cas.netid});
 })
 
 // The 'catchall' handler: for any request that doesn't match one above, send back React's index.html
