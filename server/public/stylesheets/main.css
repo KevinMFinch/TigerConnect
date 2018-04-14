@@ -2,9 +2,6 @@ body, html {
   height: 100%;
   width: 100%;
   background-color: #f7eee1;
-  -moz-box-shadow:    inset 0 0 20px #ccc0af;
-  -webkit-box-shadow: inset 0 0 20px #ccc0af;
-  box-shadow:         inset 0 0 20px #ccc0af;
 }
 
 /* Navbar styling */
@@ -13,6 +10,9 @@ body, html {
   background-color: #ff6a26;
   font-family: Verdana;
   border-bottom: 2px solid #162028
+  -moz-box-shadow:    inset 0 0 20px #c14a13;
+  -webkit-box-shadow: inset 0 0 20px #c14a13;
+  box-shadow:         inset 0 0 20px #c14a13;
 }
 
 .navbar-brand {
@@ -24,7 +24,7 @@ body, html {
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-  color: red;
+  color: #415768;
 }
 
 .form-control {
@@ -34,4 +34,36 @@ body, html {
 .form-control.mr-sm-2.ml-auto {
   width: 100%;
   max-width: 300%;
+}
+
+.form-inline.my-2.my-lg-0.ml-auto.d-lg-none.d-xl-none {
+  margin-left: 0;
+}
+
+/* Sidebar and navbar paneling */
+
+.side-and-main {
+  overflow: hidden;
+}
+
+#sidebar {
+  height: 100%;
+  background-color: #162028;
+  border-right: 1px solid black;
+}
+
+/* Main panel styling */
+#main-panel {
+  /* height: 100%; */
+  border-left: 1px solid red;
+  -moz-box-shadow:    inset 0 0 30px #ccc0af;
+  -webkit-box-shadow: inset 0 0 30px #ccc0af;
+  box-shadow:         inset 0 0 30px #ccc0af;
+}
+
+#toolbar {
+  height: 6%;
+  /* background-color: #e0d5c7; */
+  background: linear-gradient(to bottom right,#ccbca9, #f2eae1);
+  border: 1px solid #d8d1c9;
 }
