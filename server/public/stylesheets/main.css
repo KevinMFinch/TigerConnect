@@ -54,7 +54,6 @@ body, html {
 
 #search-box {
   height: 70px;
-  /* background-color: green; */
 }
 
 #desktop-course-search {
@@ -63,7 +62,6 @@ body, html {
   font: Verdana;
   color: #aebac4;
   max-width: 85%;
-  border-bottom:
 }
 
 .search-divider {
@@ -74,10 +72,27 @@ body, html {
 
 #class-placement{
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   -moz-box-shadow:    inset 0 0 20px #070d11;
   -webkit-box-shadow: inset 0 0 20px #070d11;
   box-shadow:         inset 0 0 20px #070d11;
+}
+
+.class {
+  height: 15%;
+  width: 100%;
+  border-bottom: 1px solid #3c5568;
+}
+
+.class-title {
+  background-color: #94abce;
+  color: white;
+  height: 20%;
+  border-radius: 5%;
+}
+
+.class:hover {
+  background-color: #263744;
 }
 
 /* Main panel styling */
@@ -88,6 +103,10 @@ body, html {
   -moz-box-shadow:    inset 0 0 30px #e8d4b9;
   -webkit-box-shadow: inset 0 0 30px #e8d4b9;
   box-shadow:         inset 0 0 30px #e8d4b9;
+}
+
+#main-panel-content {
+  height: 100%;
 }
 
 /* Tool bar styling */
@@ -103,9 +122,11 @@ body, html {
   margin-left: 2px;
   background-color: #162129;
   border: 1px solid #162129;
+  opacity: .7;
 }
 
 #create-groups {
   background-color: #162129;
   border: 1px solid #162129;
+  opacity: .7;
 }
