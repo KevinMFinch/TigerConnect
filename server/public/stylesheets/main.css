@@ -6,7 +6,7 @@ body, html {
 /* Navbar styling */
 
 .navbar {
-  background-color: #ff8f00;
+  background-color: #f9712c;
   font-family: Arial;
   /*border-bottom: 2px solid #162028*/
   /*-moz-box-shadow:    inset 0 0 20px #c14a13;*/
@@ -84,21 +84,24 @@ body, html {
   border-bottom: 1px solid #3c5568;
 }
 
-.class-title {
-  background-color: #94abce;
-  color: white;
-  height: 20%;
-  border-radius: 5%;
-}
 
 .class:hover {
   background-color: #263744;
 }
 
+.class-title {
+  background-color: #2f3f4c;
+  color: #aebac4;
+  height: 20%;
+  padding-left: 3%;
+  padding-right: 3%;
+  border-radius: 5%;
+}
+
 /* Main panel styling */
 #main-panel {
   /* height: 100%; */
-  background-color: #e0e0e0;
+  background-color: #FAFAFA;
   border-left: 1px solid #929292;
   -moz-box-shadow:    inset 0 0 30px #e8d4b9;
   -webkit-box-shadow: inset 0 0 30px #e8d4b9;
@@ -129,4 +132,13 @@ body, html {
   background-color: #162129;
   border: 1px solid #162129;
   opacity: .7;
+}
+
+/* Mobile view  */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  #desktop-view {
+    visibility: hidden;
+  }
 }
