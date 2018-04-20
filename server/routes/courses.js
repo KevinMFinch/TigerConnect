@@ -51,20 +51,15 @@ router.get('/:query', (req, res) => {
       console.log(e);
     });
   } else {
-    // If not a course search, do a regex on the fields of the Course documents.
-    Course.find().or([
-      {department: query.toUpperCase()},
-      {name: {$regex: query, $options: 'i'}},
-      {courseNumber: {$regex: query}},
-      {crossListings: {$regex: query, $options: 'i'}}
-    ]).then((courses) => {
-      if (courses.length === 0) {
-        return res.json({message: 'No courses found'});
-      }
+    var promises = [];
+    promises.push(Course.find({department: query.toUpperCase()}));
+    promises.push(Course.find({name: {$regex: query, $options: 'i'}}));
+    promises.push(Course.find({courseNumber: {$regex: query}}));
+    promises.push(Course.find({crossListings: {$regex: query, $options: 'i'}}));
+
+    Promise.all(promises).then((courses) => {
       res.json(courses);
-    }, (e) => {
-      console.log(e);
-    })
+    });
   }
 });
 
