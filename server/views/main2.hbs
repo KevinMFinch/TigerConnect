@@ -52,58 +52,9 @@
             <div class="row" id="search-box">
               <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (E.g. MAT103!)" aria-label="courses">
             </div>
-              <div class="row search-divider ml-4"></div>
-            <div class="row" id="class-placement">
-              <div class="container-fluid p-0">
-                <div class="class row ml-auto p-0">
-                  <p class="class-title ml-4 mt-2">MAT103</p>
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
-                <div class="class row">
-                </div>
+            <div class="row search-divider ml-4"></div>
+            <div class="row vertical-center" id="class-placement">
+              <div class="container-fluid align-middle p-0">
               </div>
             </div>
           </div>
@@ -111,14 +62,10 @@
         <div class="col-9" id="main-panel">
           <div class="container-fluid p-0">
             <div class="row" id="toolbar">
-              <button type="button" class="ml-auto btn btn-primary" id="create-groups" aria-disabled="true" disabled><i class="fas fa-plus-circle"></i> Create Group</button>
-              <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true" disabled><i class="fas fa-filter"></i> Filter Groups</button>
+              <button type="button" class="ml-auto btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true"><i class="fas fa-plus-circle"></i> Create Group</button>
+              <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button>
             </div>
             <div class="row" id="main-panel-content">
-              <div class="panel panel-default">
-                <div class="panel-heading">Panel Heading</div>
-                <div class="panel-body">Panel Content</div>
-              </div>
               <div class="group-container"><div class="group slideUp"><div class="group-header"><p class="group-header-text">lol mathmathmath</p></div><button class="join">JOIN</button></div></div>
             </div>
           </div>
@@ -133,26 +80,26 @@
 
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="createGroupLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title" id="exampleModalLabel">Create Group</h1>
+            <h1 class="modal-title" id="createGroupLabel">Create Group</h1>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="exampleInputEmail1">Group Title</label>
+                <label for="courseEvent-title">Group Title</label>
                 <input type="text" class="form-control" id="courseEvent-title" aria-describedby="emailHelp" placeholder="Title">
                 <small class="form-text text-muted">Grab people's attention with an interesting title!</small>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Location</label>
+                <label for="courseEvent-location">Location</label>
                 <input type="text" class="form-control" id="courseEvent-location" placeholder="Location">
                 <small class="form-text text-muted">Where do you want to meet?</small>
               </div>
               <div class="form-group">
-                <label for="exampleInputTime">Time</label>
+                <label for="inputTime">Time</label>
                             <div class='input-group date' id='datetimepicker1'>
                                 <input type='text' class="form-control" id="courseEvent-time"/>
                                 <span class="input-group-addon">
@@ -167,7 +114,7 @@
                 <small class="form-text text-muted">When do you want to meet?</small>
               </div>
               <div class="form-group">
-                <label for="exampleTextarea">Group Description</label>
+                <label for="textarea">Group Description</label>
                 <textarea class="form-control" id="courseEvent-description" rows="3"></textarea>
                 <small class="form-text text-muted">Anything else?</small>
               </div>
