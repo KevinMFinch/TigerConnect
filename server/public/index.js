@@ -77,4 +77,9 @@ function searchCourseGroups(value) {
   getSearchedCourseGroups(id);
 }
 
+function refreshGroups() {
+  alert(document.getElementById("courseid").value);
+  getSearchedCourseGroups((document.getElementById("courseid").value));
+}
+
 getAllCourses();
