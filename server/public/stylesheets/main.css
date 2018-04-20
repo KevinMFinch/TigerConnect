@@ -88,6 +88,25 @@ body, html {
   border-bottom: 1px solid #3c5568;
 }
 
+.pin {
+  float: right;
+  color: #aebac4;
+  background-color: Transparent;
+  border: none;
+  outline: none;
+  height: auto;
+  width: 10%;
+}
+
+/* TODO: add pins to a column row in bootstrap... */
+.pin:hover {
+  color: red;
+}
+
+.pin:focus {
+  outline: none;
+}
+
 
 .class:hover {
   background-color: #263744;
