@@ -36,7 +36,7 @@ getSearchedCourseGroups = query => {
 function handleCourses(course) {
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
-    innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + " " + course[i]['name'] + "\" onclick=\"searchCourseGroups(this.id)\"><div class=\"pin glyphicon glyphicon-pushpin\" />" + "</div>";
+    innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + " " + course[i]['department'] + course[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id)\"><div class=\"pin glyphicon glyphicon-pushpin\" />" + "</div>";
     innerHTMLChange = innerHTMLChange + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + course[i]['department'] + course[i]['courseNumber'] + "</h5>";
     innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + course[i]['name'] + "</p></div>";
   }
@@ -44,7 +44,6 @@ function handleCourses(course) {
 }
 
 function handleGroups(groups) {
-  document.getElementById("main-panel-content").innerHTML = "";
   var innerHTMLChange = "";
   var events = groups['courseEvents'];
   if (events.length == 0) {
@@ -54,15 +53,14 @@ function handleGroups(groups) {
     for(var i = 0; i < events.length; i++) {
       innerHTMLChange = innerHTMLChange + "<div class=\"group-container\"><div class=\"group slideUp\">";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-header\"><p class=\"group-header-text\">" + events[i]['title'];
-      innerHTMLChange = innerHTMLChange + "</p></div><button class=\"join\" onclick=\"joinGroup()\">JOIN</button></div></div>";
+      innerHTMLChange = innerHTMLChange + "</p></div><button class=\"join\">JOIN</button></div></div>";
     }
   }
 
-  document.getElementById("main-panel-content").innerHTML += innerHTMLChange;
+  document.getElementById("main-panel-content").innerHTML = innerHTMLChange;
 }
 
-function joinGroup(group_id, netid) {
-
+function getCourseGroupSize(id) {
 
 }
 
