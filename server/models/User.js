@@ -1,25 +1,17 @@
 var mongoose = require('mongoose');
 
 var User = mongoose.model('User', {
-  name: {
+  netid: {
     type: String,
     required: true,
     minlength: 1,
     trim: true
   },
-  department: {
-    type: String,
+  pinnedCourses: {
+    type: Array,
     required: true,
-    trim: true
-  },
-  courseNumber: {
-    type: String,
-    required: true
-  },
-  crossListings: {
-    type: String,
-    required: false
+    default: []
   }
 });
 
-module.exports = {Course};
+module.exports = {User};

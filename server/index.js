@@ -14,6 +14,7 @@ const app = express();
 var courseEvents = require('./routes/courseEvents');
 var courses = require('./routes/courses');
 var auth = require('./routes/auth');
+var users = require('./routes/users');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -28,6 +29,7 @@ app.use(bodyParser.json());
 app.use('/api/courses', courses);
 app.use('/api/courseEvents', courseEvents);
 app.use('/api/auth', auth.router);
+app.use('/api/users', users);
 
 app.get('/', (req, res) => {
   if (auth.userIsAuthenticated(req)) {

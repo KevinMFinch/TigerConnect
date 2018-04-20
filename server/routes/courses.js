@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var _ = require('lodash');
+
 var {mongoose} = require('../db/mongoose');
 const {Course} = require('../models/Course');
 
@@ -51,20 +53,16 @@ router.get('/:query', (req, res) => {
       console.log(e);
     });
   } else {
-    // If not a course search, do a regex on the fields of the Course documents.
-    Course.find().or([
-      {department: query.toUpperCase()},
-      {name: {$regex: query, $options: 'i'}},
-      {courseNumber: {$regex: query}},
-      {crossListings: {$regex: query, $options: 'i'}}
-    ]).then((courses) => {
-      if (courses.length === 0) {
-        return res.json({message: 'No courses found'});
-      }
-      res.json(courses);
-    }, (e) => {
-      console.log(e);
-    })
+    var promises = [];
+    promises.push(Course.find({department: query.toUpperCase()}));
+    promises.push(Course.find({name: {$regex: query, $options: 'i'}}));
+    promises.push(Course.find({courseNumber: {$regex: query}}));
+    promises.push(Course.find({crossListings: {$regex: query, $options: 'i'}}));
+
+    Promise.all(promises).then((courses) => {
+      // Lodash function to get unique values
+      res.json(_.unionWith(courses[0], courses[1], courses[2], courses[3], _.isEqual));
+    });
   }
 });
 

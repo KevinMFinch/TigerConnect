@@ -43,6 +43,11 @@ var CourseEvent = mongoose.model('CourseEvent', {
     type: Number,
     required: true,
     default: 1
+  },
+  memberNetids: {
+    type: Array,
+    required: true,
+    default: []
   }
 });
 
