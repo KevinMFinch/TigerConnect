@@ -51,9 +51,18 @@ function handleGroups(groups) {
   }
   else {
     for(var i = 0; i < events.length; i++) {
+      var memberPlural = " members ";
+      if (events[i]['members'] == 1) {
+        memberPlural = " member ";
+      }
       innerHTMLChange = innerHTMLChange + "<div class=\"group-container\"><div class=\"group slideUp\">";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-header\"><p class=\"group-header-text\">" + events[i]['title'];
-      innerHTMLChange = innerHTMLChange + "</p></div><button class=\"join\">JOIN</button></div></div>";
+      innerHTMLChange = innerHTMLChange + "</p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
+      innerHTMLChange = innerHTMLChange + "</p><span class=\"font-weight-bold\">Location: </span><span>" + events[i]['location'];
+      innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
+      innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span>";
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\">Created by " + events[i]['advertiser'] + " • " + events[i]['timeCreated'] + "</p></div>";
+      innerHTMLChange = innerHTMLChange + "</div></p><button class=\"join\">JOIN</button></div></div>";
     }
   }
 
