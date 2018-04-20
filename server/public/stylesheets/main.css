@@ -46,6 +46,10 @@ body, html {
   overflow: hidden;
 }
 
+#command-start {
+  color: white;
+}
+
 #sidebar {
   height: 100%;
   background-color: #162028;
