@@ -111,7 +111,6 @@ function searchCourseGroups(value) {
 }
 
 function refreshGroups() {
-  alert(document.getElementById("courseid").value);
   getSearchedCourseGroups((document.getElementById("courseid").value));
 }
 

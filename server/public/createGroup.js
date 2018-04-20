@@ -17,5 +17,4 @@ function createGroup() {
 	document.getElementById("courseEvent-time").value = "";
 	document.getElementById("courseEvent-location").value = "";
 	document.getElementById("courseEvent-description").value = "";
-	document.getElementById("courseid").value = "";
 }
