@@ -88,6 +88,13 @@ body, html {
   border-bottom: 1px solid #3c5568;
 }
 
+.pin {
+  float: right;
+  color: #aebac4;
+  height: auto;
+  width: 10%;
+}
+
 
 .class:hover {
   background-color: #263744;
