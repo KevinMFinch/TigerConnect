@@ -44,7 +44,7 @@ function handleCourses(course) {
 }
 
 function handleGroups(groups) {
-  document.getElementById("group-placement").innerHTML = "";
+  document.getElementById("main-panel-content").innerHTML = "";
   var innerHTMLChange = "";
   var events = groups['courseEvents'];
   if (events.length == 0) {
