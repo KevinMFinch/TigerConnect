@@ -40,6 +40,7 @@ router.post('/join', (req, res) => {
   }
 
   // Update object to increment members field by one and push netid to array
+  // TODO: Members should not increment if already in group
   var update = {
     $inc: {members: 1},
     $addToSet: {memberNetids: joiningNetid}
