@@ -114,6 +114,7 @@ body, html {
 
 #main-panel-content {
   height: 100%;
+  overflow-y: auto;
 }
 
 .panel > .panel-heading {
