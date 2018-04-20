@@ -43,14 +43,6 @@ function handleCourses(course) {
   document.getElementById("class-placement").innerHTML = innerHTMLChange;
 }
 
-function addPinnedClass(courseID) {
-  fetch('/api/users/pincourse', {
-
-  })
-    .then(res => res.json())
-    .then(course => testprint(course));
-}
-
 function testprint(course){
   alert(JSON.stringify(course));
 }
@@ -93,8 +85,16 @@ function joinGroup(id) {
   });
 }
 
-function getCourseGroupSize(id) {
+function addPinnedClass(id) {
+  var coursePin = {courseID: id, netid: document.getElementById("netid").value};
 
+  fetch('api/users/pincourse', {
+    method: 'POST',
+    body: JSON.stringify(coursePin),
+    headers: new Headers ({
+      'Content-Type': 'application/json'
+    })
+  });
 }
 
 function searchCourses(value) {
