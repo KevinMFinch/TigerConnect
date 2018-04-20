@@ -37,10 +37,20 @@ function handleCourses(course) {
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
     innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + " " + course[i]['department'] + course[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id)\"><div/>" + "</div>";
-    innerHTMLChange = innerHTMLChange + "<div class=\"pin mt-2\"><i class=\"fas fa-thumbtack\"></i></div>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + course[i]['department'] + course[i]['courseNumber'] + "</h5>";
+    innerHTMLChange = innerHTMLChange + "<button  id=\"" + course[i]['_id'] + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + course[i]['department'] + course[i]['courseNumber'] + "</h5>";
     innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + course[i]['name'] + "</p></div>";
   }
   document.getElementById("class-placement").innerHTML = innerHTMLChange;
+}
+
+function addPinnedClass(courseID) {
+  fetch('/api/courses/')
+    .then(res => res.json())
+    .then(course => testprint(course));
+}
+
+function testprint(course){
+  alert(JSON.stringify(course));
 }
 
 function handleGroups(groups) {
