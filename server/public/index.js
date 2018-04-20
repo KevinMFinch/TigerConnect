@@ -54,14 +54,15 @@ function handleGroups(groups) {
     for(var i = 0; i < events.length; i++) {
       innerHTMLChange = innerHTMLChange + "<div class=\"group-container\"><div class=\"group slideUp\">";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-header\"><p class=\"group-header-text\">" + events[i]['title'];
-      innerHTMLChange = innerHTMLChange + "</p></div><button class=\"join\">JOIN</button></div></div>";
+      innerHTMLChange = innerHTMLChange + "</p></div><button class=\"join\" onclick=\"joinGroup()\">JOIN</button></div></div>";
     }
   }
 
   document.getElementById("main-panel-content").innerHTML += innerHTMLChange;
 }
 
-function getCourseGroupSize(id) {
+function joinGroup(group_id, netid) {
+
 
 }
 
