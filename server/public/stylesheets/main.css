@@ -157,7 +157,7 @@ body, html {
   width: 100%;
   height: 35%;
   padding-top: 3%;
-  padding-bottom: 3%;
+  padding-bottom: .5%;
   padding-left: 5%;
   padding-right: 7%;
 }
@@ -224,7 +224,7 @@ body, html {
 
 .group-container:hover {
   padding-top: 3%;
-  padding-bottom: 3%;
+  padding-bottom: .5%;
   padding-left: 5%;
   padding-right: 7%;
 }
