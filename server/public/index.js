@@ -72,11 +72,23 @@ function handleGroups(groups) {
       innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
       innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span>";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\">Created by " + events[i]['advertiser'] + " • " + events[i]['timeCreated'] + "</p></div>";
-      innerHTMLChange = innerHTMLChange + "</div></p><button class=\"join\">JOIN</button></div></div>";
+      innerHTMLChange = innerHTMLChange + "</div></p><button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
     }
   }
 
   document.getElementById("main-panel-content").innerHTML = innerHTMLChange;
+}
+
+function joinGroup(id) {
+  var courseEvent = {courseEventID: id, netid: document.getElementById("netid").value};
+
+  fetch('api/courseEvents/join', {
+    method: 'POST',
+    body: JSON.stringify(courseEvent),
+    headers: new Headers ({
+      'Content-Type': 'application/json'
+    })
+  });
 }
 
 function getCourseGroupSize(id) {
