@@ -44,7 +44,9 @@ function handleCourses(course) {
 }
 
 function addPinnedClass(courseID) {
-  fetch('/api/courses/')
+  fetch('/api/users/pincourse', {
+
+  })
     .then(res => res.json())
     .then(course => testprint(course));
 }
