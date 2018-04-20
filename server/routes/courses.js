@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var _ = require('lodash');
+
 var {mongoose} = require('../db/mongoose');
 const {Course} = require('../models/Course');
 
@@ -58,7 +60,8 @@ router.get('/:query', (req, res) => {
     promises.push(Course.find({crossListings: {$regex: query, $options: 'i'}}));
 
     Promise.all(promises).then((courses) => {
-      res.json(courses);
+      // Lodash function to get unique values
+      res.json(_.unionWith(courses[0], courses[1], courses[2], courses[3], _.isEqual));
     });
   }
 });
