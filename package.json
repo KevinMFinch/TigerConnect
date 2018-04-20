@@ -6,6 +6,7 @@
   "jquery": true,
   "scripts": {
     "start": "node server/index.js",
+    "postinstall": "node server/scraper/scraper.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
