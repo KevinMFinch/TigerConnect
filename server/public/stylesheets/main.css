@@ -90,10 +90,10 @@ body, html {
 }
 
 .class-title {
-  background-color: #2f3f4c;
+  /*background-color: #2f3f4c;*/
   color: #aebac4;
   height: 20%;
-  padding-left: 3%;
+  padding-left: 1%;
   padding-right: 3%;
   border-radius: 5%;
 }
