@@ -37,8 +37,8 @@ function handleCourses(course) {
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
     innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + " " + course[i]['name'] + "\" onclick=\"searchCourseGroups(this.id)\"><div class=\"pin glyphicon glyphicon-pushpin\" />" + "</div>";
-    innerHTMLChange = innerHTMLChange + "<h1 class=\"class-title\">" + course[i]['department'] + course[i]['courseNumber'] + "</h1>";
-    innerHTMLChange = innerHTMLChange + "<h2 class=\"hidden-sm\">" + course[i]['name'] + "</h2>" + "<p class=\"hidden-sm groups-online\">Click to see online groups...<p></div>";
+    innerHTMLChange = innerHTMLChange + "<h5 class=\"class-title ml-4 mt-2\">" + course[i]['department'] + course[i]['courseNumber'] + "</h5>";
+    innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 mt-2 mr-4 small text-white\">" + course[i]['name'] + "</p>" + "<p class=\"hidden-sm groups-online\">Click to see online groups...<p></div>";
   }
   document.getElementById("class-placement").innerHTML = innerHTMLChange;
 }

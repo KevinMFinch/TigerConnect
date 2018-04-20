@@ -6,7 +6,7 @@ body, html {
 /* Navbar styling */
 
 .navbar {
-  background-color: #f9712c;
+  background-color: #ffc94c; /* ffc94c yellow */
   font-family: Arial;
   /*border-bottom: 2px solid #162028*/
   /*-moz-box-shadow:    inset 0 0 20px #c14a13;*/
@@ -101,7 +101,7 @@ body, html {
 /* Main panel styling */
 #main-panel {
   /* height: 100%; */
-  background-color: #FAFAFA;
+  background-color: #fafafa; /* #fcf4e3 yellow fade */
   border-left: 1px solid #929292;
   -moz-box-shadow:    inset 0 0 30px #e8d4b9;
   -webkit-box-shadow: inset 0 0 30px #e8d4b9;
@@ -110,6 +110,18 @@ body, html {
 
 #main-panel-content {
   height: 100%;
+}
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: #162028;;
+    color: white;
+}
+
+.panel > .panel-body {
+    background-image: none;
+    background-color: #ffc94c;;;
+    color: white;
 }
 
 /* Tool bar styling */
