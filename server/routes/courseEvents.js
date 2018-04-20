@@ -32,14 +32,19 @@ router.get('/:courseID', (req, res) => {
   })
 });
 
-router.post('/join/', (req, res) => {
+router.post('/join', (req, res) => {
   var courseEventID = req.body.courseEventID;
+  var joiningNetid = req.body.netid;
   if (!ObjectID.isValid(courseEventID)) {
     return res.status(404).send('Invalid courseEventID');
   }
-  // Update object to increment members field by one
-  var incUpdate = { $inc: {members: 1}};
-  CourseEvent.findByIdAndUpdate(courseEventID, incUpdate, {new:true}).then((courseEvent) => {
+
+  // Update object to increment members field by one and push netid to array
+  var update = {
+    $inc: {members: 1},
+    $addToSet: {memberNetids: joiningNetid}
+  };
+  CourseEvent.findByIdAndUpdate(courseEventID, update, {new:true}).then((courseEvent) => {
     if(!courseEvent) {
       return res.json({message: 'No course event with that courseEventID'});
     }
@@ -63,7 +68,8 @@ router.post('/', (req, res) => {
     time,
     location,
     description,
-    courseID
+    courseID,
+    memberNetids: [advertiser]
   });
 
   event.save().then((doc) => {

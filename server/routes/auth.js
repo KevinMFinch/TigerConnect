@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var {User} = require('../models/User');
+
 // Load external dependencies
 require('cookie-session');
 var CentralAuthenticationService = require('cas');
@@ -32,7 +34,6 @@ router.get('/verify', function (req, res) {
   // If the user already has a valid CAS session then send them to their destination
   console.log("Verify function...");
   if (req.session.cas) {
-    console.log('aready exists');
     res.redirect('/main')
     return
   }
@@ -59,9 +60,25 @@ router.get('/verify', function (req, res) {
       netid: netid
     }
 
-    console.log(req.session.cas);
-
-    res.redirect('/main');
+    // Find the user in the database with this netid
+    User.findOne({netid}).then((user) => {
+      // If the user doesn't exist, create a new user
+      if (!user) {
+        var newUser = new User({
+          netid
+        });
+        newUser.save().then((us) => {
+          res.redirect('/main');
+        }, (e) => {
+          res.json({message: "could not create user"});
+        });
+      } else {
+        res.redirect('/main');
+      }
+    }, (e) => {
+      console.log(e);
+      res.sendStatus(500);
+    });
   });
 });
 
@@ -76,7 +93,6 @@ module.exports.router = router
 
 // Determine whether the user sending this request is authenticated
 var userIsAuthenticated = function (req) {
-  console.log('cas', req.session.cas)
   if (!req.session.cas || req.session.cas == null) {
     return false;
   }
