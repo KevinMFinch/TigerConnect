@@ -100,9 +100,9 @@ function handleGroups(groups) {
       innerHTMLChange = innerHTMLChange + "</p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
       innerHTMLChange = innerHTMLChange + "</p><span class=\"font-weight-bold\">Location: </span><span>" + events[i]['location'];
       innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
-      innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span>";
+      innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span></div>";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\">Created by " + events[i]['advertiser'] + " • " + dateFormatted + "</p></div>";
-      innerHTMLChange = innerHTMLChange + "</div></p><button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
+      innerHTMLChange = innerHTMLChange + "<button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
     }
   }
   document.getElementById("main-panel-content").innerHTML = innerHTMLChange;
