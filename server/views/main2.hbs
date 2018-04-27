@@ -36,12 +36,12 @@
                 <li class="nav-item  d-none d-sm-block">
                   <span class="nav-link">Hey {{netid}}!</span>
                 </li>
-                <li class="nav-item">
+                {{!-- <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fas fa-bell"></i></span> Notifications</a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{!-- <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                   <a class="nav-link" href="/api/auth/logout"><i class="fas fa-power-off"></i> Logout</a>
                 </li>
@@ -85,8 +85,8 @@
         <div class="col-9" id="main-panel">
           <div class="container-fluid p-0">
             <div class="row" id="toolbar">
-              <button type="button" class="ml-auto btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true"><i class="fas fa-plus-circle"></i> Create Group</button>
-              <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button>
+              <button type="button" class="ml-auto mr-4 btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true"><i class="fas fa-plus-circle"></i> Create Group</button>
+              {{!-- <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button> --}}
             </div>
             <div class="row" id="main-panel-content">
               <div class="col-3 test mx-auto my-auto" style="height: 45%"><div class="icon-top mx-auto" style="width: 10%;"><i class="far fa-hand-point-up" style="font-size: 300%;"></i></div>Choose the class you're enrolled in on the left</div>
