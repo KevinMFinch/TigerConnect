@@ -3,6 +3,10 @@ body, html {
   width: 100%;
 }
 
+.test {
+  border: 1px solid black;
+}
+
 /* Navbar styling */
 
 .navbar {
