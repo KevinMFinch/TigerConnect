@@ -57,25 +57,13 @@ function handlePinned(courses) {
     alert("none!");
   }
   else {
-    // alert(courses[0]['_id'] + " " + courses[0]['department'] + courses[0]['courseNumber']);
+    // alert(courses[0]['_id'] + " " + courses[0]['department'] + courses[0]['courseNumber'] + " " + courses[0]['name']);
     for(var i = 0; i < courses.length; i++) {
-      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\"><div/>" + "</div>";
+      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
       innerHTMLChange = innerHTMLChange + "<button  id=\"" + courses[i]['_id'] + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + courses[i]['department'] + courses[i]['courseNumber'] + "</h5>";
       innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + courses[i]['name'] + "</p></div>";
     }
-
-    innerHTMLChange = "";
-    innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + "courseID COS 333" + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\"><div/>" + "</div>";
-    innerHTMLChange = innerHTMLChange + "<button  id=\"" + "courseID" + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + "COS 333" + "</h5>";
-    innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + "courseName woot woot" + "</p></div>";
   }
-
-  // innerHTMLChange = "nahhhh";
-
-  // innerHTMLChange = innerHTMLChange + "<div class=\"show\" id=\"collapseExample\">";
-  // innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"COS376\">";
-  // innerHTMLChange = innerHTMLChange + "<h1 style=\"color:white;\">COS 376</h1></div></div>";
-
   document.getElementById("pinned-placement").innerHTML = innerHTMLChange;
 }
 
@@ -100,17 +88,21 @@ function handleGroups(groups) {
   }
   else {
     for(var i = 0; i < events.length; i++) {
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var dayOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       var memberPlural = " members ";
       if (events[i]['members'] == 1) {
         memberPlural = " member ";
       }
+      var date = new Date(events[i]['timeCreated']);
+      var dateFormatted = dayOfWeek[date.getDay()] + " " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
       innerHTMLChange = innerHTMLChange + "<div class=\"group-container\"><div class=\"group slideUp\">";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-header\"><p class=\"group-header-text\">" + events[i]['title'];
       innerHTMLChange = innerHTMLChange + "</p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
       innerHTMLChange = innerHTMLChange + "</p><span class=\"font-weight-bold\">Location: </span><span>" + events[i]['location'];
       innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
       innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span>";
-      innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\">Created by " + events[i]['advertiser'] + " • " + events[i]['timeCreated'] + "</p></div>";
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\">Created by " + events[i]['advertiser'] + " • " + dateFormatted + "</p></div>";
       innerHTMLChange = innerHTMLChange + "</div></p><button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
     }
   }
