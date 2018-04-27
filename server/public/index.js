@@ -53,20 +53,20 @@ function handleCourses(course) {
 function handlePinned(courses) {
   var innerHTMLChange = "";
   if (courses.length == 0) {
-    innerHTMLChange = innerHTMLChange + "<div class=\"pinned-bar\" data-toggle=\"collapse\" href=\"#collapseExample\" role=\"button\" aria-expanded=\"true\" aria-controls=\"collapseExample\ style=\"color:white\">None</div>;"
-    alert("none!");
-  }
-  else {
+      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight pinnedCourse\" style=\"cursor: auto\">";
+      innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + "No pinned courses yet." + "</p></div>";
+  } else {
     // alert(courses[0]['_id'] + " " + courses[0]['department'] + courses[0]['courseNumber'] + " " + courses[0]['name']);
     for(var i = 0; i < courses.length; i++) {
-      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
-      innerHTMLChange = innerHTMLChange + "<button  id=\"" + courses[i]['_id'] + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + courses[i]['department'] + courses[i]['courseNumber'] + "</h5>";
+      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight pinnedCourse\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
+      innerHTMLChange = innerHTMLChange + "<button  id=\"" + courses[i]['_id'] + "\" class=\"pin pinned mt-2 ml-auto mr-2\" onclick=\"unpinClass(this.id);\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + courses[i]['department'] + courses[i]['courseNumber'] + "</h5>";
       innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + courses[i]['name'] + "</p></div>";
     }
   }
   document.getElementById("pinned-placement").innerHTML = innerHTMLChange;
 }
 
+// highlight currently selected course
 function setSelected(item) {
   var divItems = document.getElementsByClassName("class");
   for(var i=0; i < divItems.length; i++){
@@ -112,7 +112,7 @@ function handleGroups(groups) {
 function joinGroup(id) {
   var courseEvent = {courseEventID: id, netid: document.getElementById("netid").value};
 
-  fetch('api/courseEvents/join', {
+  fetch('/api/courseEvents/join', {
     method: 'POST',
     body: JSON.stringify(courseEvent),
     headers: new Headers ({
@@ -124,13 +124,29 @@ function joinGroup(id) {
 function addPinnedClass(id) {
   var coursePin = {courseID: id, netid: document.getElementById("netid").value};
 
-  fetch('api/users/pincourse', {
+  fetch('/api/users/pincourse', {
     method: 'POST',
     body: JSON.stringify(coursePin),
     headers: new Headers ({
       'Content-Type': 'application/json'
     })
   });
+
+  getPinned();
+}
+
+function unpinClass(id) {
+  var coursePin = {netid: document.getElementById("netid").value, courseID: id};
+
+  fetch('/api/users/unpincourse', {
+    method: 'POST',
+    body: JSON.stringify(coursePin),
+    headers: new Headers ({
+      'Content-Type': 'application/json'
+    })
+  });
+
+  getPinned();
 }
 
 function searchCourses(value) {
@@ -138,9 +154,6 @@ function searchCourses(value) {
 }
 
 function getPinned() {
-  // var netid = document.getElementById("netid").value;
-
-  // document.getElementById("pinned-placement").innerHTML = "<p>lololol</p>";
   getPinnedCourses(document.getElementById("netid").value);
 }
 
@@ -158,7 +171,6 @@ function refreshGroups() {
 }
 
 function mainPanel() {
-
 }
 
 getAllCourses();
