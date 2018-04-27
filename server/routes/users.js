@@ -92,4 +92,26 @@ router.post('/pincourse', (req, res) => {
   });
 });
 
+router.post('/unpincourse', (req, res) => {
+  var netid = req.body.netid;
+  var courseID = req.body.courseID;
+  console.log(netid);
+  console.log(courseID);
+
+  if (!ObjectID.isValid(courseID)) {
+    return res.status(404).send('Invalid courseID');
+  }
+
+  User.findOneAndUpdate(
+    {netid},
+    {$pull : {pinnedCourses: courseID}},
+    {new:true}
+  ).then((user) => {
+    console.log(user);
+    res.json(user);
+  }, (e) => {
+    res.sendStatus(500);
+  });
+});
+
 module.exports = router;

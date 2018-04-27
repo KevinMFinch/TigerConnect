@@ -44,7 +44,7 @@ function handleCourses(course) {
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
     innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + " " + course[i]['department'] + course[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
-    innerHTMLChange = innerHTMLChange + "<button  id=\"" + course[i]['_id'] + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + course[i]['department'] + course[i]['courseNumber'] + "</h5>";
+    innerHTMLChange = innerHTMLChange + "<button  id=\"" + course[i]['_id'] + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + course[i]['department'] + course[i]['courseNumber'] + "</h5></button>";
     innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + course[i]['name'] + "</p></div>";
   }
   document.getElementById("class-placement").innerHTML = innerHTMLChange;
@@ -59,13 +59,14 @@ function handlePinned(courses) {
     // alert(courses[0]['_id'] + " " + courses[0]['department'] + courses[0]['courseNumber'] + " " + courses[0]['name']);
     for(var i = 0; i < courses.length; i++) {
       innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight pinnedCourse\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
-      innerHTMLChange = innerHTMLChange + "<button  id=\"" + courses[i]['_id'] + "\" class=\"pin pinned mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id);\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + courses[i]['department'] + courses[i]['courseNumber'] + "</h5>";
+      innerHTMLChange = innerHTMLChange + "<button  id=\"" + courses[i]['_id'] + "\" class=\"pin pinned mt-2 ml-auto mr-2\" onclick=\"unpinClass(this.id);\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + courses[i]['department'] + courses[i]['courseNumber'] + "</h5>";
       innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + courses[i]['name'] + "</p></div>";
     }
   }
   document.getElementById("pinned-placement").innerHTML = innerHTMLChange;
 }
 
+// highlight currently selected course
 function setSelected(item) {
   var divItems = document.getElementsByClassName("class");
   for(var i=0; i < divItems.length; i++){
@@ -99,9 +100,9 @@ function handleGroups(groups) {
       innerHTMLChange = innerHTMLChange + "</p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
       innerHTMLChange = innerHTMLChange + "</p><span class=\"font-weight-bold\">Location: </span><span>" + events[i]['location'];
       innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
-      innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span>";
+      innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span></div>";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\">Created by " + events[i]['advertiser'] + " • " + dateFormatted + "</p></div>";
-      innerHTMLChange = innerHTMLChange + "</div></p><button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
+      innerHTMLChange = innerHTMLChange + "<button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
     }
   }
   document.getElementById("main-panel-content").innerHTML = innerHTMLChange;
@@ -112,7 +113,7 @@ function joinGroup(id) {
   var netid = document.getElementById("netid").value;
   var courseEvent = {courseEventID: id, netid };
 
-  fetch('api/courseEvents/join', {
+  fetch('/api/courseEvents/join', {
     method: 'POST',
     body: JSON.stringify(courseEvent),
     headers: new Headers ({
@@ -124,7 +125,21 @@ function joinGroup(id) {
 function addPinnedClass(id) {
   var coursePin = {courseID: id, netid: document.getElementById("netid").value};
 
-  fetch('api/users/pincourse', {
+  fetch('/api/users/pincourse', {
+    method: 'POST',
+    body: JSON.stringify(coursePin),
+    headers: new Headers ({
+      'Content-Type': 'application/json'
+    })
+  });
+
+  getPinned();
+}
+
+function unpinClass(id) {
+  var coursePin = {netid: document.getElementById("netid").value, courseID: id};
+
+  fetch('/api/users/unpincourse', {
     method: 'POST',
     body: JSON.stringify(coursePin),
     headers: new Headers ({
@@ -140,9 +155,6 @@ function searchCourses(value) {
 }
 
 function getPinned() {
-  // var netid = document.getElementById("netid").value;
-
-  // document.getElementById("pinned-placement").innerHTML = "<p>lololol</p>";
   getPinnedCourses(document.getElementById("netid").value);
 }
 
@@ -160,7 +172,6 @@ function refreshGroups() {
 }
 
 function mainPanel() {
-
 }
 
 getAllCourses();
