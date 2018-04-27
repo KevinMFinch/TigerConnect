@@ -60,11 +60,18 @@
             {{!-- <div class="row search-divider ml-4"></div> --}}
             
             <!-- Pinned courses -->
-            <div class="pinned-bar" data-toggle="collapse" data-target=".demo" style="color:white; background-color:#303f4b;" onclick="getPinned()">Pinned</div>
-            <div class="demo collapse row vertical-center" id="pinned-placement">
-              <div class="container-fluid p-0">
+            <div class="pinned-bar row vertical-center mr-0" data-toggle="collapse" data-target=".collapsePinned" href="" onclick="getPinned()">
+              <h5 class="pl-1 mt-2 my-auto" style="margin-left: 3%;">Pinned</h5>
+            </div>
+            <div class="pinnedSection" style="max-height:35%; overflow:scroll">
+              <div class="collapsePinned collapse row vertical-center" id="pinned-placement">
+                <div class="container-fluid p-0">
+                </div>
               </div>
             </div>
+          <div class="row pinned-divider"></div>
+
+
 
             <!-- Searched courses -->
             <div class="row vertical-center" id="class-placement">

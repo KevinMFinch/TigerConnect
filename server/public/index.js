@@ -53,14 +53,13 @@ function handleCourses(course) {
 function handlePinned(courses) {
   var innerHTMLChange = "";
   if (courses.length == 0) {
-    innerHTMLChange = innerHTMLChange + "<div class=\"pinned-bar\" data-toggle=\"collapse\" href=\"#collapseExample\" role=\"button\" aria-expanded=\"true\" aria-controls=\"collapseExample\ style=\"color:white\">None</div>;"
-    alert("none!");
-  }
-  else {
+      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight pinnedCourse\" style=\"cursor: auto\">";
+      innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + "No pinned courses yet." + "</p></div>";
+  } else {
     // alert(courses[0]['_id'] + " " + courses[0]['department'] + courses[0]['courseNumber'] + " " + courses[0]['name']);
     for(var i = 0; i < courses.length; i++) {
-      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
-      innerHTMLChange = innerHTMLChange + "<button  id=\"" + courses[i]['_id'] + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + courses[i]['department'] + courses[i]['courseNumber'] + "</h5>";
+      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight pinnedCourse\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
+      innerHTMLChange = innerHTMLChange + "<button  id=\"" + courses[i]['_id'] + "\" class=\"pin pinned mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id);\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + courses[i]['department'] + courses[i]['courseNumber'] + "</h5>";
       innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + courses[i]['name'] + "</p></div>";
     }
   }
@@ -132,6 +131,8 @@ function addPinnedClass(id) {
       'Content-Type': 'application/json'
     })
   });
+
+  getPinned();
 }
 
 function searchCourses(value) {
