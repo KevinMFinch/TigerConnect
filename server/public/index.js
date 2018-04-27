@@ -74,7 +74,8 @@ function handleGroups(groups) {
 }
 
 function joinGroup(id) {
-  var courseEvent = {courseEventID: id, netid: document.getElementById("netid").value};
+  var netid = document.getElementById("netid").value;
+  var courseEvent = {courseEventID: id, netid };
 
   fetch('api/courseEvents/join', {
     method: 'POST',
@@ -82,7 +83,7 @@ function joinGroup(id) {
     headers: new Headers ({
       'Content-Type': 'application/json'
     })
-  });
+  }).then(window.location = '/chat?name=' + netid + '&room=' + id);
 }
 
 function addPinnedClass(id) {
