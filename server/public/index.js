@@ -95,7 +95,8 @@ function handleGroups(groups) {
   var innerHTMLChange = "";
   var events = groups['courseEvents'];
   if (events.length == 0) {
-    innerHTMLChange = innerHTMLChange + "<div class=\"main-panel-empty\"><h1>Be the first to create a group for this class!</h1></div>";
+    innerHTMLChange = innerHTMLChange + "<div class=\"main-panel-empty mx-auto\" align=\"center\"><h1 class=\"text-center mx-auto\" style=\"padding-top:20%;\">Be the first to create a group for this class!</h1></div>";
+     // style=\"margin: 10%; padding:10%;\"
   }
   else {
     for(var i = 0; i < events.length; i++) {
