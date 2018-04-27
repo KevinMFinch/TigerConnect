@@ -83,7 +83,6 @@ function handleGroups(groups) {
   var events = groups['courseEvents'];
   if (events.length == 0) {
     innerHTMLChange = innerHTMLChange + "<div class=\"main-panel-empty mx-auto\" align=\"center\"><h1 class=\"text-center mx-auto\" style=\"padding-top:20%;\">Be the first to create a group for this class!</h1></div>";
-     // style=\"margin: 10%; padding:10%;\"
   }
   else {
     for(var i = 0; i < events.length; i++) {
@@ -105,8 +104,8 @@ function handleGroups(groups) {
       innerHTMLChange = innerHTMLChange + "</div></p><button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
     }
   }
-
   document.getElementById("main-panel-content").innerHTML = innerHTMLChange;
+  document.getElementById("currentCourse").innerHTML = document.getElementById("coursename").value;
 }
 
 function joinGroup(id) {
@@ -157,6 +156,10 @@ function searchCourseGroups(value) {
 
 function refreshGroups() {
   getSearchedCourseGroups((document.getElementById("courseid").value));
+}
+
+function mainPanel() {
+
 }
 
 getAllCourses();
