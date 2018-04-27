@@ -3,11 +3,16 @@ body, html {
   width: 100%;
 }
 
+.test {
+  border: 1px solid black;
+}
+
 /* Navbar styling */
 
 .navbar {
-  background-color: #198874; /* ffc94c yellow */
-  font-family: Arial;
+  /*background-color: #198874;*/ /* ffc94c yellow */
+  background: #20a08a; /*linear-gradient(to right, #1cab91 , #2392ce);*/
+  font-family: 'Roboto', sans-serif;
   /*border-bottom: 2px solid #162028*/
   /*-moz-box-shadow:    inset 0 0 20px #c14a13;*/
   /*-webkit-box-shadow: inset 0 0 20px #c14a13;*/
@@ -15,6 +20,7 @@ body, html {
 }
 
 .navbar-brand {
+  font-family: "Arial";
   font-weight: bold;
   font-size: 1.5rem;
 }
@@ -63,7 +69,7 @@ body, html {
 #desktop-course-search {
   background-color: #2f3f4c;
   border: 1px solid #3c5568;
-  font: Verdana;
+  font-family: 'Roboto', sans-serif;
   color: #aebac4;
   max-width: 85%;
 }
@@ -72,6 +78,13 @@ body, html {
   height: 1px;
   width: 80%;
   background-color: #3c5568;
+}
+
+.pinned-divider {
+  height: 8px;
+  width: 100%;
+  background-color: #3c5568;
+  margin: 0;
 }
 
 #class-placement{
@@ -86,6 +99,17 @@ body, html {
   height: 15%;
   width: 100%;
   border-bottom: 1px solid #3c5568;
+  cursor: pointer;
+}
+
+.pinned-bar {
+  height: 5%;
+  width: 100%;
+  border-bottom: 1px solid #3c5568;
+  color: #aebac4;
+  background-color: #3c5467;
+  margin: 0;
+  cursor: pointer;
 }
 
 .pin {
@@ -96,20 +120,45 @@ body, html {
   outline: none;
   height: auto;
   width: 10%;
+  text-align: left;
+  cursor: pointer;
 }
 
 /* TODO: add pins to a column row in bootstrap... */
 .pin:hover {
   color: red;
+  cursor: pointer;
 }
 
 .pin:focus {
   outline: none;
+  cursor: pointer;
+}
+
+.pinned {
+  color: red;
+  cursor: pointer;
+}
+
+.pinned:hover {
+  color: #aebac4;
+  cursor: pointer;
+}
+
+.pinnedCourse {
+  background-color: #263744;
+  cursor: pointer;
 }
 
 
 .class:hover {
   background-color: #263744;
+  cursor: pointer;
+}
+
+.class:focus {
+  background-color:black;
+  cursor: pointer;
 }
 
 .class-title {
@@ -119,6 +168,11 @@ body, html {
   padding-left: 1%;
   padding-right: 3%;
   border-radius: 5%;
+}
+
+.track {
+  background-color: #303f4b;
+  cursor: default;
 }
 
 /* Main panel styling */
@@ -185,7 +239,7 @@ body, html {
   color: #5b4f43;
   font-weight: bold;
   /* text-shadow: -1px 0 #5b4f43, 0 1px #5b4f43, 1px 0 #5b4f43, 0 -1px #5b4f43; */
-  font-family: "Arial";
+  font-family: 'Roboto', sans-serif;
   padding-left: 2%;
   padding-top: 5.5%;
   height: 95%;
@@ -246,7 +300,7 @@ body, html {
   width: 15%;
   height: 18%;
   color: white;
-  font-family: "Arial";
+  font-family: 'Roboto', sans-serif;
   background-color: #162129;
 }
 

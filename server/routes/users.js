@@ -41,7 +41,7 @@ router.get('/pinnedCourses/:netid', (req, res) => {
       res.sendStatus(500);
     });
   }, (e) => {
-    consooe.log(e);
+    console.log(e);
     res.sendStatus(500);
   })
 });

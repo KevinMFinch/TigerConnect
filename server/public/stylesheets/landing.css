@@ -6,12 +6,12 @@ html, body {
 body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 
   padding-top: 4%;
   padding-left: 0;
 
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/firestone.jpg") no-repeat center center fixed;
+  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/firestone.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -21,6 +21,8 @@ body {
 header {
   position: relative;
   width: 100%;
+  padding-top: 5%;
+  padding-bottom: 20%;
 }
 
 header h1 {
@@ -31,22 +33,32 @@ header h1 {
   text-align: center;
 
   color: white;
-  text-shadow: -1.2px 0 #D07F31, 0 1.2px #D07F31, 1.2px 0 #D07F31, 0 -1.2px #D07F31;
+  /*text-shadow: -1.2px 0 #D07F31, 0 1.2px #D07F31, 1.2px 0 #D07F31, 0 -1.2px #D07F31;*/
 }
 
 header a.landing-component {
   font-size: 16px;
   vertical-align: center;
   color: white;
-  font-family: "Verdana";
+  font-family: 'Roboto', sans-serif;
   text-align: center;
-  text-shadow: -1.2px 0 #D07F31, 0 1.2px #D07F31, 1.2px 0 #D07F31, 0 -1.2px #D07F31;
+  /*text-shadow: -1.2px 0 #D07F31, 0 1.2px #D07F31, 1.2px 0 #D07F31, 0 -1.2px #D07F31;*/
 
 }
 
 header a:hover, a:link {
   text-decoration: none;
   color: white;
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: #2392ce;
+  font-family: "Verdana", sans-serif;
+  color: #152129;
 }
 
 #left-side {
@@ -64,12 +76,12 @@ header a:hover, a:link {
   display: inline-block;
 
   text-color: white;
-  background-color: transparent;
+  background-color: rgba(255,255,255,0.2);
 
   line-height: 50px;
   width: 135px;
 
-  border: 1px solid #edba6a;
+  border: 1px solid #198874;
 }
 
 .landing-btn:hover {
@@ -91,6 +103,23 @@ header a:hover, a:link {
   margin-left: auto;
   margin-right: auto;
   max-width: 190px;
+}
+
+#about {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background: linear-gradient(to bottom, #1cab91 , #2392ce);/*#198874*/;
+}
+
+p.onboard {
+  font-size: 20px;
+  font-weight: lighter;
+
+  font-family: "Verdana";
+  text-align: center;
+
+  color: white;
+  /*text-shadow: -1.2px 0 #D07F31, 0 1.2px #D07F31, 1.2px 0 #D07F31, 0 -1.2px #D07F31;*/
 }
 
 @media (max-width: 500px) {
@@ -120,7 +149,7 @@ header a:hover, a:link {
 
   #landing-body {
     overflow-x: visible;
- }
+  }
 }
 
 @media (max-height: 480px) {
