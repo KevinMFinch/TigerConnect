@@ -307,6 +307,11 @@ body, html {
   color: white;
   font-family: 'Roboto', sans-serif;
   background-color: #162129;
+  cursor: pointer;
+}
+
+.join:hover {
+  background-color: #303f4b;
 }
 
 @media screen and (max-width: 767px) {
