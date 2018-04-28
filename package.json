@@ -20,6 +20,7 @@
     "jquery.localscroll": "^2.0.0",
     "jquery.scrollto": "^2.1.2",
     "lodash": "^4.17.5",
+    "moment": "^2.22.1",
     "mongoose": "^5.0.12"
   }
 }
