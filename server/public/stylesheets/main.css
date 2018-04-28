@@ -59,7 +59,7 @@ body, html {
 #sidebar {
   height: 100%;
   background-color: #162028;
-  border-right: 1px solid black;
+  /*border-right: 1px solid black;*/
 }
 
 #search-box {
@@ -146,7 +146,7 @@ body, html {
 }
 
 .pinnedCourse {
-  background-color: #263744;
+  background-color: #162129;
   cursor: pointer;
 }
 
@@ -179,7 +179,7 @@ body, html {
 #main-panel {
   /* height: 100%; */
   background-color: #fafafa; /* #fcf4e3 yellow fade */
-  border-left: 1px solid #929292;
+  /*border-left: 1px solid #929292;*/
   -moz-box-shadow:    inset 0 0 30px #e8d4b9;
   -webkit-box-shadow: inset 0 0 30px #e8d4b9;
   box-shadow:         inset 0 0 30px #e8d4b9;
@@ -206,8 +206,7 @@ body, html {
 
 #toolbar {
   height: 45px;
-  background: #152028;
-  border: 1px solid #a7a7a7;
+  background: #162129;
 }
 
 #filter-groups {
@@ -338,4 +337,21 @@ body, html {
   #desktop-view {
     visibility: hidden;
   }
+}
+
+
+[aria-expanded="false"] .pinnedbar__icon--open {
+    display: block;
+}
+
+[aria-expanded="false"] .pinnedbar__icon--close {
+    display: none;
+}
+
+[aria-expanded="true"] .pinnedbar__icon--open {
+    display: none;
+}
+
+[aria-expanded="true"] .pinnedbar__icon--close {
+    display: block;
 }

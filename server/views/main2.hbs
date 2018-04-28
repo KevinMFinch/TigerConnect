@@ -62,8 +62,15 @@
             {{!-- <div class="row search-divider ml-4"></div> --}}
 
             <!-- Pinned courses -->
-            <div class="pinned-bar row vertical-center mr-0" data-toggle="collapse" data-target=".collapsePinned" href="" onclick="getPinned()">
-              <h5 class="pl-1 mt-2 my-auto" style="margin-left: 3%;">Pinned</h5>
+            <div class="pinned-bar row vertical-center mr-0" data-toggle="collapse" data-target=".collapsePinned" aria-expanded="false" aria-controls="collapsePinned" href="" onclick="getPinned()">
+              <h5 class="pl-1 mt-2 my-auto" style="margin-left: 3%;">
+                <span class="pinnedbar__icon pinnedbar__icon--open">
+                  <i class="fa fa-caret-right"></i> Pinned
+                </span>
+                <span class="pinnedbar__icon pinnedbar__icon--close">
+                  <i class="fa fa-caret-down"></i> Pinned
+                </span>
+              </h5>
             </div>
             <div class="pinnedSection" style="max-height:35%; overflow:scroll">
               <div class="collapsePinned collapse row vertical-center" id="pinned-placement">
