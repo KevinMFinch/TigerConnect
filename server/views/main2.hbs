@@ -57,7 +57,7 @@
         <div class="col-3 pr-0" id="sidebar">
           <div class="container-fluid p-0">
             <div class="row" id="search-box">
-              <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (E.g. MAT103!)" aria-label="courses">
+              <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
             </div>
             {{!-- <div class="row search-divider ml-4"></div> --}}
 
@@ -100,10 +100,32 @@
               <button type="button" class="ml-auto mr-4 btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true"><i class="fas fa-plus-circle"></i> Create Group</button>
               {{!-- <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button> --}}
             </div>
-            <div class="row" id="main-panel-content">
-              <div class="col-3 test mx-auto my-auto" style="height: 45%"><div class="icon-top mx-auto" style="width: 10%;"><i class="far fa-hand-point-up" style="font-size: 300%;"></i></div>Choose the class you're enrolled in on the left</div>
-              <div class="col-3 test mx-auto my-auto" style="height: 45%"><div class="icon-top mx-auto" style="width: 10%;"><i class="fas fa-search-plus" style="font-size: 300%;"></i></div>Look through for groups that you wish to join</div>
-              <div class="col-3 test mx-auto my-auto" style="height: 45%"><div class="icon-top mx-auto" style="width: 10%;"><i class="fas fa-pencil-alt" style="font-size: 300%;"></i></div>Join a group or create your own!</div>
+
+            <div id="main-panel-content">
+              <div class="row h-25 text-center">
+                <h1 class="text-center mx-auto" style="font-size:3.5vw;padding-top:7%;padding-bottom:0%;height:12%;">Welcome to TigerConnect!</h1>
+              </div>
+              <div class="row h-75 text-center">
+                {{!-- <div class="w-100" style="padding:0;margin:0;height:0;">hey</div> --}}
+                <div class="col-3 my-4" id="onboard-well" style="margin-left: 8%;">
+                  <div class="icon-top mx-auto">
+                    <i class="far fa-hand-point-up my-4 center-icon"></i>
+                  </div>
+                  <h4 style="font-size: 2vw;">Choose the course you're enrolled in on the left.<h4>
+                </div>
+                <div class="col-3 my-4" id="onboard-well" style="margin-left:4%; margin-right:4%;">
+                  <div class="icon-top mx-auto">
+                    <i class="fas fa-search-plus my-4 center-icon"></i>
+                  </div>
+                  <h4 style="font-size: 2vw;">Look through for groups that you wish to join.</h4>
+                </div>
+                <div class="col-3 my-4" id="onboard-well" style="margin-right: 8%;">
+                  <div class="icon-top mx-auto">
+                    <i class="fas fa-pencil-alt my-4 center-icon"></i>
+                  </div>
+                  <h4 style="font-size: 2vw;">Join a group or create your own!</h4>
+                </div>
+              </div>
             </div>
           </div>
         </div>

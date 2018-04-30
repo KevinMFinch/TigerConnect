@@ -3,10 +3,6 @@ body, html {
   width: 100%;
 }
 
-.test {
-  border: 1px solid black;
-}
-
 /* Navbar styling */
 
 .navbar {
@@ -189,6 +185,24 @@ body, html {
 #main-panel-content {
   height: 100%;
   overflow-y: auto;
+}
+
+.center-icon {
+  transform: translateX(-30%);
+}
+
+.icon-top {
+  width: 10%;
+  font-size: 5vw;
+}
+
+#onboard-well {
+  height: 52%;
+  margin-top: 2%;
+  border: 1px solid #212529;
+  border-radius: 8px;
+  background-color: #bec5cc;
+  overflow: scroll;
 }
 
 .panel > .panel-heading {
