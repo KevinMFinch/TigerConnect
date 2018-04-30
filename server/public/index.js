@@ -73,6 +73,11 @@ function setSelected(item) {
    divItems[i].classList.remove('track');
   }
   item.classList.add('track');
+  showCourseInToolbar();
+}
+
+function showCourseInToolbar() {
+  document.getElementById("toolbar-coursename").innerHTML = document.getElementById("coursename").value;
 }
 
 function testprint(course){
