@@ -28,7 +28,7 @@
             <a class="navbar-brand d-none d-sm-block" href="/main">TigerConnect</a>
             <a class="navbar-brand d-sm-none d-lg-none d-xl-none" href="#">TC</a>
             <form class="form-inline my-1 mr-2 my-lg-0 ml-auto d-lg-none d-xl-none">
-              <input class="form-control mr-sm-2 ml-auto" type="search" placeholder="Search" aria-label="Search">
+              <input type="search" onkeyup="searchCourses(this.value)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
             </form>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -51,7 +51,14 @@
             </div>
           </nav>
           <!-- TODO: Mobile design -->
-
+      <div class="row" id="mobile-view">
+        <div class="col" id="sidebar">
+          <div class="row vertical-center" id="class-placement">
+            <div class="container-fluid p-0">
+            </div>
+          </div>
+        </div>
+      </div>
           <!-- Desktop View -->
       <div class="row" id="desktop-view">
         <div class="col-3 pr-0" id="sidebar">

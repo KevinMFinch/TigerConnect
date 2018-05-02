@@ -349,9 +349,29 @@ body, html {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  #desktop-view {
-    visibility: hidden;
+  .desktop-view {
+    display:none;
   }
+  .mobile-view {
+    /*display:block;*/
+  }
+}
+
+@media only screen and (min-width: 768) {
+  .mobile-view {
+    display:none;
+  }
+  .desktop-view {
+    /*display:block;*/
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 400px) {
+  #mobile-view { display: block; }  /* show it on small screens */
+}
+
+@media screen and (min-width: 401px) and (max-width: 1024px) {
+  #mobile-view { display: none; }   /* hide it elsewhere */
 }
 
 
