@@ -13,14 +13,14 @@ getAllCourses = () => {
 
 var timeout = null;
 
-getSearchedCourses = (query, isMobile) => {
+getSearchedCourses = (query) => {
   clearTimeout(timeout);
 
   timeout = setTimeout(function () {
     var searchQuery = '/api/courses/' + query;
     fetch(searchQuery)
       .then(res => res.json())
-      .then(course => handleCourses(course, isMobile));
+      .then(course => handleCourses(course));
     }, 150);
 }
 
@@ -40,34 +40,31 @@ getPinnedCourses = query => {
       .then(courses => handlePinned(courses));
 }
 
-function handleCourses(course, isMobile) {
+function handleCourses(course) {
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
-    innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight\" id=\"" + course[i]['_id'] + " " + course[i]['department'] + course[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
+    innerHTMLChange = innerHTMLChange + "<div class=\"class\" id=\"" + course[i]['_id'] + " " + course[i]['department'] + course[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
     innerHTMLChange = innerHTMLChange + "<button  id=\"" + course[i]['_id'] + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + course[i]['department'] + course[i]['courseNumber'] + "</h5></button>";
     innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + course[i]['name'] + "</p></div>";
   }
-  if (isMobile) {
-    document.getElementById("class-placement-mobile").innerHTML = innerHTMLChange;
-  }
-  else {
-    document.getElementById("class-placement").innerHTML = innerHTMLChange;
-  }
+  document.getElementById("class-placement-mobile").innerHTML = innerHTMLChange;
+  document.getElementById("class-placement").innerHTML = innerHTMLChange;
 }
 
 function handlePinned(courses) {
   var innerHTMLChange = "";
   if (courses.length == 0) {
-      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight pinnedCourse\" style=\"cursor: auto\">";
+      innerHTMLChange = innerHTMLChange + "<div class=\"class pinnedCourse\" style=\"cursor: auto\">";
       innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + "No pinned courses yet." + "</p></div>";
   } else {
     // alert(courses[0]['_id'] + " " + courses[0]['department'] + courses[0]['courseNumber'] + " " + courses[0]['name']);
     for(var i = 0; i < courses.length; i++) {
-      innerHTMLChange = innerHTMLChange + "<div class=\"class slideRight pinnedCourse\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
+      innerHTMLChange = innerHTMLChange + "<div class=\"class pinnedCourse\" id=\"" + courses[i]['_id'] + " " + courses[i]['department'] + courses[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
       innerHTMLChange = innerHTMLChange + "<button  id=\"" + courses[i]['_id'] + "\" class=\"pin pinned mt-2 ml-auto mr-2\" onclick=\"unpinClass(this.id);\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + courses[i]['department'] + courses[i]['courseNumber'] + "</h5>";
       innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + courses[i]['name'] + "</p></div>";
     }
   }
+  document.getElementById("pinned-placement-mobile").innerHTML = innerHTMLChange;
   document.getElementById("pinned-placement").innerHTML = innerHTMLChange;
 }
 
@@ -159,8 +156,8 @@ function unpinClass(id) {
   getPinned();
 }
 
-function searchCourses(value, isMobile) {
-  getSearchedCourses(value, isMobile);
+function searchCourses(value) {
+  getSearchedCourses(value);
 }
 
 function getPinned() {

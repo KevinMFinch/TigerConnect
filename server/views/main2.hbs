@@ -29,7 +29,7 @@
         <a class="navbar-brand d-xs-none d-sm-none d-lg-none d-xl-none" href="#">TC</a>
         <form class="form-inline my-1 mr-2 my-lg-0 ml-auto d-md-none d-lg-none d-xl-none">
           <!-- Search bar -->
-          <input type="search" onkeyup="searchCourses(this.value, true)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
+          <input type="search" onkeyup="searchCourses(this.value)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
         </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -54,12 +54,41 @@
       
       <!-- TODO: Mobile design -->
       <div class="row d-md-none d-lg-none d-xl-none" id="mobile-view">
+
+        <!-- Sidebar -->
         <div class="col" id="sidebar">
+          <!-- Search bar: see navbar above -->
+
+          <!-- Pinned courses -->
+          <div class="pinned-bar row vertical-center mr-0" data-toggle="collapse" data-target=".collapsePinned" aria-expanded="false" aria-controls="collapsePinned" href="" onclick="">
+            <h5 class="pt-1 mt-2 my-auto" style="margin-left: 3%;">
+              <span class="pinnedbar__icon pinnedbar__icon--open">
+                <i class="fa fa-caret-right"></i> Pinned
+              </span>
+              <span class="pinnedbar__icon pinnedbar__icon--close">
+                <i class="fa fa-caret-down"></i> Pinned
+              </span>
+            </h5>
+          </div>
+          <div class="pinnedSection" style="max-height:35%; overflow:scroll;">
+            <div class="collapsePinned collapse row vertical-center" id="pinned-placement-mobile">
+              <div class="container-fluid p-0">
+              </div>
+            </div>
+          </div>
+          <div class="row pinned-divider"></div>
+
+          <!-- Searched courses -->
           <div class="row vertical-center" id="class-placement-mobile">
             <div class="container-fluid p-0">
             </div>
           </div>
+
         </div>
+        <!-- END sidebar -->
+
+        <!-- TODO: Main panel -->
+
       </div>
       <!-- END mobile design -->
       
@@ -72,13 +101,13 @@
             
             <!-- Search bar -->
             <div class="row" id="search-box">
-              <input type="search" onkeyup="searchCourses(this.value, false)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
+              <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
             </div>
             {{!-- <div class="row search-divider ml-4"></div> --}}
 
             <!-- Pinned courses -->
             <div class="pinned-bar row vertical-center mr-0" data-toggle="collapse" data-target=".collapsePinned" aria-expanded="false" aria-controls="collapsePinned" href="" onclick="">
-              <h5 class="pl-1 mt-2 my-auto" style="margin-left: 3%;">
+              <h5 class="pt-1 pl-1 mt-2 my-auto" style="margin-left: 3%;">
                 <span class="pinnedbar__icon pinnedbar__icon--open">
                   <i class="fa fa-caret-right"></i> Pinned
                 </span>
@@ -87,7 +116,7 @@
                 </span>
               </h5>
             </div>
-            <div class="pinnedSection" style="max-height:35%; overflow:scroll">
+            <div class="pinnedSection" style="max-height:35%; overflow:scroll;">
               <div class="collapsePinned collapse row vertical-center" id="pinned-placement">
                 <div class="container-fluid p-0">
                 </div>
@@ -123,7 +152,7 @@
 
               <!-- Onboarding: replaced by cards in Javascript when course selected -->
               <div class="row h-25 text-center">
-                <h1 class="text-center mx-auto" style="font-size:3.5vw;padding-top:7%;padding-bottom:0%;height:12%;">Welcome to TigerConnect!</h1>
+                <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:7%; padding-bottom:0%; height:12%;">Welcome to TigerConnect!</h1>
               </div>
               <div class="row h-75 text-center">
                 <div class="col-3 my-4 onboard-well" style="margin-left: 8%;">

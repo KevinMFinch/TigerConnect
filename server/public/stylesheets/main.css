@@ -91,6 +91,14 @@ body, html {
   box-shadow:         inset 0 0 20px #070d11;
 }
 
+#class-placement-mobile{
+  height: 100%;
+  overflow-y: auto;
+  -moz-box-shadow:    inset 0 0 20px #070d11;
+  -webkit-box-shadow: inset 0 0 20px #070d11;
+  box-shadow:         inset 0 0 20px #070d11;
+}
+
 .class {
   height: 15%;
   width: 100%;
