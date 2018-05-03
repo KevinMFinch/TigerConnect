@@ -22,36 +22,37 @@
     <input id="courseid" type="hidden" value="">
     <input id="coursename" type="hidden" value="">
 
-    <!-- Desktop View -->
+    <!-- Navbar - responsive for desktop and mobile -->
     <div class="container-fluid side-and-main h-100 p-0">
-          <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
-            <a class="navbar-brand d-none d-sm-block" href="/main">TigerConnect</a>
-            <a class="navbar-brand d-sm-none d-lg-none d-xl-none" href="#">TC</a>
-            <form class="form-inline my-1 mr-2 my-lg-0 ml-auto d-lg-none d-xl-none">
-              <input type="search" onkeyup="searchCourses(this.value)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
-            </form>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item  d-none d-sm-block">
-                  <span class="nav-link">Hey {{netid}}!</span>
-                </li>
-                {{!-- <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fas fa-bell"></i></span> Notifications</a>
-                </li> --}}
-                {{!-- <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
-                </li> --}}
-                <li class="nav-item">
-                  <a class="nav-link" href="/api/auth/logout"><i class="fas fa-power-off"></i> Logout</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          <!-- TODO: Mobile design -->
-      <div class="row" id="mobile-view">
+      <nav class="navbar navbar-expand-md navbar-light navbar-fixed-top">
+        <a class="navbar-brand d-none d-sm-block" href="/main">TigerConnect</a>
+        <a class="navbar-brand d-xs-none d-sm-none d-lg-none d-xl-none" href="#">TC</a>
+        <form class="form-inline my-1 mr-2 my-lg-0 ml-auto d-md-none d-lg-none d-xl-none">
+          <input type="search" onkeyup="searchCourses(this.value)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
+        </form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item  d-none d-sm-block">
+              <span class="nav-link">Hey {{netid}}!</span>
+            </li>
+            {{!-- <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-bell"></i></span> Notifications</a>
+            </li> --}}
+            {{!-- <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
+            </li> --}}
+            <li class="nav-item">
+              <a class="nav-link" href="/api/auth/logout"><i class="fas fa-power-off"></i> Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      <!-- TODO: Mobile design -->
+      <div class="row d-md-none d-lg-none d-xl-none" id="mobile-view">
         <div class="col" id="sidebar">
           <div class="row vertical-center" id="class-placement">
             <div class="container-fluid p-0">
@@ -59,10 +60,15 @@
           </div>
         </div>
       </div>
-          <!-- Desktop View -->
+      
+      <!-- Desktop View -->
       <div class="row" id="desktop-view">
+        
+        <!-- Sidebar -->
         <div class="col-3 pr-0" id="sidebar">
           <div class="container-fluid p-0">
+            
+            <!-- Search bar -->
             <div class="row" id="search-box">
               <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
             </div>
@@ -85,9 +91,7 @@
                 </div>
               </div>
             </div>
-          <div class="row pinned-divider"></div>
-
-
+            <div class="row pinned-divider"></div>
 
             <!-- Searched courses -->
             <div class="row vertical-center" id="class-placement">
@@ -97,9 +101,13 @@
 
           </div>
         </div>
+        <!-- END sidebar -->
 
+        <!-- Main panel -->
         <div class="col-9" id="main-panel">
           <div class="container-fluid p-0">
+
+            <!-- Toolbar -->
             <div class="row" id="toolbar">
               <div class="col-sm my-auto" style="margin-left:2%;">
                 <h5 class="my-auto" style="color:#b9bcbe; font-size:24px;" id="toolbar-coursename"></h5>
@@ -108,25 +116,27 @@
               {{!-- <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button> --}}
             </div>
 
+            <!-- Content, e.g. cards -->
             <div id="main-panel-content">
+
+              <!-- Onboarding: replaced by cards in Javascript when course selected -->
               <div class="row h-25 text-center">
                 <h1 class="text-center mx-auto" style="font-size:3.5vw;padding-top:7%;padding-bottom:0%;height:12%;">Welcome to TigerConnect!</h1>
               </div>
               <div class="row h-75 text-center">
-                {{!-- <div class="w-100" style="padding:0;margin:0;height:0;">hey</div> --}}
-                <div class="col-3 my-4" id="onboard-well" style="margin-left: 8%;">
+                <div class="col-3 my-4 onboard-well" style="margin-left: 8%;">
                   <div class="icon-top mx-auto">
                     <i class="far fa-hand-point-up my-4 center-icon"></i>
                   </div>
                   <h4 style="font-size: 2vw;">Choose the course you're enrolled in on the left.<h4>
                 </div>
-                <div class="col-3 my-4" id="onboard-well" style="margin-left:4%; margin-right:4%;">
+                <div class="col-3 my-4 onboard-well" style="margin-left:4%; margin-right:4%;">
                   <div class="icon-top mx-auto">
                     <i class="fas fa-search-plus my-4 center-icon"></i>
                   </div>
                   <h4 style="font-size: 2vw;">Look through for groups that you wish to join.</h4>
                 </div>
-                <div class="col-3 my-4" id="onboard-well" style="margin-right: 8%;">
+                <div class="col-3 my-4 onboard-well" style="margin-right: 8%;">
                   <div class="icon-top mx-auto">
                     <i class="fas fa-pencil-alt my-4 center-icon"></i>
                   </div>
