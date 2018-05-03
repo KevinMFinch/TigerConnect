@@ -9,6 +9,8 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
     <link rel='stylesheet' href='/stylesheets/main.css'>
     <script src="index.js"></script>
     <script src="createGroup.js"></script>
@@ -26,7 +28,7 @@
             <a class="navbar-brand d-none d-sm-block" href="/main">TigerConnect</a>
             <a class="navbar-brand d-sm-none d-lg-none d-xl-none" href="#">TC</a>
             <form class="form-inline my-1 mr-2 my-lg-0 ml-auto d-lg-none d-xl-none">
-              <input class="form-control mr-sm-2 ml-auto" type="search" placeholder="Search" aria-label="Search">
+              <input type="search" onkeyup="searchCourses(this.value)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
             </form>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -36,12 +38,12 @@
                 <li class="nav-item  d-none d-sm-block">
                   <span class="nav-link">Hey {{netid}}!</span>
                 </li>
-                <li class="nav-item">
+                {{!-- <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fas fa-bell"></i></span> Notifications</a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{!-- <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                   <a class="nav-link" href="/api/auth/logout"><i class="fas fa-power-off"></i> Logout</a>
                 </li>
@@ -49,19 +51,33 @@
             </div>
           </nav>
           <!-- TODO: Mobile design -->
-
+      <div class="row" id="mobile-view">
+        <div class="col" id="sidebar">
+          <div class="row vertical-center" id="class-placement">
+            <div class="container-fluid p-0">
+            </div>
+          </div>
+        </div>
+      </div>
           <!-- Desktop View -->
       <div class="row" id="desktop-view">
         <div class="col-3 pr-0" id="sidebar">
           <div class="container-fluid p-0">
             <div class="row" id="search-box">
-              <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (E.g. MAT103!)" aria-label="courses">
+              <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
             </div>
             {{!-- <div class="row search-divider ml-4"></div> --}}
 
             <!-- Pinned courses -->
-            <div class="pinned-bar row vertical-center mr-0" data-toggle="collapse" data-target=".collapsePinned" href="" onclick="getPinned()">
-              <h5 class="pl-1 mt-2 my-auto" style="margin-left: 3%;">Pinned</h5>
+            <div class="pinned-bar row vertical-center mr-0" data-toggle="collapse" data-target=".collapsePinned" aria-expanded="false" aria-controls="collapsePinned" href="" onclick="getPinned()">
+              <h5 class="pl-1 mt-2 my-auto" style="margin-left: 3%;">
+                <span class="pinnedbar__icon pinnedbar__icon--open">
+                  <i class="fa fa-caret-right"></i> Pinned
+                </span>
+                <span class="pinnedbar__icon pinnedbar__icon--close">
+                  <i class="fa fa-caret-down"></i> Pinned
+                </span>
+              </h5>
             </div>
             <div class="pinnedSection" style="max-height:35%; overflow:scroll">
               <div class="collapsePinned collapse row vertical-center" id="pinned-placement">
@@ -85,13 +101,38 @@
         <div class="col-9" id="main-panel">
           <div class="container-fluid p-0">
             <div class="row" id="toolbar">
-              <button type="button" class="ml-auto btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true"><i class="fas fa-plus-circle"></i> Create Group</button>
-              <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button>
+              <div class="col-sm my-auto" style="margin-left:2%;">
+                <h5 class="my-auto" style="color:#b9bcbe; font-size:24px;" id="toolbar-coursename"></h5>
+              </div>
+              <button type="button" class="ml-auto mr-4 btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true"><i class="fas fa-plus-circle"></i> Create Group</button>
+              {{!-- <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button> --}}
             </div>
-            <div class="row" id="main-panel-content">
-              <div class="col-3 test mx-auto my-auto" style="height: 45%"><div class="icon-top mx-auto" style="width: 10%;"><i class="far fa-hand-point-up" style="font-size: 300%;"></i></div>Choose the class you're enrolled in on the left</div>
-              <div class="col-3 test mx-auto my-auto" style="height: 45%"><div class="icon-top mx-auto" style="width: 10%;"><i class="fas fa-search-plus" style="font-size: 300%;"></i></div>Look through for groups that you wish to join</div>
-              <div class="col-3 test mx-auto my-auto" style="height: 45%"><div class="icon-top mx-auto" style="width: 10%;"><i class="fas fa-pencil-alt" style="font-size: 300%;"></i></div>Join a group or create your own!</div>
+
+            <div id="main-panel-content">
+              <div class="row h-25 text-center">
+                <h1 class="text-center mx-auto" style="font-size:3.5vw;padding-top:7%;padding-bottom:0%;height:12%;">Welcome to TigerConnect!</h1>
+              </div>
+              <div class="row h-75 text-center">
+                {{!-- <div class="w-100" style="padding:0;margin:0;height:0;">hey</div> --}}
+                <div class="col-3 my-4" id="onboard-well" style="margin-left: 8%;">
+                  <div class="icon-top mx-auto">
+                    <i class="far fa-hand-point-up my-4 center-icon"></i>
+                  </div>
+                  <h4 style="font-size: 2vw;">Choose the course you're enrolled in on the left.<h4>
+                </div>
+                <div class="col-3 my-4" id="onboard-well" style="margin-left:4%; margin-right:4%;">
+                  <div class="icon-top mx-auto">
+                    <i class="fas fa-search-plus my-4 center-icon"></i>
+                  </div>
+                  <h4 style="font-size: 2vw;">Look through for groups that you wish to join.</h4>
+                </div>
+                <div class="col-3 my-4" id="onboard-well" style="margin-right: 8%;">
+                  <div class="icon-top mx-auto">
+                    <i class="fas fa-pencil-alt my-4 center-icon"></i>
+                  </div>
+                  <h4 style="font-size: 2vw;">Join a group or create your own!</h4>
+                </div>
+              </div>
             </div>
           </div>
         </div>

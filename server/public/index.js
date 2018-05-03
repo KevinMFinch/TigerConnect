@@ -73,6 +73,11 @@ function setSelected(item) {
    divItems[i].classList.remove('track');
   }
   item.classList.add('track');
+  showCourseInToolbar();
+}
+
+function showCourseInToolbar() {
+  document.getElementById("toolbar-coursename").innerHTML = document.getElementById("coursename").value;
 }
 
 function testprint(course){
@@ -83,25 +88,24 @@ function handleGroups(groups) {
   var innerHTMLChange = "";
   var events = groups['courseEvents'];
   if (events.length == 0) {
-    innerHTMLChange = innerHTMLChange + "<div class=\"main-panel-empty mx-auto\" align=\"center\"><h1 class=\"text-center mx-auto\" style=\"padding-top:20%;\">Be the first to create a group for this class!</h1></div>";
+    innerHTMLChange = innerHTMLChange + "<div class=\"main-panel-empty mx-auto\" align=\"center\"><h1 class=\"text-center mx-auto\" style=\"padding-top:20%;\">Be the first to create a group for " + document.getElementById("coursename").value + "!</h1></div>";
   }
   else {
     for(var i = 0; i < events.length; i++) {
-      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      var dayOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       var memberPlural = " members ";
       if (events[i]['members'] == 1) {
         memberPlural = " member ";
       }
       var date = new Date(events[i]['timeCreated']);
-      var dateFormatted = dayOfWeek[date.getDay()] + " " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+      var m = moment(date);
+      var timeCreated = m.fromNow();
       innerHTMLChange = innerHTMLChange + "<div class=\"group-container\"><div class=\"group slideUp\">";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-header\"><p class=\"group-header-text\">" + events[i]['title'];
       innerHTMLChange = innerHTMLChange + "</p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
       innerHTMLChange = innerHTMLChange + "</p><span class=\"font-weight-bold\">Location: </span><span>" + events[i]['location'];
       innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
       innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span></div>";
-      innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\">Created by " + events[i]['advertiser'] + " • " + dateFormatted + "</p></div>";
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\" title=\"" + m.format('dddd, LL [at] LT') + "\">Created by " + events[i]['advertiser'] + " • " + timeCreated + "</p></div>";
       innerHTMLChange = innerHTMLChange + "<button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
     }
   }

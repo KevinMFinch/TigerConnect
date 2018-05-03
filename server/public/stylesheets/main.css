@@ -3,10 +3,6 @@ body, html {
   width: 100%;
 }
 
-.test {
-  border: 1px solid black;
-}
-
 /* Navbar styling */
 
 .navbar {
@@ -59,7 +55,7 @@ body, html {
 #sidebar {
   height: 100%;
   background-color: #162028;
-  border-right: 1px solid black;
+  /*border-right: 1px solid black;*/
 }
 
 #search-box {
@@ -99,6 +95,7 @@ body, html {
   height: 15%;
   width: 100%;
   border-bottom: 1px solid #3c5568;
+  overflow: hidden;
   cursor: pointer;
 }
 
@@ -146,7 +143,7 @@ body, html {
 }
 
 .pinnedCourse {
-  background-color: #263744;
+  background-color: #162129;
   cursor: pointer;
 }
 
@@ -179,7 +176,7 @@ body, html {
 #main-panel {
   /* height: 100%; */
   background-color: #fafafa; /* #fcf4e3 yellow fade */
-  border-left: 1px solid #929292;
+  /*border-left: 1px solid #929292;*/
   -moz-box-shadow:    inset 0 0 30px #e8d4b9;
   -webkit-box-shadow: inset 0 0 30px #e8d4b9;
   box-shadow:         inset 0 0 30px #e8d4b9;
@@ -188,6 +185,24 @@ body, html {
 #main-panel-content {
   height: 100%;
   overflow-y: auto;
+}
+
+.center-icon {
+  transform: translateX(-30%);
+}
+
+.icon-top {
+  width: 10%;
+  font-size: 5vw;
+}
+
+#onboard-well {
+  height: 52%;
+  margin-top: 2%;
+  border: 1px solid #212529;
+  border-radius: 8px;
+  background-color: #bec5cc;
+  overflow: scroll;
 }
 
 .panel > .panel-heading {
@@ -206,8 +221,7 @@ body, html {
 
 #toolbar {
   height: 45px;
-  background: #152028;
-  border: 1px solid #a7a7a7;
+  background: #162129;
 }
 
 #filter-groups {
@@ -335,7 +349,44 @@ body, html {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  #desktop-view {
-    visibility: hidden;
+  .desktop-view {
+    display:none;
   }
+  .mobile-view {
+    /*display:block;*/
+  }
+}
+
+@media only screen and (min-width: 768) {
+  .mobile-view {
+    display:none;
+  }
+  .desktop-view {
+    /*display:block;*/
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 400px) {
+  #mobile-view { display: block; }  /* show it on small screens */
+}
+
+@media screen and (min-width: 401px) and (max-width: 1024px) {
+  #mobile-view { display: none; }   /* hide it elsewhere */
+}
+
+
+[aria-expanded="false"] .pinnedbar__icon--open {
+    display: block;
+}
+
+[aria-expanded="false"] .pinnedbar__icon--close {
+    display: none;
+}
+
+[aria-expanded="true"] .pinnedbar__icon--open {
+    display: none;
+}
+
+[aria-expanded="true"] .pinnedbar__icon--close {
+    display: block;
 }
