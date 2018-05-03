@@ -183,4 +183,7 @@ function refreshGroups() {
 function mainPanel() {
 }
 
-getAllCourses();
+window.onload = function() {
+  getAllCourses();
+  getPinned();
+}
