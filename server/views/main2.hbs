@@ -22,13 +22,14 @@
     <input id="courseid" type="hidden" value="">
     <input id="coursename" type="hidden" value="">
 
-    <!-- Navbar - responsive for desktop and mobile -->
     <div class="container-fluid side-and-main h-100 p-0">
+      <!-- Navbar - responsive for desktop and mobile -->
       <nav class="navbar navbar-expand-md navbar-light navbar-fixed-top">
         <a class="navbar-brand d-none d-sm-block" href="/main">TigerConnect</a>
         <a class="navbar-brand d-xs-none d-sm-none d-lg-none d-xl-none" href="#">TC</a>
         <form class="form-inline my-1 mr-2 my-lg-0 ml-auto d-md-none d-lg-none d-xl-none">
-          <input type="search" onkeyup="searchCourses(this.value)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
+          <!-- Search bar -->
+          <input type="search" onkeyup="searchCourses(this.value, true)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
         </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -54,12 +55,13 @@
       <!-- TODO: Mobile design -->
       <div class="row d-md-none d-lg-none d-xl-none" id="mobile-view">
         <div class="col" id="sidebar">
-          <div class="row vertical-center" id="class-placement">
+          <div class="row vertical-center" id="class-placement-mobile">
             <div class="container-fluid p-0">
             </div>
           </div>
         </div>
       </div>
+      <!-- END mobile design -->
       
       <!-- Desktop View -->
       <div class="row" id="desktop-view">
@@ -70,7 +72,7 @@
             
             <!-- Search bar -->
             <div class="row" id="search-box">
-              <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
+              <input type="search" onkeyup="searchCourses(this.value, false)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
             </div>
             {{!-- <div class="row search-divider ml-4"></div> --}}
 
@@ -116,7 +118,7 @@
               {{!-- <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button> --}}
             </div>
 
-            <!-- Content, e.g. cards -->
+            <!-- Inner content, e.g. cards -->
             <div id="main-panel-content">
 
               <!-- Onboarding: replaced by cards in Javascript when course selected -->
@@ -143,60 +145,63 @@
                   <h4 style="font-size: 2vw;">Join a group or create your own!</h4>
                 </div>
               </div>
+              <!-- END onboarding -->
+
+            </div> <!-- END inner content -->
+          </div>
+        </div> <!-- END main panel -->
+      </div>
+      <!-- END desktop view -->
+
+      <!-- Create Groups Modal -->
+      <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="createGroupLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title" id="createGroupLabel">Create Group for <span id="currentCourse">MAT104</span></h1>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="courseEvent-title">Group Title</label>
+                  <input type="text" class="form-control" id="courseEvent-title" aria-describedby="emailHelp" placeholder="Title">
+                  <small class="form-text text-muted">Grab people's attention with an interesting title!</small>
+                </div>
+                <div class="form-group">
+                  <label for="courseEvent-location">Location</label>
+                  <input type="text" class="form-control" id="courseEvent-location" placeholder="Location">
+                  <small class="form-text text-muted">Where do you want to meet?</small>
+                </div>
+                <div class="form-group">
+                  <label for="inputTime">Time</label>
+                              <div class='input-group date' id='datetimepicker1'>
+                                  <input type='text' class="form-control" id="courseEvent-time"/>
+                                  <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                  </span>
+                              </div>
+                      <script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker1').datetimepicker();
+                          });
+                      </script>
+                  <small class="form-text text-muted">When do you want to meet?</small>
+                </div>
+                <div class="form-group">
+                  <label for="textarea">Group Description</label>
+                  <textarea class="form-control" id="courseEvent-description" rows="3"></textarea>
+                  <small class="form-text text-muted">Anything else?</small>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-info" onclick="createGroup(); refreshGroups()" data-dismiss="modal">Create Group</button>
             </div>
           </div>
         </div>
       </div>
+      <!-- END Create Groups Modal -->
 
-
-
-
-    <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="createGroupLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title" id="createGroupLabel">Create Group for <span id="currentCourse">MAT104</span></h1>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="courseEvent-title">Group Title</label>
-                <input type="text" class="form-control" id="courseEvent-title" aria-describedby="emailHelp" placeholder="Title">
-                <small class="form-text text-muted">Grab people's attention with an interesting title!</small>
-              </div>
-              <div class="form-group">
-                <label for="courseEvent-location">Location</label>
-                <input type="text" class="form-control" id="courseEvent-location" placeholder="Location">
-                <small class="form-text text-muted">Where do you want to meet?</small>
-              </div>
-              <div class="form-group">
-                <label for="inputTime">Time</label>
-                            <div class='input-group date' id='datetimepicker1'>
-                                <input type='text' class="form-control" id="courseEvent-time"/>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker1').datetimepicker();
-                        });
-                    </script>
-                <small class="form-text text-muted">When do you want to meet?</small>
-              </div>
-              <div class="form-group">
-                <label for="textarea">Group Description</label>
-                <textarea class="form-control" id="courseEvent-description" rows="3"></textarea>
-                <small class="form-text text-muted">Anything else?</small>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-info" onclick="createGroup(); refreshGroups()" data-dismiss="modal">Create Group</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </body>
 </html>
