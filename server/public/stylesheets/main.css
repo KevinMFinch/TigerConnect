@@ -196,7 +196,7 @@ body, html {
   font-size: 5vw;
 }
 
-#onboard-well {
+.onboard-well {
   height: 52%;
   margin-top: 2%;
   border: 1px solid #212529;
@@ -348,30 +348,30 @@ body, html {
 /* Mobile view  */
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  .desktop-view {
-    display:none;
-  }
-  .mobile-view {
+/*@media only screen and (max-width: 600px) {*/
+  /*.desktop-view {*/
+    /*display:none;*/
+  /*}*/
+  /*.mobile-view {*/
     /*display:block;*/
-  }
-}
+  /*}*/
+/*}*/
 
-@media only screen and (min-width: 768) {
-  .mobile-view {
-    display:none;
-  }
-  .desktop-view {
+/*@media only screen and (min-width: 768) {*/
+  /*.mobile-view {*/
+    /*display:none;*/
+  /*}*/
+  /*.desktop-view {*/
     /*display:block;*/
-  }
-}
+  /*}*/
+/*}*/
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
-  #mobile-view { display: block; }  /* show it on small screens */
+  /*#mobile-view { display: block; }*/  /* show it on small screens */
 }
 
-@media screen and (min-width: 401px) and (max-width: 1024px) {
-  #mobile-view { display: none; }   /* hide it elsewhere */
+@media screen and (min-width: 401px) {
+  /*#mobile-view { display: none; }*/   /* hide it elsewhere */
 }
 
 
