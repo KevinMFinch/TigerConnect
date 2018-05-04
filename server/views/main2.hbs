@@ -150,117 +150,50 @@
             <!-- Inner content, e.g. onboarding, dashboard, cards -->
             <div id="main-panel-content">
 
-              <div class="row text-center" style="height:15%;">
-                <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:5%; padding-bottom:0%;">Welcome to TigerConnect!</h1>
-              </div>
-              <div class="row" style="height:5%;margin-top:5%;">
-                <h4 class="text-center mx-auto" style="font-size:2vw;">Groups You've Created</h4>
-              </div>
-              <div class="row" id="dash-user-created" style="overflow:scroll;">
-                <div class="group-container">
-                  <div class="group">
-                    <div class="group-header">
-                      <p class="group-header-text">TITLE</p>
-                    </div>
-                    <div class="group-desc-text font-weight-light">
-                      <p>Desc</p>
-                      <span class="font-weight-bold">Location: </span>
-                      <span>LOC</span>
-                      <br>
-                      <span class="font-weight-bold">Time: </span>
-                      <span>TIME</span>
-                      <br>
-                      <span>7 MEMBERS JOINED</span>
-                    </div>
-                    <div class="group-footer">
-                      <p class="group-desc-text" title="lol">Created by lmeng • a second ago</p>
-                    </div>
-                    <button class="join" id="nice" onclick="joinGroup(this.id)">JOIN</button>
-                  </div>
+              <!-- Dashboard -->
+              <div class="dashboard">
+                <div class="row text-center" style="height:15%;">
+                  <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:5%; padding-bottom:0%;">Welcome to TigerConnect!</h1>
                 </div>
-                <div class="group-container">
-                  <div class="group">
-                    <div class="group-header">
-                      <p class="group-header-text">TITLE</p>
-                    </div>
-                    <div class="group-desc-text font-weight-light">
-                      <p>Desc</p>
-                      <span class="font-weight-bold">Location: </span>
-                      <span>LOC</span>
-                      <br>
-                      <span class="font-weight-bold">Time: </span>
-                      <span>TIME</span>
-                      <br>
-                      <span>7 MEMBERS JOINED</span>
-                    </div>
-                    <div class="group-footer">
-                      <p class="group-desc-text" title="lol">Created by lmeng • a second ago</p>
-                    </div>
-                    <button class="join" id="nice" onclick="joinGroup(this.id)">JOIN</button>
-                  </div>
+
+                <div class="row dash-header" style="margin-top:5%;" data-toggle="collapse" data-target=".collapseDashCreate" aria-expanded="false" aria-controls="collapseDashCreate">
+                  <span class="dashcreate__icon dashcreate__icon--open my-auto" style="font-size:3vw;padding-left:2%;">
+                    <i class="fa fa-caret-right"></i>
+                  </span>
+                  <span class="dashcreate__icon dashcreate__icon--close my-auto" style="font-size:3vw;padding-left:2%;">
+                    <i class="fa fa-caret-down"></i>
+                  </span>
+                  <h4 class="text-center mx-auto my-auto">Groups You've Created</h4>
                 </div>
-              </div>
-              {{!-- /api/users/createdGroups/:netid --}}
-              {{!-- <div class="horizontal-scroll" id="dash-user-created" style="height:25%;">
-                <div class="group-shortcut">
-                  <h5 style="font-size: 2vw;">COS 333</h5>
-                  <p>title of group that you created woo woo nice this is really long</p>
-                  <div class="members">
-                    <p>6 members</p>
-                  </div>
+                <div class="row collapse collapseDashCreate" id="dash-user-created" style="overflow:scroll;">
+                  <!-- POPULATE -->
                 </div>
-              </div> --}}
-              <div class="row mt-5" style="height:5%;">
-                <h4 class="text-center mx-auto" style="font-size:2vw;">Groups You've Joined</h4>
-              </div>
-              <div class="row" id="dash-user-joined"  style="overflow:scroll;">
-                <!-- Populated with courses in javascript -->
-                <div class="group-container">
-                  <div class="group">
-                    <div class="group-header">
-                      <p class="group-header-text">TITLE</p>
+                <!-- temporarily abandoned horizontal scroll -->
+                {{!-- <div class="horizontal-scroll" id="dash-user-created" style="height:25%;">
+                  <div class="group-shortcut">
+                    <h5 style="font-size: 2vw;">COS 333</h5>
+                    <p>title of group that you created woo woo nice this is really long</p>
+                    <div class="members">
+                      <p>6 members</p>
                     </div>
-                    <div class="group-desc-text font-weight-light">
-                      <p>Desc</p>
-                      <span class="font-weight-bold">Location: </span>
-                      <span>LOC</span>
-                      <br>
-                      <span class="font-weight-bold">Time: </span>
-                      <span>TIME</span>
-                      <br>
-                      <span>7 MEMBERS JOINED</span>
-                    </div>
-                    <div class="group-footer">
-                      <p class="group-desc-text" title="lol">Created by lmeng • a second ago</p>
-                    </div>
-                    <button class="join" id="nice" onclick="joinGroup(this.id)">JOIN</button>
                   </div>
+                </div> --}}
+                <div class="row mt-5 dash-header" data-toggle="collapse" data-target=".collapseDashJoin" aria-expanded="false" aria-controls="collapseDashJoin">
+                  <span class="dashjoin__icon dashjoin__icon--open my-auto" style="font-size:3vw;padding-left:2%;">
+                    <i class="fa fa-caret-right"></i>
+                  </span>
+                  <span class="dashjoin__icon dashjoin__icon--close my-auto" style="font-size:3vw;padding-left:2%;">
+                    <i class="fa fa-caret-down"></i>
+                  </span>
+                  <h4 class="text-center mx-auto my-auto">Groups You've Joined</h4>
                 </div>
-                <div class="group-container">
-                  <div class="group">
-                    <div class="group-header">
-                      <p class="group-header-text">TITLE</p>
-                    </div>
-                    <div class="group-desc-text font-weight-light">
-                      <p>Desc</p>
-                      <span class="font-weight-bold">Location: </span>
-                      <span>LOC</span>
-                      <br>
-                      <span class="font-weight-bold">Time: </span>
-                      <span>TIME</span>
-                      <br>
-                      <span>7 MEMBERS JOINED</span>
-                    </div>
-                    <div class="group-footer">
-                      <p class="group-desc-text" title="lol">Created by lmeng • a second ago</p>
-                    </div>
-                    <button class="join" id="nice" onclick="joinGroup(this.id)">JOIN</button>
-                  </div>
+                <div class="row collapse collapseDashJoin" id="dash-user-joined"  style="overflow:scroll;">
+                  <!-- POPULATE -->
                 </div>
-                <!-- END populate courses with javascript -->
+                <div class="row" style="height:100px"></div>
               </div>
 
-              <!-- Onboarding: replaced by cards in Javascript when course selected -->
+              <!-- Onboarding -->
               {{!-- <div class="row h-25 text-center">
                 <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:7%; padding-bottom:0%; height:12%;">Welcome to TigerConnect!</h1>
               </div>
