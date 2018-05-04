@@ -20,6 +20,63 @@ router.get('/groups/:netid', (req, res) => {
   })
 });
 
+router.get('/createdGroups/:netid', (req, res) => {
+  var netid = req.params.netid;
+
+  CourseEvent.find({advertiser: netid}).then((events) => {
+    res.json({events});
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+});
+
+router.get('/joinedGroups/:netid', (req, res) => {
+  var netid = req.params.netid;
+  // Groups that a user is in but has not created
+  CourseEvent.find({
+    memberNetids: {$in: [netid]},
+    advertiser: {$ne: netid}
+  }).then((events) => {
+    res.json({events});
+  });
+});
+
+router.post('/setPinnedExpanded/:netid', (req, res) => {
+  var netid = req.params.netid;
+  var expanded = req.body.expanded;
+  expanded = (expanded === 'true');
+
+  console.log(netid);
+  console.log(expanded);
+
+  User.findOne({netid}).then((user) => {
+    if (!netid) {
+      return res.json({message: "No user found with that netid"});
+    }
+    user.pinnedExpanded = expanded;
+    user.save();
+    res.json(user);
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+});
+
+router.get('/getPinnedExpanded/:netid', (req, res) => {
+  var netid = req.params.netid;
+
+  User.findOne({netid}).then((user) => {
+    if (!netid) {
+      return res.json({message: "No user found with that netid"});
+    }
+    res.json({pinnedExpanded: user.pinnedExpanded});
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+});
+
 router.get('/pinnedCourses/:netid', (req, res) => {
   var netid = req.params.netid;
 

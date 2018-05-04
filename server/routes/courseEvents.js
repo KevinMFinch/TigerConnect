@@ -3,9 +3,11 @@ var router = express.Router();
 var {mongoose} = require('../db/mongoose');
 var {ObjectID} = require('mongodb');
 const {CourseEvent} = require('../models/CourseEvent');
+const {ChatRoom} = require('../models/ChatRoom');
+
 
 router.get('/', (req, res) => {
-  CourseEvent.find().then((courseEvents) => {
+  CourseEvent.find().sort({members: -1}).then((courseEvents) => {
     if (!courseEvents) {
       return res.send('No course events');
     }
@@ -21,10 +23,11 @@ router.get('/:courseID', (req, res) => {
   if (!ObjectID.isValid(courseID)) {
     return res.status(404).send('Invalid courseID');
   }
-  CourseEvent.find({courseID}).then((courseEvents) => {
+  CourseEvent.find({courseID}).sort({members: -1}).then((courseEvents) => {
     if (!courseEvents) {
       return res.json({message: 'No course events for that courseID'});
     }
+    console.log(courseEvents);
     return res.json({courseEvents});
   }, (e) => {
     console.log(e);
@@ -40,7 +43,6 @@ router.post('/join', (req, res) => {
   }
 
   // Update object to increment members field by one and push netid to array
-  // TODO: Members should not increment if already in group
   var update = {
     $addToSet: {memberNetids: joiningNetid},
   };
@@ -56,6 +58,26 @@ router.post('/join', (req, res) => {
   }, (e) => {
     console.log(e);
     res.json({message: 'Error when searching for course'});
+  });
+});
+
+router.delete('/deleteGroup/:courseEventID', (req, res) => {
+  console.log('params', req.params);
+  var courseEventID = req.params.courseEventID;
+  if (!ObjectID.isValid(courseEventID)) {
+    return res.status(404).send('Invalid courseEventID');
+  }
+  // Delete course event and also a chat room associated with it
+  CourseEvent.findOneAndRemove({_id: courseEventID}, function (err) {
+    ChatRoom.findOneAndRemove({roomID: courseEventID}, function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    if (err) {
+      console.log(err);
+    }
+    res.json({'message': 'Deleted'});
   });
 });
 

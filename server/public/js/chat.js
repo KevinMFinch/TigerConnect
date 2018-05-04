@@ -19,6 +19,8 @@ function scrollToBottom () {
 
 socket.on('connect', function() {
   var params = jQuery.deparam(window.location.search);
+  var netid = document.getElementById('netid').value;
+  params.name = netid;
 
   socket.emit('join', params, function (err) {
     if (err) {
@@ -48,8 +50,16 @@ socket.on('updateUserList', function(users) {
 socket.on('newMessage', function(message) {
   console.log(JSON.stringify(message));
   var formattedTime = moment(message.createdAt).format('h:mm a');
+  var params = jQuery.deparam(window.location.search);
+  var netid = document.getElementById('netid').value;
+  var className = '';
+  if (message.from === netid) {
+    className = 'speech-bubble-send';
+  } else {
+    className = 'speech-bubble-receive';
+  }
 
-  var html = '<li class="message">' +
+  var html = `<li class="message ${className}">` +
                '<div class="message__title">' +
                   '<h4>' + message.from + '</h4>' +
                   '<span>' + formattedTime + '</span>' +
@@ -58,7 +68,6 @@ socket.on('newMessage', function(message) {
                 '<p>' + message.text + '</p>' +
               '</div>' +
             '</li>';
-  console.log(html);
   jQuery('#messages').append(html);
   scrollToBottom();
 });
