@@ -48,6 +48,8 @@ function handleMessages(messages) {
 
 socket.on('connect', function() {
   var params = jQuery.deparam(window.location.search);
+  var netid = document.getElementById('netid').value;
+  params.name = netid;
 
   socket.emit('join', params, function (err) {
     if (err) {
@@ -81,7 +83,7 @@ socket.on('newMessage', function(message) {
   console.log(JSON.stringify(message));
   var formattedTime = moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a');
   var params = jQuery.deparam(window.location.search);
-  var netid = params.name;
+  var netid = document.getElementById('netid').value;
   var className = '';
   if (message.from === netid) {
     className = 'speech-bubble-send';

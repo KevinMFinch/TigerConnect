@@ -116,8 +116,8 @@
                 </span>
               </h5>
             </div>
-            <div class="pinnedSection" style="max-height:35%; overflow:scroll;">
-              <div class="collapsePinned collapse row vertical-center" id="pinned-placement">
+            <div class="pinnedSection" style="max-height:35%; overflow-x: hidden; overflow-y: scroll">
+              <div class="collapsePinned collapse vertical-center" id="pinned-placement">
                 <div class="container-fluid p-0">
                 </div>
               </div>
@@ -125,7 +125,7 @@
             <div class="row pinned-divider"></div>
 
             <!-- Searched courses -->
-            <div class="row vertical-center" id="class-placement">
+            <div class="vertical-center" id="class-placement" style="overflow-x:hidden; overflow-y: scroll">
               <div class="container-fluid p-0">
               </div>
             </div>
@@ -147,33 +147,77 @@
               {{!-- <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button> --}}
             </div>
 
-            <!-- Inner content, e.g. cards -->
+            <!-- Inner content, e.g. onboarding, dashboard, cards -->
             <div id="main-panel-content">
 
-              <!-- Onboarding: replaced by cards in Javascript when course selected -->
-              <div class="row h-25 text-center">
+              <!-- Dashboard -->
+              <div class="dashboard">
+                <div class="row text-center" style="height:15%;">
+                  <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:5%; padding-bottom:0%;">Welcome to TigerConnect!</h1>
+                </div>
+
+                <div class="row dash-header" style="margin-top:5%;" data-toggle="collapse" data-target=".collapseDashCreate" aria-expanded="false" aria-controls="collapseDashCreate">
+                  <span class="dashcreate__icon dashcreate__icon--open my-auto" style="font-size:3vw;padding-left:2%;">
+                    <i class="fa fa-caret-right"></i>
+                  </span>
+                  <span class="dashcreate__icon dashcreate__icon--close my-auto" style="font-size:3vw;padding-left:2%;">
+                    <i class="fa fa-caret-down"></i>
+                  </span>
+                  <h4 class="text-center mx-auto my-auto">Groups You've Created</h4>
+                </div>
+                <div class="row collapse collapseDashCreate" id="dash-user-created" style="overflow:scroll;">
+                  <!-- POPULATE -->
+                </div>
+                <!-- temporarily abandoned horizontal scroll -->
+                {{!-- <div class="horizontal-scroll" id="dash-user-created" style="height:25%;">
+                  <div class="group-shortcut">
+                    <h5 style="font-size: 2vw;">COS 333</h5>
+                    <p>title of group that you created woo woo nice this is really long</p>
+                    <div class="members">
+                      <p>6 members</p>
+                    </div>
+                  </div>
+                </div> --}}
+                <div class="row mt-5 dash-header" data-toggle="collapse" data-target=".collapseDashJoin" aria-expanded="false" aria-controls="collapseDashJoin">
+                  <span class="dashjoin__icon dashjoin__icon--open my-auto" style="font-size:3vw;padding-left:2%;">
+                    <i class="fa fa-caret-right"></i>
+                  </span>
+                  <span class="dashjoin__icon dashjoin__icon--close my-auto" style="font-size:3vw;padding-left:2%;">
+                    <i class="fa fa-caret-down"></i>
+                  </span>
+                  <h4 class="text-center mx-auto my-auto">Groups You've Joined</h4>
+                </div>
+                <div class="row collapse collapseDashJoin" id="dash-user-joined"  style="overflow:scroll;">
+                  <!-- POPULATE -->
+                </div>
+                <!-- More whitespace at bottom of page -->
+                <div class="row" style="height:100px"></div>
+              </div>
+
+              <!-- Onboarding -->
+              {{!-- <div class="row h-25 text-center">
                 <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:7%; padding-bottom:0%; height:12%;">Welcome to TigerConnect!</h1>
               </div>
               <div class="row h-75 text-center">
-                <div class="col-3 my-4 onboard-well" style="margin-left: 8%;">
+                <div class="col-3 my-4 onboard-well" style="margin-left: 8%; overflow: hidden">
                   <div class="icon-top mx-auto">
                     <i class="far fa-hand-point-up my-4 center-icon"></i>
                   </div>
-                  <h4 style="font-size: 2vw;">Choose the course you're enrolled in on the left.<h4>
+                  <h4 style="font-size: 2vw;">Choose the course you're enrolled in on the left.</h4>
                 </div>
-                <div class="col-3 my-4 onboard-well" style="margin-left:4%; margin-right:4%;">
+                <div class="col-3 my-4 onboard-well" style="margin-left:4%; margin-right:4%; overflow: hidden">
                   <div class="icon-top mx-auto">
                     <i class="fas fa-search-plus my-4 center-icon"></i>
                   </div>
                   <h4 style="font-size: 2vw;">Look through for groups that you wish to join.</h4>
                 </div>
-                <div class="col-3 my-4 onboard-well" style="margin-right: 8%;">
+                <div class="col-3 my-4 onboard-well" style="margin-right: 8%; overflow: hidden">
                   <div class="icon-top mx-auto">
                     <i class="fas fa-pencil-alt my-4 center-icon"></i>
                   </div>
                   <h4 style="font-size: 2vw;">Join a group or create your own!</h4>
                 </div>
-              </div>
+              </div> --}}
               <!-- END onboarding -->
 
             </div> <!-- END inner content -->

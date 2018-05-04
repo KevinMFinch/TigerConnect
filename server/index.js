@@ -53,6 +53,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/chat', (req, res) => {
+  if (!auth.userIsAuthenticated(req)) {
+    return res.redirect('/api/auth/login');
+  }
   res.render('chat', {netid: req.session.cas.netid});
 });
 
@@ -63,7 +66,6 @@ app.get('/main', (req, res) => {
   res.render('main2', {netid: req.session.cas.netid});
 });
 
-// The 'catchall' handler: for any request that doesn't match one above, send back React's index.html
 app.get('*', (req, res) => {
   console.log(req.url);
   res.redirect('/');
@@ -88,7 +90,6 @@ io.on('connection', (socket) => {
           roomID: params.room
         });
         cR.save();
-        console.log(cR);
       }
     }, (e) => {
       console.log(500);
@@ -116,7 +117,6 @@ io.on('connection', (socket) => {
           {$push: {messages: createdMessage}},
           {new:true}
         ).then((chatRoom) => {
-          console.log(chatRoom);
           io.to(user.room).emit('newMessage', createdMessage);
           callback();
         }, (e) => {

@@ -20,6 +20,28 @@ router.get('/groups/:netid', (req, res) => {
   })
 });
 
+router.get('/createdGroups/:netid', (req, res) => {
+  var netid = req.params.netid;
+
+  CourseEvent.find({advertiser: netid}).then((events) => {
+    res.json({events});
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+});
+
+router.get('/joinedGroups/:netid', (req, res) => {
+  var netid = req.params.netid;
+  // Groups that a user is in but has not created
+  CourseEvent.find({
+    memberNetids: {$in: [netid]},
+    advertiser: {$ne: netid}
+  }).then((events) => {
+    res.json({events});
+  });
+});
+
 router.post('/setPinnedExpanded/:netid', (req, res) => {
   var netid = req.params.netid;
   var expanded = req.body.expanded;

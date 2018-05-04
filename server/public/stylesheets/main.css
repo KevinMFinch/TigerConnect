@@ -120,6 +120,22 @@ body, html {
   margin: 0;
   cursor: pointer;
 }
+.pinned-bar:hover {
+  background-color: #33495a;
+  border-bottom-color: #33495a;
+}
+.pinned-bar:hover ~ .pinned-divider{
+  background-color: #33495a;
+  border-top-color: #33495a;
+}
+.pinned-divider:hover {
+  background-color: #33495a;
+  border-top-color: #33495a;
+}
+.pinned-divider:hover ~ .pinned-bar {
+  background-color: #33495a;
+  border-bottom-color: #33495a;
+}
 
 .pin {
   float: right;
@@ -196,6 +212,9 @@ body, html {
 
 #main-panel-content {
   height: 100%;
+  padding-left: 4%;
+  padding-right: 6%;
+  padding-bottom: 10%;
   overflow-y: auto;
 }
 
@@ -215,6 +234,47 @@ body, html {
   border-radius: 8px;
   background-color: #bec5cc;
   overflow: scroll;
+}
+
+.horizontal-scroll {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.group-shortcut {
+  height: 80%;
+  width: 30%;
+  margin-top: 2%;
+  border: 1px solid #212529;
+  border-radius: 8px;
+  background-color: #bec5cc;
+  margin-left: 2%;
+  margin-bottom:0;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top:1%;
+  display:inline-block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  white-space: normal;
+}
+
+.dash-header{
+  font-size: 2vw;
+  color: white;
+  height: 6%;
+  background-color: #162129;
+  cursor: pointer;
+}
+.dash-header:hover{
+  background-color: #263744;
+}
+
+.dash-user-created {
+}
+
+.dash-user-joined {
 }
 
 .panel > .panel-heading {
@@ -322,7 +382,21 @@ body, html {
   /*background-color: #162129;*/
 }
 
-.join {
+.join-chat {
+  margin-top:10%;
+  position: absolute;
+  bottom: 5%;
+  right: 21%;
+  float: right;
+  width: 15%;
+  height: 18%;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  background-color: #162129;
+  cursor: pointer;
+}
+
+.delete-leave {
   margin-top:10%;
   position: absolute;
   bottom: 5%;
@@ -390,15 +464,38 @@ body, html {
 [aria-expanded="false"] .pinnedbar__icon--open {
     display: block;
 }
-
 [aria-expanded="false"] .pinnedbar__icon--close {
     display: none;
 }
-
 [aria-expanded="true"] .pinnedbar__icon--open {
     display: none;
 }
-
 [aria-expanded="true"] .pinnedbar__icon--close {
+    display: block;
+}
+
+[aria-expanded="false"] .dashcreate__icon--open {
+    display: block;
+}
+[aria-expanded="false"] .dashcreate__icon--close {
+    display: none;
+}
+[aria-expanded="true"] .dashcreate__icon--open {
+    display: none;
+}
+[aria-expanded="true"] .dashcreate__icon--close {
+    display: block;
+}
+
+[aria-expanded="false"] .dashjoin__icon--open {
+    display: block;
+}
+[aria-expanded="false"] .dashjoin__icon--close {
+    display: none;
+}
+[aria-expanded="true"] .dashjoin__icon--open {
+    display: none;
+}
+[aria-expanded="true"] .dashjoin__icon--close {
     display: block;
 }
