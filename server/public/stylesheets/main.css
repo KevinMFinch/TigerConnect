@@ -406,7 +406,11 @@ body, html {
   cursor: pointer;
 }
 
-.join:hover {
+.join-chat:hover {
+  background-color: #303f4b;
+}
+
+.delete-leave:hover {
   background-color: #303f4b;
 }
 
