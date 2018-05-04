@@ -20,6 +20,41 @@ router.get('/groups/:netid', (req, res) => {
   })
 });
 
+router.post('/setPinnedExpanded/:netid', (req, res) => {
+  var netid = req.params.netid;
+  var expanded = req.body.expanded;
+  expanded = (expanded === 'true');
+
+  console.log(netid);
+  console.log(expanded);
+
+  User.findOne({netid}).then((user) => {
+    if (!netid) {
+      return res.json({message: "No user found with that netid"});
+    }
+    user.pinnedExpanded = expanded;
+    user.save();
+    res.json(user);
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+});
+
+router.get('/getPinnedExpanded/:netid', (req, res) => {
+  var netid = req.params.netid;
+
+  User.findOne({netid}).then((user) => {
+    if (!netid) {
+      return res.json({message: "No user found with that netid"});
+    }
+    res.json({pinnedExpanded: user.pinnedExpanded});
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+});
+
 router.get('/pinnedCourses/:netid', (req, res) => {
   var netid = req.params.netid;
 

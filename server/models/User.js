@@ -11,6 +11,11 @@ var User = mongoose.model('User', {
     type: Array,
     required: true,
     default: []
+  },
+  pinnedExpanded: {
+    type: Boolean,
+    default: false,
+    required: true
   }
 });
 

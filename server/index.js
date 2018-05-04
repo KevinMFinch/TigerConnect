@@ -7,6 +7,7 @@ const hbs = require('hbs');
 
 const {mongoose} = require('./db/mongoose');
 const {CourseEvent} = require('./models/CourseEvent');
+const {ChatRoom} = require('./models/ChatRoom');
 
 var bodyParser = require('body-parser');
 var session = require('cookie-session');
@@ -25,6 +26,7 @@ var courseEvents = require('./routes/courseEvents');
 var courses = require('./routes/courses');
 var auth = require('./routes/auth');
 var usersRoute = require('./routes/users');
+var chatRoom = require('./routes/chatRoom');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -40,6 +42,7 @@ app.use('/api/courses', courses);
 app.use('/api/courseEvents', courseEvents);
 app.use('/api/auth', auth.router);
 app.use('/api/users', usersRoute);
+app.use('/api/chatRoom', chatRoom);
 
 /*------------- Routing stuff ----------*/
 app.get('/', (req, res) => {
@@ -78,6 +81,18 @@ io.on('connection', (socket) => {
     console.log(`joined room ${JSON.stringify(params)}`);
 
     socket.join(params.room);
+    ChatRoom.findOne({roomID: params.room}).then((chatRoom) => {
+      console.log('cr', chatRoom);
+      if (!chatRoom) {
+        var cR = new ChatRoom({
+          roomID: params.room
+        });
+        cR.save();
+        console.log(cR);
+      }
+    }, (e) => {
+      console.log(500);
+    });
     // Remove from all other rooms, may be a problem? Not sure
     users.removeUser(socket.id);
     users.addUser(socket.id, params.name, params.room);
@@ -94,10 +109,21 @@ io.on('connection', (socket) => {
       var user = users.getUser(socket.id);
 
       if (user && isRealString(message.text)) {
-        io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
+        var createdMessage = generateMessage(user.name, message.text);
+        // Save message to DB
+        ChatRoom.findOneAndUpdate(
+          {roomID: user.room},
+          {$push: {messages: createdMessage}},
+          {new:true}
+        ).then((chatRoom) => {
+          console.log(chatRoom);
+          io.to(user.room).emit('newMessage', createdMessage);
+          callback();
+        }, (e) => {
+          console.log(e);
+          callback();
+        });
       }
-
-      callback();
   });
 
   socket.on('disconnect', () => {

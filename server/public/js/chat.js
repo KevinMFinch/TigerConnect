@@ -66,7 +66,6 @@ socket.on('newMessage', function(message) {
                 '<p>' + message.text + '</p>' +
               '</div>' +
             '</li>';
-  console.log(html);
   jQuery('#messages').append(html);
   scrollToBottom();
 });
