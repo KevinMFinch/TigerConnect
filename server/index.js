@@ -66,7 +66,6 @@ app.get('/main', (req, res) => {
   res.render('main2', {netid: req.session.cas.netid});
 });
 
-// The 'catchall' handler: for any request that doesn't match one above, send back React's index.html
 app.get('*', (req, res) => {
   console.log(req.url);
   res.redirect('/');
