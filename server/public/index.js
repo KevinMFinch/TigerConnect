@@ -288,10 +288,10 @@ function searchCourseGroups(value) {
 function courseGroupStatus(event) {
   var netid = document.getElementById("netid").value;
 
-  // if (event['advertiser'] == netid) {
-  //   return 'owner';
-  // }
-  if(event['memberNetids'].includes(netid)) {
+  if (event['advertiser'] == netid) {
+    return 'owner';
+  }
+  else if(event['memberNetids'].includes(netid)) {
     return 'member';
   }
   else {
