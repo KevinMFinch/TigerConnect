@@ -51,7 +51,7 @@
           </ul>
         </div>
       </nav>
-      
+
       <!-- TODO: Mobile design -->
       <div class="row d-md-none d-lg-none d-xl-none" id="mobile-view">
 
@@ -91,14 +91,14 @@
 
       </div>
       <!-- END mobile design -->
-      
+
       <!-- Desktop View -->
       <div class="row" id="desktop-view">
-        
+
         <!-- Sidebar -->
         <div class="col-3 pr-0" id="sidebar">
           <div class="container-fluid p-0">
-            
+
             <!-- Search bar -->
             <div class="row" id="search-box">
               <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
@@ -116,8 +116,8 @@
                 </span>
               </h5>
             </div>
-            <div class="pinnedSection" style="max-height:35%; overflow:scroll;">
-              <div class="collapsePinned collapse row vertical-center" id="pinned-placement">
+            <div class="pinnedSection" style="max-height:35%; overflow-x: hidden; overflow-y: scroll">
+              <div class="collapsePinned collapse vertical-center" id="pinned-placement">
                 <div class="container-fluid p-0">
                 </div>
               </div>
@@ -125,7 +125,7 @@
             <div class="row pinned-divider"></div>
 
             <!-- Searched courses -->
-            <div class="row vertical-center" id="class-placement">
+            <div class="vertical-center" id="class-placement" style="overflow-x:hidden; overflow-y: scroll">
               <div class="container-fluid p-0">
               </div>
             </div>
@@ -155,19 +155,19 @@
                 <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:7%; padding-bottom:0%; height:12%;">Welcome to TigerConnect!</h1>
               </div>
               <div class="row h-75 text-center">
-                <div class="col-3 my-4 onboard-well" style="margin-left: 8%;">
+                <div class="col-3 my-4 onboard-well" style="margin-left: 8%; overflow: hidden">
                   <div class="icon-top mx-auto">
                     <i class="far fa-hand-point-up my-4 center-icon"></i>
                   </div>
                   <h4 style="font-size: 2vw;">Choose the course you're enrolled in on the left.<h4>
                 </div>
-                <div class="col-3 my-4 onboard-well" style="margin-left:4%; margin-right:4%;">
+                <div class="col-3 my-4 onboard-well" style="margin-left:4%; margin-right:4%; overflow: hidden">
                   <div class="icon-top mx-auto">
                     <i class="fas fa-search-plus my-4 center-icon"></i>
                   </div>
                   <h4 style="font-size: 2vw;">Look through for groups that you wish to join.</h4>
                 </div>
-                <div class="col-3 my-4 onboard-well" style="margin-right: 8%;">
+                <div class="col-3 my-4 onboard-well" style="margin-right: 8%; overflow: hidden">
                   <div class="icon-top mx-auto">
                     <i class="fas fa-pencil-alt my-4 center-icon"></i>
                   </div>
