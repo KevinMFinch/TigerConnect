@@ -3,18 +3,47 @@ var socket = io();
 
 function scrollToBottom () {
   // Selectors
-  var messages = jQuery('#messages');
-  var newMessage = messages.children('li:last-child');
-  // Heights
-  var clientHeight = messages.prop('clientHeight');
-  var scrollTop = messages.prop('scrollTop');
-  var scrollHeight = messages.prop('scrollHeight');
-  var newMessageHeight = newMessage.innerHeight();
-  var lastMessageHeight = newMessage.prev().innerHeight();
+  // var messages = jQuery('#messages');
+  // var newMessage = messages.children('li:last-child');
+  // // Heights
+  // var clientHeight = messages.prop('clientHeight');
+  // var scrollTop = messages.prop('scrollTop');
+  // var scrollHeight = messages.prop('scrollHeight');
+  // var newMessageHeight = newMessage.innerHeight();
+  // var lastMessageHeight = newMessage.prev().innerHeight();
+  //
+  // if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+  //   messages.scrollTop(scrollHeight);
+  // }
 
-  if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
-    messages.scrollTop(scrollHeight);
+  // var objDiv = document.getElementById("chat__messages");
+  // objDiv.scrollTop = objDiv.scrollHeight;
+}
+
+function handleMessages(messages) {
+  for(var i = 0; i < messages['messages'].length; i++) {
+    var formattedTime = moment(messages['messages'][i]['createdAt']).format('MMMM Do YYYY, h:mm:ss a');
+    var params = jQuery.deparam(window.location.search);
+    var netid = params.name;
+    var className = '';
+    if (messages['messages'][i]['from'] === netid) {
+      className = 'speech-bubble-send';
+    } else {
+      className = 'speech-bubble-receive';
+    }
+
+    var html = `<li class="message mt-2 ${className}">` +
+                 '<div class="message__title">' +
+                    '<h4>' + messages['messages'][i]['from'] + '</h4>' +
+                    '<span>' + formattedTime + '</span>' +
+                 '</div>' +
+                '<div class="message__body">' +
+                  '<p>' + messages['messages'][i]['text'] + '</p>' +
+                '</div>' +
+              '</li>';
+    jQuery('#messages').append(html);
   }
+  scrollToBottom();
 }
 
 socket.on('connect', function() {
@@ -27,6 +56,9 @@ socket.on('connect', function() {
     } else {
       console.log(`joined room ${params.room}`);
       console.log('no error');
+      fetch('/api/chatRoom/messages/' + params.room)
+        .then(res => res.json())
+        .then(messages => handleMessages(messages))
     }
   });
 });
@@ -47,7 +79,7 @@ socket.on('updateUserList', function(users) {
 
 socket.on('newMessage', function(message) {
   console.log(JSON.stringify(message));
-  var formattedTime = moment(message.createdAt).format('h:mm a');
+  var formattedTime = moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a');
   var params = jQuery.deparam(window.location.search);
   var netid = params.name;
   var className = '';
@@ -57,7 +89,7 @@ socket.on('newMessage', function(message) {
     className = 'speech-bubble-receive';
   }
 
-  var html = `<li class="message ${className}">` +
+  var html = `<li class="message mt-2 ${className}">` +
                '<div class="message__title">' +
                   '<h4>' + message.from + '</h4>' +
                   '<span>' + formattedTime + '</span>' +

@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/chat', (req, res) => {
-  res.render('chat');
+  res.render('chat', {netid: req.session.cas.netid});
 });
 
 app.get('/main', (req, res) => {
@@ -124,6 +124,7 @@ io.on('connection', (socket) => {
           callback();
         });
       }
+      callback();
   });
 
   socket.on('disconnect', () => {
