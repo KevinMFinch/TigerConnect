@@ -119,7 +119,8 @@ function populateGroups(events, idToPopulate) {
     innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
     innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span></div>";
     innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\" title=\"" + m.format('dddd, LL [at] LT') + "\">Created by " + events[i]['advertiser'] + " • " + timeCreated + "</p></div>";
-    innerHTMLChange = innerHTMLChange + "<button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
+    var status = getButtonStatus(events[i]);
+    innerHTMLChange = innerHTMLChange + getButtonStatusHTML(events[i], status);
   }
   document.getElementById(idToPopulate).innerHTML = innerHTMLChange;
 }
@@ -164,7 +165,20 @@ function handleGroups(groups) {
       innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
       innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span></div>";
       innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\" title=\"" + m.format('dddd, LL [at] LT') + "\">Created by " + events[i]['advertiser'] + " • " + timeCreated + "</p></div>";
-      innerHTMLChange = innerHTMLChange + "<button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
+
+      var status = getButtonStatus(events[i]);
+      innerHTMLChange = innerHTMLChange + getButtonStatusHTML(events[i], status);
+
+      // if (status == 'owner') {
+      //   innerHTMLChange = innerHTMLChange + "<button class=\"join-chat\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">CHAT</button><button class=\"delete-leave\" id=\"" + events[i]['_id'] + "\" onclick=\"deleteGroup(this.id)\">DELETE</button></div></div>";
+      // }
+      // else if (status == 'member') {
+      //   innerHTMLChange = innerHTMLChange + "<button class=\"join-chat\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">CHAT</button><button class=\"delete-leave\" id=\"" + events[i]['_id'] + "\" onclick=\"leaveGroup(this.id)\">LEAVE</button></div></div>";
+      // }
+      // else {
+      //   innerHTMLChange = innerHTMLChange + "<button class=\"join-chat\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\" style=\"right: 3%\">JOIN</button></div></div>";
+      // }
+
     }
   }
   document.getElementById("main-panel-content").innerHTML = innerHTMLChange;
@@ -182,6 +196,27 @@ function joinGroup(id) {
       'Content-Type': 'application/json'
     })
   }).then(window.location = '/chat?room=' + id);
+}
+
+function leaveGroup(id) {
+  var netid = document.getElementById("netid").value;
+  var courseEvent = {courseEventID: id, netid };
+
+  fetch('/api/courseEvents/leave', {
+    method: 'POST',
+    body: JSON.stringify(courseEvent),
+    headers: new Headers ({
+      'Content-Type': 'application/json'
+    })
+  });
+}
+
+function deleteGroup(id) {
+  var query = '/api/courseEvents/deleteGroup/' + id;
+
+  fetch(query, {
+    method: 'DELETE'
+  });
 }
 
 function addPinnedClass(id) {
@@ -235,6 +270,32 @@ function searchCourseGroups(value) {
   document.getElementById("courseid").value = id;
   document.getElementById("coursename").value = name;
   getSearchedCourseGroups(id);
+}
+
+function getButtonStatus(event) {
+  var netid = document.getElementById("netid").value;
+
+  if (event['advertiser'] == netid) {
+    return 'owner';
+  }
+  else if(event['memberNetids'].includes(netid)) {
+    return 'member';
+  }
+  else {
+    return 'unaffiliated';
+  }
+}
+
+function getButtonStatusHTML(event, status) {
+  if (status == 'owner') {
+    return ("<button class=\"join-chat\" id=\"" + event['_id'] + "\" onclick=\"joinGroup(this.id)\">CHAT</button><button class=\"delete-leave\" id=\"" + event['_id'] + "\" onclick=\"deleteGroup(this.id)\">DELETE</button></div></div>");
+  }
+  else if (status == 'member') {
+   return ("<button class=\"join-chat\" id=\"" + event['_id'] + "\" onclick=\"joinGroup(this.id)\">CHAT</button><button class=\"delete-leave\" id=\"" + event['_id'] + "\" onclick=\"leaveGroup(this.id)\">LEAVE</button></div></div>");
+  }
+  else {
+    return ("<button class=\"join-chat\" id=\"" + event['_id'] + "\" onclick=\"joinGroup(this.id)\" style=\"right: 3%\">JOIN</button></div></div>");
+  }
 }
 
 function refreshGroups() {
