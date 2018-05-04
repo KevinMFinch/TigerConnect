@@ -40,6 +40,22 @@ getPinnedCourses = query => {
       .then(courses => handlePinned(courses));
 }
 
+getUserCreatedGroups = query => {
+    var searchQuery = '/api/users/createdGroups/' + query;
+
+    fetch(searchQuery)
+      .then(res => res.json())
+      .then(groups => handleDashCreated(groups));
+}
+
+getUserJoinedGroups = query => {
+    var searchQuery = '/api/users/joinedGroups/' + query;
+
+    fetch(searchQuery)
+      .then(res => res.json())
+      .then(groups => handleDashJoined(groups));
+}
+
 function handleCourses(course) {
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
@@ -66,6 +82,62 @@ function handlePinned(courses) {
   }
   document.getElementById("pinned-placement-mobile").innerHTML = innerHTMLChange;
   document.getElementById("pinned-placement").innerHTML = innerHTMLChange;
+}
+
+function handleDashCreated(groups) {
+  var innerHTMLChange = "";
+  var events = groups['events'];
+  if (events.length == 0) {
+    innerHTMLChange = innerHTMLChange + "<div class=\"mx-auto\" align=\"center\"><h5 class=\"text-center mx-auto\" style=\"padding-top:20%;\">No groups created yet.<br><br><br><br><br><br></h5></div>";
+  }
+  else {
+    for(var i = 0; i < events.length; i++) {
+      var memberPlural = " members ";
+      if (events[i]['members'] == 1) {
+        memberPlural = " member ";
+      }
+      var date = new Date(events[i]['timeCreated']);
+      var m = moment(date);
+      var timeCreated = m.fromNow();
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-container\"><div class=\"group slideUp\">";
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-header\"><p class=\"group-header-text\">" + events[i]['title'];
+      innerHTMLChange = innerHTMLChange + "</p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
+      innerHTMLChange = innerHTMLChange + "</p><span class=\"font-weight-bold\">Location: </span><span>" + events[i]['location'];
+      innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
+      innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span></div>";
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\" title=\"" + m.format('dddd, LL [at] LT') + "\">Created by " + events[i]['advertiser'] + " • " + timeCreated + "</p></div>";
+      innerHTMLChange = innerHTMLChange + "<button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
+    }
+  }
+  document.getElementById("dash-user-created").innerHTML = innerHTMLChange;
+}
+
+function handleDashJoined(groups) {
+  var innerHTMLChange = "";
+  var events = groups['events'];
+  if (events.length == 0) {
+    innerHTMLChange = innerHTMLChange + "<div class=\"mx-auto\" align=\"center\"><h5 class=\"text-center mx-auto\" style=\"padding-top:20%;\">No groups joined yet.<br><br><br><br><br><br></h5></div>";
+  }
+  else {
+    for(var i = 0; i < events.length; i++) {
+      var memberPlural = " members ";
+      if (events[i]['members'] == 1) {
+        memberPlural = " member ";
+      }
+      var date = new Date(events[i]['timeCreated']);
+      var m = moment(date);
+      var timeCreated = m.fromNow();
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-container\"><div class=\"group slideUp\">";
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-header\"><p class=\"group-header-text\">" + events[i]['title'];
+      innerHTMLChange = innerHTMLChange + "</p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
+      innerHTMLChange = innerHTMLChange + "</p><span class=\"font-weight-bold\">Location: </span><span>" + events[i]['location'];
+      innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
+      innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span></div>";
+      innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\" title=\"" + m.format('dddd, LL [at] LT') + "\">Created by " + events[i]['advertiser'] + " • " + timeCreated + "</p></div>";
+      innerHTMLChange = innerHTMLChange + "<button class=\"join\" id=\"" + events[i]['_id'] + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>";
+    }
+  }
+  document.getElementById("dash-user-joined").innerHTML = innerHTMLChange;
 }
 
 // highlight currently selected course
@@ -196,6 +268,14 @@ function getPinned() {
   getPinnedCourses(document.getElementById("netid").value);
 }
 
+function getDashCreated() {
+  getUserCreatedGroups(document.getElementById("netid").value);
+}
+
+function getDashJoined() {
+  getUserJoinedGroups(document.getElementById("netid").value);
+}
+
 function searchCourseGroups(value) {
   split = value.indexOf(" ");
   id = value.substring(0, split);
@@ -229,4 +309,6 @@ function mainPanel() {
 window.onload = function() {
   getAllCourses();
   getPinned();
+  getDashCreated();
+  getDashJoined();
 }
