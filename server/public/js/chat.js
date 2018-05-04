@@ -24,8 +24,12 @@ function handleMessages(messages) {
   for(var i = 0; i < messages['messages'].length; i++) {
     var formattedTime = moment(messages['messages'][i]['createdAt']).format('MMMM Do YYYY, h:mm:ss a');
     var params = jQuery.deparam(window.location.search);
-    var netid = params.name;
+    var netid = document.getElementById('netid').value;
+    params.name = netid;
+    
     var className = '';
+    alert("THIS IS THE MESSAGES FROM: " + messages['messages'][i]['from']);
+    alert("THIS IS THE CURRENT USER: " + netid);
     if (messages['messages'][i]['from'] === netid) {
       className = 'speech-bubble-send';
     } else {
