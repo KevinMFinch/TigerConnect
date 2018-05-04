@@ -11,7 +11,7 @@ router.get('/messages/:roomID', (req, res) => {
     if (!chatRoom) {
       return res.json({message: "No chat room for that groupID"});
     }
-    res.json({chatRoom.messages});
+    res.json({messages: chatRoom.messages});
   });
 });
 
