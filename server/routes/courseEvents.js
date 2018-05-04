@@ -36,6 +36,7 @@ router.post('/leave', (req, res) => {
     });
     console.log(memberNetids);
     event.memberNetids = memberNetids;
+    event.members = event.memberNetids.length;
     event.save();
     res.json(event);
   }, (e) => {
