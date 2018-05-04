@@ -125,7 +125,7 @@ function joinGroup(id) {
     headers: new Headers ({
       'Content-Type': 'application/json'
     })
-  }).then(window.location = '/chat?name=' + netid + '&room=' + id);
+  }).then(window.location = '/chat?room=' + id);
 }
 
 function addPinnedClass(id) {

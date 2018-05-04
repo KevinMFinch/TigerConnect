@@ -53,7 +53,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/chat', (req, res) => {
-  res.render('chat');
+  if (!auth.userIsAuthenticated(req)) {
+    return res.redirect('/api/auth/login');
+  }
+  res.render('chat', {netid: req.session.cas.netid});
 });
 
 app.get('/main', (req, res) => {
@@ -88,7 +91,6 @@ io.on('connection', (socket) => {
           roomID: params.room
         });
         cR.save();
-        console.log(cR);
       }
     }, (e) => {
       console.log(500);
@@ -116,7 +118,6 @@ io.on('connection', (socket) => {
           {$push: {messages: createdMessage}},
           {new:true}
         ).then((chatRoom) => {
-          console.log(chatRoom);
           io.to(user.room).emit('newMessage', createdMessage);
           callback();
         }, (e) => {

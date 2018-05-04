@@ -78,7 +78,7 @@ router.delete('/deleteGroup/:courseEventID', (req, res) => {
     }
     res.json({'message': 'Deleted'});
   });
-})
+});
 
 router.post('/', (req, res) => {
   console.log(req.body);
