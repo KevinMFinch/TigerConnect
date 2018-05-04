@@ -124,6 +124,7 @@ io.on('connection', (socket) => {
           callback();
         });
       }
+      callback();
   });
 
   socket.on('disconnect', () => {

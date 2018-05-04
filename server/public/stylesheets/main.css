@@ -83,6 +83,10 @@ body, html {
   margin: 0;
 }
 
+.people {
+  font-size: 200vh;
+}
+
 #class-placement{
   height: 100%;
   overflow-y: auto;
