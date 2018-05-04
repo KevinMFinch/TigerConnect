@@ -18,6 +18,32 @@ router.get('/', (req, res) => {
   })
 });
 
+router.post('/leave', (req, res) => {
+  var courseEventID = req.body.courseEventID;
+  var netid = req.body.netid;
+  console.log(netid);
+  console.log(courseEventID);
+
+  if (!ObjectID.isValid(courseEventID)) {
+    return res.status(404).send('Invalid courseEventID');
+  }
+
+  CourseEvent.findOne({_id: courseEventID}).then((event) => {
+    var memberNetids = event.memberNetids;
+
+    memberNetids = memberNetids.filter((item) => {
+      return item != netid;
+    });
+    console.log(memberNetids);
+    event.memberNetids = memberNetids;
+    event.save();
+    res.json(event);
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+})
+
 router.get('/:courseID', (req, res) => {
   var courseID = req.params.courseID;
   if (!ObjectID.isValid(courseID)) {
