@@ -7,7 +7,7 @@ const {ChatRoom} = require('../models/ChatRoom');
 
 
 router.get('/', (req, res) => {
-  CourseEvent.find().then((courseEvents) => {
+  CourseEvent.find().sort({members: -1}).then((courseEvents) => {
     if (!courseEvents) {
       return res.send('No course events');
     }
@@ -23,10 +23,11 @@ router.get('/:courseID', (req, res) => {
   if (!ObjectID.isValid(courseID)) {
     return res.status(404).send('Invalid courseID');
   }
-  CourseEvent.find({courseID}).then((courseEvents) => {
+  CourseEvent.find({courseID}).sort({members: -1}).then((courseEvents) => {
     if (!courseEvents) {
       return res.json({message: 'No course events for that courseID'});
     }
+    console.log(courseEvents);
     return res.json({courseEvents});
   }, (e) => {
     console.log(e);
