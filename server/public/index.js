@@ -182,7 +182,8 @@ function handleGroups(groups) {
     }
   }
   document.getElementById("main-panel-content").innerHTML = innerHTMLChange;
-  document.getElementById("currentCourse").innerHTML = document.getElementById("coursename").value;
+  alert(document.getElementById("coursename").value);
+  document.getElementById("createGroupLabel").innerHTML = "Create Group for <span id=\"currentCourse\">" + document.getElementById("coursename").value + "</span>";
 }
 
 function joinGroup(id) {

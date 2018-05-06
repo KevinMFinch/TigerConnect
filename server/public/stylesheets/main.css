@@ -223,6 +223,12 @@ body, html {
   font-size: 5vw;
 }
 
+.onboarding {
+  display: none;
+}
+.dashboard {
+  display: inline;
+}
 .onboard-well {
   height: 52%;
   margin-top: 2%;
