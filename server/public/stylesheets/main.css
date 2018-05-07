@@ -42,6 +42,10 @@ body, html {
   margin-left: 0;
 }
 
+.form-invalid {
+  border-color: red;
+}
+
 /* Sidebar and navbar paneling */
 
 .side-and-main {
@@ -81,6 +85,10 @@ body, html {
   width: 100%;
   background-color: #3c5568;
   margin: 0;
+}
+
+.people {
+  font-size: 200vh;
 }
 
 #class-placement{
@@ -384,13 +392,13 @@ body, html {
   /*background-color: #162129;*/
 }
 
-.join-chat {
+.chat {
   margin-top:10%;
   position: absolute;
   bottom: 5%;
   right: 21%;
   float: right;
-  width: 15%;
+  width: 16%;
   height: 18%;
   color: white;
   font-family: 'Roboto', sans-serif;
@@ -398,13 +406,13 @@ body, html {
   cursor: pointer;
 }
 
-.delete-leave {
+.join-del-leave {
   margin-top:10%;
   position: absolute;
   bottom: 5%;
   right: 3%;
   float: right;
-  width: 15%;
+  width: 16%;
   height: 18%;
   color: white;
   font-family: 'Roboto', sans-serif;
@@ -412,7 +420,11 @@ body, html {
   cursor: pointer;
 }
 
-.join:hover {
+.join-chat:hover {
+  background-color: #303f4b;
+}
+
+.delete-leave:hover {
   background-color: #303f4b;
 }
 

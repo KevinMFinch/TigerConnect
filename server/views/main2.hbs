@@ -165,7 +165,7 @@
                   </span>
                   <h4 class="text-center mx-auto my-auto">Groups You've Created</h4>
                 </div>
-                <div class="row collapse collapseDashCreate" id="dash-user-created" style="overflow:scroll;">
+                <div class="row collapse collapseDashCreate" id="dash-user-created" style="overflow: hidden">
                   <!-- POPULATE -->
                 </div>
                 <!-- temporarily abandoned horizontal scroll -->
@@ -187,7 +187,7 @@
                   </span>
                   <h4 class="text-center mx-auto my-auto">Groups You've Joined</h4>
                 </div>
-                <div class="row collapse collapseDashJoin" id="dash-user-joined"  style="overflow:scroll;">
+                <div class="row collapse collapseDashJoin" id="dash-user-joined"  style="overflow: hidden">
                   <!-- POPULATE -->
                 </div>
                 <!-- More whitespace at bottom of page -->
@@ -238,7 +238,7 @@
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="courseEvent-title">Group Title</label>
+                  <label for="courseEvent-title">Group Title (required)</label>
                   <input type="text" class="form-control" id="courseEvent-title" aria-describedby="emailHelp" placeholder="Title">
                   <small class="form-text text-muted">Grab people's attention with an interesting title!</small>
                 </div>
@@ -271,7 +271,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-info" onclick="createGroup(); refreshGroups()" data-dismiss="modal">Create Group</button>
+              <button type="button" class="btn btn-info" onclick="createGroup(); refresh('main-panel-content')">Create Group</button>
             </div>
           </div>
         </div>
