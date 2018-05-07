@@ -382,13 +382,13 @@ body, html {
   /*background-color: #162129;*/
 }
 
-.join-chat {
+.chat {
   margin-top:10%;
   position: absolute;
   bottom: 5%;
   right: 21%;
   float: right;
-  width: 15%;
+  width: 16%;
   height: 18%;
   color: white;
   font-family: 'Roboto', sans-serif;
@@ -396,13 +396,13 @@ body, html {
   cursor: pointer;
 }
 
-.delete-leave {
+.join-del-leave {
   margin-top:10%;
   position: absolute;
   bottom: 5%;
   right: 3%;
   float: right;
-  width: 15%;
+  width: 16%;
   height: 18%;
   color: white;
   font-family: 'Roboto', sans-serif;
