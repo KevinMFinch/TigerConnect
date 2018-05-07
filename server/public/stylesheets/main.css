@@ -42,6 +42,10 @@ body, html {
   margin-left: 0;
 }
 
+.form-invalid {
+  border-color: red;
+}
+
 /* Sidebar and navbar paneling */
 
 .side-and-main {
