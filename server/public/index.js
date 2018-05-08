@@ -120,7 +120,7 @@ function handlePinnedExpanded(expanded) {
   }
 
   document.getElementById("pinned-bar-desk").setAttribute("aria-expanded", aria);
-  document.getElementById("pinned-toggle-expand-sub").innerHTML = "<div class=\"collapsePinned collapse " + isShow + " vertical-center\" id=\"pinned-placement\"><div class=\"container-fluid p-0\">HI</div></div>";
+  document.getElementById("pinned-toggle-expand-sub").innerHTML = "<div class=\"collapsePinned collapse " + isShow + " vertical-center\" id=\"pinned-placement\"><div class=\"container-fluid p-0\"></div></div>";
 }
 
 function handleDashCreated(groups) {
