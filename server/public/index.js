@@ -292,6 +292,8 @@ function getButtonStatusHTML(event, status, idToPopulate) {
 }
 
 function refresh(idToRefresh) {
+  var params = jQuery.deparam(window.location.search);
+  console.log('refresh');
   if (idToRefresh == 'main-panel-content') {
     getSearchedCourseGroups((document.getElementById("courseid").value));
   }
