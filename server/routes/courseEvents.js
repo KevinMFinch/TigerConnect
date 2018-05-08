@@ -69,7 +69,7 @@ router.get('/:courseID', (req, res) => {
   if (!ObjectID.isValid(courseID)) {
     return res.status(404).send('Invalid courseID');
   }
-  CourseEvent.find({courseID}).sort({members: -1, timeCreated: -1}).then((courseEvents) => {
+  CourseEvent.find({courseID}).sort({timeCreated: -1, members: -1}).then((courseEvents) => {
     if (!courseEvents) {
       return res.json({message: 'No course events for that courseID'});
     }
