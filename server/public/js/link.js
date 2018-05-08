@@ -1,5 +1,5 @@
 function showShareableLinkModal(id) {
-  document.getElementById('text-link').value = window.location.href + '?groupID=' + id;
+  document.getElementById('text-link').value = window.location.origin + '/main?groupID=' + id;
 }
 
 function copyShareableLink() {

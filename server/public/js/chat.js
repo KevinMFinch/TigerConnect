@@ -79,7 +79,7 @@ socket.on('updateUserList', function(users) {
   var ol = jQuery('<ol></ol>');
 
   users.forEach(function (user) {
-    var html = `<a href='https://tigerbook.herokuapp.com/student/${user}'><li>${user}</a></li>`
+    var html = `<a href='https://tigerbook.herokuapp.com/student/${user}' style='color:white;'><li>${user}</a></li>`
     ol.append(html);
   });
 

@@ -155,7 +155,7 @@ body, html {
 
 /* TODO: add pins to a column row in bootstrap... */
 .pin:hover {
-  color: red;
+  color: #21a08a;
   cursor: pointer;
 }
 
@@ -165,7 +165,7 @@ body, html {
 }
 
 .pinned {
-  color: red;
+  color: #21a08a;
   cursor: pointer;
 }
 
@@ -406,6 +406,9 @@ body, html {
   background-color: #162129;
   cursor: pointer;
 }
+.chat:hover {
+  background-color: #21a08a;
+}
 
 .join-del-leave {
   margin-top:10%;
@@ -419,6 +422,12 @@ body, html {
   font-family: 'Roboto', sans-serif;
   background-color: #162129;
   cursor: pointer;
+}
+.join-del-leave:hover {
+  background-color: #dc3545;
+}
+.join:hover {
+  background-color: #3c5467;
 }
 
 .join-chat:hover {
@@ -523,6 +532,7 @@ body, html {
 
 .share-link:hover {
   color: #20a08a;
+  cursor: pointer;
 }
 
 #text-link {
