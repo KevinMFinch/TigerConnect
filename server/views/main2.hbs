@@ -37,35 +37,7 @@
 
     <div class="container-fluid side-and-main h-100 p-0">
       <!-- Navbar - responsive for desktop and mobile -->
-      <nav class="navbar navbar-expand-md navbar-light navbar-fixed-top">
-        <a class="navbar-brand d-none d-sm-block" href="/main">TigerConnect</a>
-        <a class="navbar-brand d-xs-none d-sm-none d-lg-none d-xl-none" href="#">TC</a>
-        <form class="form-inline my-1 mr-2 my-lg-0 ml-auto d-md-none d-lg-none d-xl-none">
-          <!-- Search bar -->
-          <input type="search" onkeyup="searchCourses(this.value)" class="form-control mr-sm-2 ml-auto" placeholder="Search courses!" aria-label="Search">
-        </form>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item  d-none d-sm-block">
-              <span class="nav-link">Hey {{netid}}!</span>
-            </li>
-            {{!-- <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-bell"></i></span> Notifications</a>
-            </li> --}}
-            {{!-- <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
-            </li> --}}
-            <li class="nav-item">
-              <a class="nav-link" href="/main">Dashboard</a>
-            <li class="nav-item">
-              <a class="nav-link" href="/api/auth/logout"><i class="fas fa-power-off"></i> Logout</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      {{> navbar}}
 
       <!-- TODO: Mobile design -->
       <div class="row d-md-none d-lg-none d-xl-none" id="mobile-view">
@@ -251,12 +223,17 @@
               <form>
                 <div class="form-group">
                   <label for="courseEvent-title">Group Title (required)</label>
+<<<<<<< HEAD
                   <input type="text" class="form-control" id="courseEvent-title" aria-describedby="emailHelp" placeholder="Title">
                   <small id="title-notice" class="form-text text-muted">Grab people's attention with an interesting title!</small>
+=======
+                  <input type="text" class="form-control" id="courseEvent-title" aria-describedby="emailHelp" placeholder="Title" rows="1" maxlength="55">
+                  <small class="form-text text-muted">Grab people's attention with an interesting title!</small>
+>>>>>>> origin/dev
                 </div>
                 <div class="form-group">
                   <label for="courseEvent-location">Location</label>
-                  <input type="text" class="form-control" id="courseEvent-location" placeholder="Location">
+                  <input type="text" class="form-control" id="courseEvent-location" placeholder="Location" rows="1" maxlength="60">
                   <small class="form-text text-muted">Where do you want to meet?</small>
                 </div>
                 <div class="form-group">

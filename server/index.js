@@ -31,6 +31,8 @@ var control = require('./routes/control');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials');
+
 app.use(express.static(path.join(__dirname, 'public')));
 // Configure the app to save a cookie with two attributes (for netid and status)
 app.use(session({ keys: ['key1', 'key2'] }));
