@@ -327,4 +327,20 @@ window.onload = function() {
   if (params.groupID) {
     showGroupWithID(params.groupID);
   }
+
+  var textarea = document.getElementById("courseEvent-description");
+
+  textarea.addEventListener("input", function(){
+      var maxlength = this.getAttribute("maxlength");
+      var currentLength = this.value.length;
+
+      if( currentLength >= maxlength ){
+          document.getElementById("charNum").innerHTML = "No more characters left." ;
+      }else if (maxlength - currentLength == 1){
+          document.getElementById("charNum").innerHTML = maxlength - currentLength + " character left" ;
+      }
+      else{
+          document.getElementById("charNum").innerHTML = maxlength - currentLength + " characters left" ;
+      }
+  });
 }
