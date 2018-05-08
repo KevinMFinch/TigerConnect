@@ -17,10 +17,15 @@ getSearchedCourses = (query) => {
   clearTimeout(timeout);
 
   timeout = setTimeout(function () {
-    var searchQuery = '/api/courses/' + query;
-    fetch(searchQuery)
-      .then(res => res.json())
-      .then(course => handleCourses(course));
+      if (query == "") {
+        document.getElementById("class-placement").innerHTML = "";
+      }
+      else {
+        var searchQuery = '/api/courses/' + query;
+        fetch(searchQuery)
+          .then(res => res.json())
+          .then(course => handleCourses(course));
+      }
     }, 150);
 }
 

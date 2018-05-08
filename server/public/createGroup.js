@@ -35,5 +35,7 @@ function createGroup() {
 	document.getElementById("courseEvent-location").value = "";
 	document.getElementById("courseEvent-description").value = "";
 	document.getElementById("courseEvent-title").classList.remove("form-invalid");
+
+	refresh('main-panel-content')
 	}
 }
