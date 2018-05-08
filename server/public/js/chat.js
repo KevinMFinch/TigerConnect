@@ -39,7 +39,7 @@ function handleMessages(messages) {
     var html = `<li class="message mt-2 ${className}">` +
                  '<div class="message__title">' +
                     '<h4>' + messages['messages'][i]['from'] + '</h4>' +
-                    '<span>' + formattedTime + '</span>' +
+                    `<span class="${className}-time">` + formattedTime + '</span>' +
                  '</div>' +
                 '<div class="message__body">' +
                   '<p>' + messages['messages'][i]['text'] + '</p>' +
@@ -79,7 +79,7 @@ socket.on('updateUserList', function(users) {
   var ol = jQuery('<ol></ol>');
 
   users.forEach(function (user) {
-    var html = `<a href='https://tigerbook.herokuapp.com/student/${user}' style='color:white;'><li>${user}</a></li>`
+    var html = `<a href='https://tigerbook.herokuapp.com/student/${user}' target="_blank" style='color:white;'><li>${user}</a></li>`
     ol.append(html);
   });
 
@@ -97,7 +97,7 @@ socket.on('newMessage', function(message) {
   } else {
     className = 'speech-bubble-receive';
   }
-  
+
   var html = `<li class="message mt-2 ${className}">` +
                '<div class="message__title">' +
                   '<h4>' + message.from + '</h4>' +
