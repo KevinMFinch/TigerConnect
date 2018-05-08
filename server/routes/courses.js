@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
 
+var {ObjectID} = require('mongodb');
 var {mongoose} = require('../db/mongoose');
 const {Course} = require('../models/Course');
 
@@ -9,6 +10,24 @@ const {Course} = require('../models/Course');
 router.get('/', (req, res) => {
   Course.find().then((courses) => {
     res.send(courses);
+  });
+});
+
+router.get('/byID/:courseID', (req, res) => {
+  var courseID = req.params.courseID;
+
+  if (!ObjectID.isValid(courseID)) {
+    res.sendStatus(400);
+  }
+
+  Course.findById(courseID).then((course) => {
+    if (!course) {
+      return res.json({message: "No course with that ID"});
+    }
+    res.json(course);
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
   });
 });
 

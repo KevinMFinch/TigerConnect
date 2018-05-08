@@ -337,7 +337,7 @@ function getButtonStatus(event) {
 
 function getButtonStatusHTML(event, status, idToPopulate) {
   if (status == 'owner') {
-    return ("<button class=\"chat\" id=\"" + event['_id'] + "\" onclick=\"chatGroup(this.id)\">CHAT</button><button class=\"join-del-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"deleteGroup(this.id)\">DELETE</button></div></div>");
+    return ("<button class=\"chat\" id=\"" + event['_id'] + "\" onclick=\"chatGroup(this.id)\">CHAT</button><button class=\"join-del-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" data-toggle=\"modal\" data-target=\"#deleteGroupModal\" onclick=\"handleDelete(this.id)\">DELETE</button></div></div>");
   }
   else if (status == 'member') {
    return ("<button class=\"chat\" id=\"" + event['_id'] + "\" onclick=\"chatGroup(this.id)\">CHAT</button><button class=\"join-del-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"leaveGroup(this.id)\">LEAVE</button></div></div>");
@@ -345,6 +345,10 @@ function getButtonStatusHTML(event, status, idToPopulate) {
   else {
     return ("<button class=\"join-del-leave join\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>");
   }
+}
+
+function handleDelete(id) {
+  document.getElementById('delete-button').value = id;
 }
 
 function refresh(idToRefresh) {

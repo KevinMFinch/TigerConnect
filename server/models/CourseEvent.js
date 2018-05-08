@@ -48,6 +48,12 @@ var CourseEvent = mongoose.model('CourseEvent', {
     type: Array,
     required: true,
     default: []
+  },
+  courseName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1
   }
 });
 
