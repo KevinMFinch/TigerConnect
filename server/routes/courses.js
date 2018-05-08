@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:courseID', (req, res) => {
+router.get('/byID/:courseID', (req, res) => {
   var courseID = req.params.courseID;
 
   if (!ObjectID.isValid(courseID)) {
