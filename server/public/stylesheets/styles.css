@@ -69,6 +69,9 @@ button:disabled{
     border:1px solid #e1e1e1;
     padding:10px
 }
+.back-button:hover {
+  color: rgba(0,0,0,.5);
+}
 .chat{
     display:flex
 }
@@ -218,6 +221,13 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 3rem;
   height: 8vh;
+}
+.navbar-light .navbar-nav .nav-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #162028;
 }
 
 .chat_sidebar {

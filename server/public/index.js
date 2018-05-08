@@ -343,7 +343,7 @@ function getButtonStatusHTML(event, status, idToPopulate) {
    return ("<button class=\"chat\" id=\"" + event['_id'] + "\" onclick=\"chatGroup(this.id)\">CHAT</button><button class=\"join-del-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"leaveGroup(this.id)\">LEAVE</button></div></div>");
   }
   else {
-    return ("<button class=\"join-del-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>");
+    return ("<button class=\"join-del-leave join\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>");
   }
 }
 
