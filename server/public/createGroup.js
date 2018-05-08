@@ -29,13 +29,11 @@ function createGroup() {
 				description: document.getElementById("courseEvent-description").value,
 				courseID: document.getElementById("courseid").value
 			})
-		}).then(res => res.json()).then(response => console.log(response));
-	document.getElementById("courseEvent-title").value = "";
-	document.getElementById("courseEvent-time").value = "";
-	document.getElementById("courseEvent-location").value = "";
-	document.getElementById("courseEvent-description").value = "";
-	document.getElementById("courseEvent-title").classList.remove("form-invalid");
-
-	refresh('main-panel-content')
+		}).then(res => res.json()).then(() => refresh('main-panel-content'));
+		document.getElementById("courseEvent-title").value = "";
+		document.getElementById("courseEvent-time").value = "";
+		document.getElementById("courseEvent-location").value = "";
+		document.getElementById("courseEvent-description").value = "";
+		document.getElementById("courseEvent-title").classList.remove("form-invalid");
 	}
 }
