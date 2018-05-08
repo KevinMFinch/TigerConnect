@@ -201,7 +201,10 @@ body {
 
 #message-form button {
   line-height: 1em;
-  background-color: #162129;
+  background-color: #16222a;
+  height: 120%;
+  width: 10%;
+  border-radius: 10%;
   font-style: Arial;
   padding: 0px;
 }
@@ -258,4 +261,10 @@ body {
 	border-bottom: 0;
 	margin-top: -3.5px;
 	margin-right: -7px;
+}
+
+#send-button {
+  background-color: #16222a;
+  height: 15%;
+
 }
