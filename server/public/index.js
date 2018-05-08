@@ -128,6 +128,7 @@ function handleDashJoined(groups) {
 }
 
 function populateGroups(events, idToPopulate) {
+  console.log('populate', events, idToPopulate);
   var innerHTMLChange = "";
   for(var i = 0; i < events.length; i++) {
     var memberPlural = " members ";
@@ -332,6 +333,8 @@ function getButtonStatusHTML(event, status, idToPopulate) {
 }
 
 function refresh(idToRefresh) {
+  var params = jQuery.deparam(window.location.search);
+  console.log('refresh');
   if (idToRefresh == 'main-panel-content') {
     getSearchedCourseGroups((document.getElementById("courseid").value));
   }
@@ -346,9 +349,39 @@ function refresh(idToRefresh) {
 function mainPanel() {
 }
 
+function showGroupWithID(groupID) {
+  // main-panel-content
+  fetch('/api/courseEvents/byID/' + groupID).then(res => res.json()).then((event) => {
+    var arr = [];
+    arr.push(event)
+    console.log(arr);
+    populateGroups(arr, 'main-panel-content');
+  });
+}
+
 window.onload = function() {
-  getAllCourses();
+  // getAllCourses();
+  var params = jQuery.deparam(window.location.search);
   getPinned();
   getDashCreated();
   getDashJoined();
+  if (params.groupID) {
+    showGroupWithID(params.groupID);
+  }
+
+  var textarea = document.getElementById("courseEvent-description");
+
+  textarea.addEventListener("input", function(){
+      var maxlength = this.getAttribute("maxlength");
+      var currentLength = this.value.length;
+
+      if( currentLength >= maxlength ){
+          document.getElementById("charNum").innerHTML = "No more characters left." ;
+      }else if (maxlength - currentLength == 1){
+          document.getElementById("charNum").innerHTML = maxlength - currentLength + " character left" ;
+      }
+      else{
+          document.getElementById("charNum").innerHTML = maxlength - currentLength + " characters left" ;
+      }
+  });
 }

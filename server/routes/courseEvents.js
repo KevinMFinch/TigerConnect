@@ -18,6 +18,24 @@ router.get('/', (req, res) => {
   })
 });
 
+router.get('/byID/:courseEventID', (req, res) => {
+  var courseEventID = req.params.courseEventID;
+
+  if (!ObjectID.isValid(courseEventID)) {
+    return res.status(400).send('Invalid courseEventID');
+  }
+
+  CourseEvent.findOne({_id: courseEventID}).then((event) => {
+    if (!event) {
+      return res.json({message: "no course event with that ID"});
+    }
+    res.json(event);
+  }, (e) => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+});
+
 router.post('/leave', (req, res) => {
   var courseEventID = req.body.courseEventID;
   var netid = req.body.netid;

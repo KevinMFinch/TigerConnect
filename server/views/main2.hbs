@@ -1,5 +1,14 @@
 <html>
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118872746-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-118872746-1');
+    </script>
     <title>TigerConnect</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,16 +24,6 @@
     <script src="index.js"></script>
     <script src="createGroup.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118872746-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-118872746-1');
-    </script>
   </head>
   <body>
     <!-- Hidden, stored values -->
@@ -207,6 +206,7 @@
                 <div class="row collapse collapseDashJoin" id="dash-user-joined"  style="overflow: hidden">
                   <!-- POPULATE -->
                 </div>
+
                 <!-- More whitespace at bottom of page -->
                 <div class="row" style="height:100px"></div>
               </div>
@@ -235,6 +235,7 @@
                     </div>
                     <h4 style="font-size: 1.8vw;">Join a group or create your own!</h4>
                   </div>
+
                 </div>
               </div>
               <!-- END onboarding -->
@@ -281,8 +282,8 @@
                 </div>
                 <div class="form-group">
                   <label for="textarea">Group Description</label>
-                  <textarea class="form-control" id="courseEvent-description" rows="3"></textarea>
-                  <small class="form-text text-muted">Anything else?</small>
+                  <textarea class="form-control" id="courseEvent-description" rows="3" maxlength="150"></textarea>
+                  <small class="form-text text-muted">Anything else? <span id="charNum">150 characters left</span></small>
                 </div>
               </form>
             </div>
@@ -294,6 +295,8 @@
         </div>
       </div>
       <!-- END Create Groups Modal -->
+
+      <script src="/js/libs/deparam.js"></script>
 
   </body>
 </html>

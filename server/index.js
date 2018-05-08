@@ -27,6 +27,7 @@ var courses = require('./routes/courses');
 var auth = require('./routes/auth');
 var usersRoute = require('./routes/users');
 var chatRoom = require('./routes/chatRoom');
+var control = require('./routes/control');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -43,6 +44,7 @@ app.use('/api/courseEvents', courseEvents);
 app.use('/api/auth', auth.router);
 app.use('/api/users', usersRoute);
 app.use('/api/chatRoom', chatRoom);
+app.use('/api/control', control);
 
 /*------------- Routing stuff ----------*/
 app.get('/', (req, res) => {
@@ -54,14 +56,14 @@ app.get('/', (req, res) => {
 
 app.get('/chat', (req, res) => {
   if (!auth.userIsAuthenticated(req)) {
-    return res.redirect('/api/auth/login');
+    return res.redirect('/api/auth/login?redirect=' + req.originalUrl);
   }
   res.render('chat', {netid: req.session.cas.netid});
 });
 
 app.get('/main', (req, res) => {
   if (!auth.userIsAuthenticated(req)) {
-    return res.redirect('/api/auth/login');
+    return res.redirect('/api/auth/login?redirect=' + req.originalUrl);
   }
   res.render('main2', {netid: req.session.cas.netid});
 });
