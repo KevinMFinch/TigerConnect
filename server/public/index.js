@@ -148,7 +148,7 @@ function populateGroups(events, idToPopulate) {
     var timeCreated = m.fromNow();
     innerHTMLChange = innerHTMLChange + "<div class=\"group-container\"><div class=\"group slideUp\">";
     innerHTMLChange = innerHTMLChange + "<div class=\"group-header\"><p class=\"group-header-text\">" + events[i]['title'];
-    innerHTMLChange = innerHTMLChange + "<button data-toggle=\"modal\" data-target=\"#shareLinkModal\" id=\"" + events[i]['_id'] + "\" class=\"share-link\" onclick=\"showShareableLinkModal(this.id)\"><i class=\"fa fa-link\" aria-hidden=\"true\"></i></button></p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
+    innerHTMLChange = innerHTMLChange + "<button data-toggle=\"modal\" data-target=\"#shareLinkModal\" id=\"" + events[i]['_id'] + "\" class=\"share-link\" onclick=\"showShareableLinkModal(this.id)\">" + events[i]['courseName'] + " <i class=\"fa fa-link\" aria-hidden=\"true\"></i></button></p></div><div class=\"group-desc-text font-weight-light\"><p>" + events[i]['description'];
     innerHTMLChange = innerHTMLChange + "</p><span class=\"font-weight-bold\">Location: </span><span>" + events[i]['location'];
     innerHTMLChange = innerHTMLChange + "</span><br><span class=\"font-weight-bold\">Time: </span><span>" + events[i]['time'];
     innerHTMLChange = innerHTMLChange + "</span><br><span>" + events[i]['members'] + memberPlural + "joined</span></div>";
