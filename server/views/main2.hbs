@@ -118,7 +118,7 @@
             {{!-- <div class="row search-divider ml-4"></div> --}}
 
             <!-- Pinned courses -->
-            <div class="pinned-bar row vertical-center mr-0" data-toggle="collapse" data-target=".collapsePinned" aria-expanded="false" aria-controls="collapsePinned" href="" onclick="">
+            <div class="pinned-bar row vertical-center mr-0" id="pinned-bar-desk" data-toggle="collapse" data-target=".collapsePinned" aria-expanded="false" aria-controls="collapsePinned" href="" onclick="togglePinnedExpandedState();">
               <h5 class="pt-1 pl-1 mt-2 my-auto" style="margin-left: 3%;">
                 <span class="pinnedbar__icon pinnedbar__icon--open">
                   <i class="fa fa-caret-right"></i> Pinned
@@ -129,9 +129,11 @@
               </h5>
             </div>
             <div class="pinnedSection" style="max-height:35%; overflow-x: hidden; overflow-y: scroll">
-              <div class="collapsePinned collapse vertical-center" id="pinned-placement">
-                <div class="container-fluid p-0">
-                </div>
+              <div id="pinned-toggle-expand-sub">
+                {{!-- <div class="collapsePinned collapse vertical-center" id="pinned-placement">
+                  <div class="container-fluid p-0">
+                  </div>
+                </div> --}}
               </div>
             </div>
             <div class="row pinned-divider"></div>
@@ -177,9 +179,12 @@
                   </span>
                   <h4 class="text-center mx-auto my-auto">Groups You've Created</h4>
                 </div>
-                <div class="row collapse collapseDashCreate" id="dash-user-created" style="overflow: hidden">
-                  <!-- POPULATE -->
+                <div id="dashcreate-toggle-expand-sub">
+                  <div class="row collapse collapseDashCreate" id="dash-user-created" style="overflow: hidden">
+                    <!-- POPULATE -->
+                  </div>
                 </div>
+                
                 <!-- temporarily abandoned horizontal scroll -->
                 {{!-- <div class="horizontal-scroll" id="dash-user-created" style="height:25%;">
                   <div class="group-shortcut">

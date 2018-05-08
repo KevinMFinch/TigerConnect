@@ -40,6 +40,14 @@ getPinnedCourses = query => {
       .then(courses => handlePinned(courses));
 }
 
+getPinnedExpanded = query => {
+  var searchQuery = '/api/users/getPinnedExpanded/' + query;
+
+  fetch(searchQuery)
+    .then(res => res.json())
+    .then(expanded => handlePinnedExpanded(expanded));
+}
+
 getUserCreatedGroups = query => {
     var searchQuery = '/api/users/createdGroups/' + query;
 
@@ -82,6 +90,23 @@ function handlePinned(courses) {
   }
   document.getElementById("pinned-placement-mobile").innerHTML = innerHTMLChange;
   document.getElementById("pinned-placement").innerHTML = innerHTMLChange;
+}
+
+function handlePinnedExpanded(expanded) {
+  var expanded = expanded['pinnedExpanded'];
+  var isShow = "";
+  var aria = "false";
+
+  if (expanded.toString() === "true") {
+    isShow = "show"
+    aria = "true";
+  } else {
+    isShow = "";
+    aria = "false";
+  }
+
+  document.getElementById("pinned-bar-desk").setAttribute("aria-expanded", aria);
+  document.getElementById("pinned-toggle-expand-sub").innerHTML = "<div class=\"collapsePinned collapse " + isShow + " vertical-center\" id=\"pinned-placement\"><div class=\"container-fluid p-0\">HI</div></div>";
 }
 
 function handleDashCreated(groups) {
@@ -235,11 +260,27 @@ function unpinClass(id) {
   getPinned();
 }
 
+function togglePinnedExpandedState() {
+  var currExpState = document.getElementById("pinned-bar-desk").getAttribute("aria-expanded");
+  var isExpanded = !(currExpState === "true");
+
+  var isExp = {netid: document.getElementById("netid").value, expanded: isExpanded.toString()};
+
+  fetch('/api/users/setPinnedExpanded', {
+    method: 'POST',
+    body: JSON.stringify(isExp),
+    headers: new Headers ({
+      'Content-Type': 'application/json'
+    })
+  });
+}
+
 function searchCourses(value) {
   getSearchedCourses(value);
 }
 
 function getPinned() {
+  getPinnedExpanded(document.getElementById("netid").value);
   getPinnedCourses(document.getElementById("netid").value);
 }
 
