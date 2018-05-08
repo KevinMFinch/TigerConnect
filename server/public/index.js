@@ -64,6 +64,14 @@ getUserJoinedGroups = query => {
       .then(groups => handleDashJoined(groups));
 }
 
+getUserTotalGroups = query => {
+  var searchQuery = '/api/users/groups/' + query;
+
+  fetch(searchQuery)
+    .then(res => res.json())
+    .then(groups => chooseOnboardOrDash(groups));
+}
+
 function handleCourses(course) {
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
@@ -296,6 +304,10 @@ function getDashJoined() {
   getUserJoinedGroups(document.getElementById("netid").value);
 }
 
+function getOnboardOrDash() {
+  getUserTotalGroups(document.getElementById("netid").value);
+}
+
 function searchCourseGroups(value) {
   document.getElementById("create-groups").style.visibility = "visible";
 
@@ -366,9 +378,20 @@ function showGroupWithID(groupID) {
   });
 }
 
+function chooseOnboardOrDash(groups) {
+  if (groups.length > 0) {
+    document.getElementById("dashboard").setAttribute("style", "display: inline;");
+    document.getElementById("onboarding").setAttribute("style", "display: none;");
+  } else {
+    document.getElementById("dashboard").setAttribute("style", "display: none;");
+    document.getElementById("onboarding").setAttribute("style", "display: inline;");
+  }
+}
+
 window.onload = function() {
   // getAllCourses();
   var params = jQuery.deparam(window.location.search);
+  getOnboardOrDash();
   getPinned();
   getDashCreated();
   getDashJoined();
