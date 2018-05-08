@@ -513,3 +513,9 @@ body, html {
 [aria-expanded="true"] .dashjoin__icon--close {
     display: block;
 }
+
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}

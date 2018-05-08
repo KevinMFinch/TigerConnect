@@ -306,7 +306,7 @@ function mainPanel() {
 }
 
 window.onload = function() {
-  getAllCourses();
+  // getAllCourses();
   getPinned();
   getDashCreated();
   getDashJoined();
