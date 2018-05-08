@@ -56,15 +56,16 @@ app.get('/', (req, res) => {
 
 app.get('/chat', (req, res) => {
   if (!auth.userIsAuthenticated(req)) {
-    return res.redirect('/api/auth/login');
+    return res.redirect('/api/auth/login?redirect=' + req.originalUrl);
   }
   res.render('chat', {netid: req.session.cas.netid});
 });
 
 app.get('/main', (req, res) => {
   if (!auth.userIsAuthenticated(req)) {
-    return res.redirect('/api/auth/login');
+    return res.redirect('/api/auth/login?redirect=' + req.originalUrl);
   }
+  
   res.render('main2', {netid: req.session.cas.netid});
 });
 
