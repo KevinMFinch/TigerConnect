@@ -23,7 +23,7 @@ router.get('/byID/:courseEventID', (req, res) => {
   var courseEventID = req.params.courseEventID;
 
   if (!ObjectID.isValid(courseEventID)) {
-    return res.status(400).send('Invalid courseEventID');
+    return res.json({message: "no course event with that ID"});
   }
 
   CourseEvent.findOne({_id: courseEventID}).then((event) => {
