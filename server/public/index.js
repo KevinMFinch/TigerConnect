@@ -159,6 +159,10 @@ function populateGroups(events, idToPopulate) {
 
     innerHTMLChange = innerHTMLChange + getButtonStatusHTML(events[i], status, idToPopulate);
   }
+
+  /* whitespace at bottom of page */
+  innerHTMLChange = innerHTMLChange + `<div class="row" style="height:100px"></div>`;
+  
   document.getElementById(idToPopulate).innerHTML = innerHTMLChange;
 }
 
