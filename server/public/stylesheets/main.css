@@ -238,12 +238,22 @@ body, html {
   display: none;
 }
 .onboard-well {
-  height: 52%;
+  height: 67%;
   margin-top: 2%;
   border: 1px solid #212529;
   border-radius: 8px;
   background-color: #bec5cc;
   overflow: scroll;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+  width: 60%;
+  border-color: #22252a;
 }
 
 .horizontal-scroll {
