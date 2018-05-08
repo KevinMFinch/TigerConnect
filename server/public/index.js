@@ -17,6 +17,7 @@ getSearchedCourses = (query) => {
   clearTimeout(timeout);
 
   timeout = setTimeout(function () {
+      console.log("Hm...");
       if (query == "") {
         document.getElementById("class-placement").innerHTML = "";
       }
@@ -26,7 +27,7 @@ getSearchedCourses = (query) => {
           .then(res => res.json())
           .then(course => handleCourses(course));
       }
-    }, 150);
+    }, 200);
 }
 
 getSearchedCourseGroups = query => {
