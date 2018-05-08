@@ -22,6 +22,7 @@
 
     <link rel='stylesheet' href='/stylesheets/main.css'>
     <script src="index.js"></script>
+    <script src="/js/link.js"></script>
     <script src="createGroup.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
@@ -295,6 +296,30 @@
         </div>
       </div>
       <!-- END Create Groups Modal -->
+
+      <!-- Shareable Links Modal -->
+      <div class="modal fade" id="shareLinkModal" tabindex="-1" role="dialog" aria-labelledby="shareLinkLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title" id="shareLinkLabel">Shareable Link</h1>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="text-link" placeholder="YO" readonly>
+                  <small class="form-text text-muted">A quick link you can use to share the group with your friends!</small>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-info" onclick="copyShareableLink()">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Shareable Links Modal -->
 
       <script src="/js/libs/deparam.js"></script>
 
