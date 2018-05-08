@@ -18,18 +18,18 @@ router.get('/', (req, res) => {
   })
 });
 
-router.get('/:courseEventID', (req, res) => {
+router.get('/byID/:courseEventID', (req, res) => {
   var courseEventID = req.params.courseEventID;
 
   if (!ObjectID.isValid(courseEventID)) {
-    return res.status(404).send('Invalid courseEventID');
+    return res.status(400).send('Invalid courseEventID');
   }
 
   CourseEvent.findOne({_id: courseEventID}).then((event) => {
-    if (!courseEvent) {
+    if (!event) {
       return res.json({message: "no course event with that ID"});
     }
-    return res.json(event);
+    res.json(event);
   }, (e) => {
     console.log(e);
     res.sendStatus(500);

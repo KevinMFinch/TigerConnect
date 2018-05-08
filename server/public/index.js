@@ -103,6 +103,7 @@ function handleDashJoined(groups) {
 }
 
 function populateGroups(events, idToPopulate) {
+  console.log('populate', events, idToPopulate);
   var innerHTMLChange = "";
   for(var i = 0; i < events.length; i++) {
     var memberPlural = " members ";
@@ -305,9 +306,23 @@ function refresh(idToRefresh) {
 function mainPanel() {
 }
 
+function showGroupWithID(groupID) {
+  // main-panel-content
+  fetch('/api/courseEvents/byID/' + groupID).then(res => res.json()).then((event) => {
+    var arr = [];
+    arr.push(event)
+    console.log(arr);
+    populateGroups(arr, 'main-panel-content');
+  });
+}
+
 window.onload = function() {
   // getAllCourses();
+  var params = jQuery.deparam(window.location.search);
   getPinned();
   getDashCreated();
   getDashJoined();
+  if (params.groupID) {
+    showGroupWithID(params.groupID);
+  }
 }

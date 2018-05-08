@@ -65,7 +65,6 @@ app.get('/main', (req, res) => {
   if (!auth.userIsAuthenticated(req)) {
     return res.redirect('/api/auth/login?redirect=' + req.originalUrl);
   }
-  
   res.render('main2', {netid: req.session.cas.netid});
 });
 
