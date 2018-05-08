@@ -17,7 +17,6 @@ getSearchedCourses = (query) => {
   clearTimeout(timeout);
 
   timeout = setTimeout(function () {
-      console.log("Hm...");
       if (query == "") {
         document.getElementById("class-placement").innerHTML = "";
       }
