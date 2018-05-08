@@ -162,8 +162,11 @@ function populateGroups(events, idToPopulate) {
 
   /* whitespace at bottom of page */
   innerHTMLChange = innerHTMLChange + `<div class="row" style="height:100px"></div>`;
-  
-  document.getElementById(idToPopulate).innerHTML = innerHTMLChange;
+
+  if (idToPopulate == 'shareable')
+    document.getElementById('main-panel-content').innerHTML = innerHTMLChange;
+  else
+    document.getElementById(idToPopulate).innerHTML = innerHTMLChange;
 }
 
 // highlight currently selected course
@@ -211,7 +214,12 @@ function joinGroup(id) {
     headers: new Headers ({
       'Content-Type': 'application/json'
     })
-  }).then(() => refresh(idToRefresh));
+  }).then(() => {
+    if (idToRefresh == 'shareable')
+      refreshShareable(courseID);
+    else
+      refresh(idToRefresh);
+  });
 }
 
 function chatGroup(id) {
@@ -233,7 +241,12 @@ function leaveGroup(id) {
     headers: new Headers ({
       'Content-Type': 'application/json'
     })
-  }).then(() => refresh(idToRefresh));
+  }).then(() => {
+    if (idToRefresh == 'shareable')
+      refreshShareable(courseID);
+    else
+      refresh(idToRefresh);
+  });
 }
 
 function deleteGroup(id) {
@@ -245,7 +258,12 @@ function deleteGroup(id) {
 
   fetch(query, {
     method: 'DELETE'
-  }).then(() => refresh(idToRefresh));
+  }).then(() => {
+    if (idToRefresh == 'shareable')
+      refreshShareable(courseID);
+    else
+      refresh(idToRefresh);
+  });
 }
 
 function addPinnedClass(id) {
@@ -356,8 +374,8 @@ function handleDelete(id) {
 }
 
 function refresh(idToRefresh) {
-  var params = jQuery.deparam(window.location.search);
   console.log('refresh');
+  console.log(idToRefresh);
   if (idToRefresh == 'main-panel-content') {
     getSearchedCourseGroups((document.getElementById("courseid").value));
   }
@@ -369,16 +387,18 @@ function refresh(idToRefresh) {
   }
 }
 
-function mainPanel() {
-}
+function refreshShareable(courseID) {
+  document.getElementById("toolbar-coursename").innerHTML = "Shareable Link"
 
-function showGroupWithID(groupID) {
   // main-panel-content
-  fetch('/api/courseEvents/byID/' + groupID).then(res => res.json()).then((event) => {
-    var arr = [];
-    arr.push(event)
-    console.log(arr);
-    populateGroups(arr, 'main-panel-content');
+  fetch('/api/courseEvents/byID/' + courseID).then(res => res.json()).then((event) => {
+    if (!event.hasOwnProperty('message')) {
+      var arr = [];
+      arr.push(event)
+      populateGroups(arr, 'shareable');
+    }
+    else
+      document.getElementById("main-panel-content").innerHTML = "<div class=\"main-panel-empty mx-auto\" align=\"center\"><h1 class=\"text-center mx-auto\" style=\"padding-top:20%;\">Course link does not exist.</h1></div>";
   });
 }
 
@@ -397,10 +417,12 @@ window.onload = function() {
   var params = jQuery.deparam(window.location.search);
   getOnboardOrDash();
   getPinned();
-  getDashCreated();
-  getDashJoined();
   if (params.groupID) {
-    showGroupWithID(params.groupID);
+    refreshShareable(params.groupID);
+  }
+  else {
+    getDashCreated();
+    getDashJoined();
   }
 
   var textarea = document.getElementById("courseEvent-description");
