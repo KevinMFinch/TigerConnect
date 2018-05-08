@@ -3,6 +3,7 @@ var router = express.Router();
 var {mongoose} = require('../db/mongoose');
 var {ObjectID} = require('mongodb');
 const {CourseEvent} = require('../models/CourseEvent');
+const {Course} = require('../models/Course');
 const {ChatRoom} = require('../models/ChatRoom');
 
 
@@ -133,20 +134,27 @@ router.post('/', (req, res) => {
     return res.status(404).send('Invalid courseID');
   }
 
-  var event = new CourseEvent({
-    title,
-    advertiser,
-    time,
-    location,
-    description,
-    courseID,
-    memberNetids: [advertiser]
-  });
+  Course.findById(courseID).then((course) => {
+    if (!course) {
+      return res.json({message: "Course not found for that ID"});
+    }
+    var event = new CourseEvent({
+      title,
+      advertiser,
+      time,
+      location,
+      description,
+      courseID,
+      courseName: course.department + course.courseNumber,
+      memberNetids: [advertiser]
+    });
 
-  event.save().then((doc) => {
-    res.send(doc);
-  }, (e) => {
-    res.send(e);
+    event.save().then((doc) => {
+      res.send(doc);
+    }, (e) => {
+      res.send(e);
+    });
+
   });
 });
 
