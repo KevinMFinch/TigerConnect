@@ -42,8 +42,8 @@ router.get('/joinedGroups/:netid', (req, res) => {
   });
 });
 
-router.post('/setPinnedExpanded/:netid', (req, res) => {
-  var netid = req.params.netid;
+router.post('/setPinnedExpanded', (req, res) => {
+  var netid = req.body.netid;
   var expanded = req.body.expanded;
   expanded = (expanded === 'true');
 
