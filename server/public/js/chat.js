@@ -3,29 +3,33 @@ var socket = io();
 
 function scrollToBottom () {
   // Selectors
-  // var messages = jQuery('#messages');
-  // var newMessage = messages.children('li:last-child');
-  // // Heights
-  // var clientHeight = messages.prop('clientHeight');
-  // var scrollTop = messages.prop('scrollTop');
-  // var scrollHeight = messages.prop('scrollHeight');
-  // var newMessageHeight = newMessage.innerHeight();
-  // var lastMessageHeight = newMessage.prev().innerHeight();
-  //
-  // if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
-  //   messages.scrollTop(scrollHeight);
-  // }
+  var messages = jQuery('#messages');
+  var newMessage = messages.children('li:last-child');
+  // Heights
+  var clientHeight = messages.prop('clientHeight');
+  var scrollTop = messages.prop('scrollTop');
+  var scrollHeight = messages.prop('scrollHeight');
+  var newMessageHeight = newMessage.innerHeight();
+  var lastMessageHeight = newMessage.prev().innerHeight();
 
-  // var objDiv = document.getElementById("chat__messages");
-  // objDiv.scrollTop = objDiv.scrollHeight;
+  if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+    messages.scrollTop(scrollHeight);
+  }
+
+  var objDiv = document.getElementById("messages");
+  objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 function handleMessages(messages) {
   for(var i = 0; i < messages['messages'].length; i++) {
     var formattedTime = moment(messages['messages'][i]['createdAt']).format('MMMM Do YYYY, h:mm:ss a');
     var params = jQuery.deparam(window.location.search);
-    var netid = params.name;
+    var netid = document.getElementById('netid').value;
+    params.name = netid;
+
     var className = '';
+    // alert("THIS IS THE MESSAGES FROM: " + messages['messages'][i]['from']);
+    // alert("THIS IS THE CURRENT USER: " + netid);
     if (messages['messages'][i]['from'] === netid) {
       className = 'speech-bubble-send';
     } else {
@@ -42,8 +46,8 @@ function handleMessages(messages) {
                 '</div>' +
               '</li>';
     jQuery('#messages').append(html);
+    scrollToBottom();
   }
-  scrollToBottom();
 }
 
 socket.on('connect', function() {

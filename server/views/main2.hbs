@@ -15,6 +15,16 @@
     <script src="index.js"></script>
     <script src="createGroup.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118872746-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-118872746-1');
+    </script>
   </head>
   <body>
     <!-- Hidden, stored values -->
@@ -45,6 +55,8 @@
             {{!-- <li class="nav-item">
               <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
             </li> --}}
+            <li class="nav-item">
+              <a class="nav-link" href="/main">Dashboard</a>
             <li class="nav-item">
               <a class="nav-link" href="/api/auth/logout"><i class="fas fa-power-off"></i> Logout</a>
             </li>
@@ -143,7 +155,7 @@
               <div class="col-sm my-auto" style="margin-left:2%;">
                 <h5 class="my-auto" style="color:#b9bcbe; font-size:24px;" id="toolbar-coursename"></h5>
               </div>
-              <button type="button" class="ml-auto mr-4 btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true"><i class="fas fa-plus-circle"></i> Create Group</button>
+              <button type="button" class="ml-auto mr-4 btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true" style="visibility: hidden"><i class="fas fa-plus-circle"></i> Create Group</button>
               {{!-- <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button> --}}
             </div>
 
@@ -165,7 +177,7 @@
                   </span>
                   <h4 class="text-center mx-auto my-auto">Groups You've Created</h4>
                 </div>
-                <div class="row collapse collapseDashCreate" id="dash-user-created" style="overflow:scroll;">
+                <div class="row collapse collapseDashCreate" id="dash-user-created" style="overflow: hidden">
                   <!-- POPULATE -->
                 </div>
                 <!-- temporarily abandoned horizontal scroll -->
@@ -187,7 +199,7 @@
                   </span>
                   <h4 class="text-center mx-auto my-auto">Groups You've Joined</h4>
                 </div>
-                <div class="row collapse collapseDashJoin" id="dash-user-joined"  style="overflow:scroll;">
+                <div class="row collapse collapseDashJoin" id="dash-user-joined"  style="overflow: hidden">
                   <!-- POPULATE -->
                 </div>
                 <!-- More whitespace at bottom of page -->
@@ -195,29 +207,31 @@
               </div>
 
               <!-- Onboarding -->
-              {{!-- <div class="row h-25 text-center">
-                <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:7%; padding-bottom:0%; height:12%;">Welcome to TigerConnect!</h1>
+              <div class="onboarding">
+                <div class="row h-25 text-center">
+                  <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:7%; padding-bottom:0%; height:12%;">Welcome to TigerConnect!</h1>
+                </div>
+                <div class="row h-75 text-center">
+                  <div class="col-3 my-4 onboard-well" style="margin-left: 8%; overflow: hidden">
+                    <div class="icon-top mx-auto">
+                      <i class="far fa-hand-point-up my-4 center-icon"></i>
+                    </div>
+                    <h4 style="font-size: 1.8vw;">Choose the course you're enrolled in on the left.</h4>
+                  </div>
+                  <div class="col-3 my-4 onboard-well" style="margin-left:4%; margin-right:4%; overflow: hidden">
+                    <div class="icon-top mx-auto">
+                      <i class="fas fa-search-plus my-4 center-icon"></i>
+                    </div>
+                    <h4 style="font-size: 1.8vw;">Look through for groups that you wish to join.</h4>
+                  </div>
+                  <div class="col-3 my-4 onboard-well" style="margin-right: 8%; overflow: hidden">
+                    <div class="icon-top mx-auto">
+                      <i class="fas fa-pencil-alt my-4 center-icon"></i>
+                    </div>
+                    <h4 style="font-size: 1.8vw;">Join a group or create your own!</h4>
+                  </div>
+                </div>
               </div>
-              <div class="row h-75 text-center">
-                <div class="col-3 my-4 onboard-well" style="margin-left: 8%; overflow: hidden">
-                  <div class="icon-top mx-auto">
-                    <i class="far fa-hand-point-up my-4 center-icon"></i>
-                  </div>
-                  <h4 style="font-size: 2vw;">Choose the course you're enrolled in on the left.</h4>
-                </div>
-                <div class="col-3 my-4 onboard-well" style="margin-left:4%; margin-right:4%; overflow: hidden">
-                  <div class="icon-top mx-auto">
-                    <i class="fas fa-search-plus my-4 center-icon"></i>
-                  </div>
-                  <h4 style="font-size: 2vw;">Look through for groups that you wish to join.</h4>
-                </div>
-                <div class="col-3 my-4 onboard-well" style="margin-right: 8%; overflow: hidden">
-                  <div class="icon-top mx-auto">
-                    <i class="fas fa-pencil-alt my-4 center-icon"></i>
-                  </div>
-                  <h4 style="font-size: 2vw;">Join a group or create your own!</h4>
-                </div>
-              </div> --}}
               <!-- END onboarding -->
 
             </div> <!-- END inner content -->
@@ -231,12 +245,12 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title" id="createGroupLabel">Create Group for <span id="currentCourse">MAT104</span></h1>
+              <h1 class="modal-title" id="createGroupLabel">Create Group for <span id="currentCourse"></span> </h1>
             </div>
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="courseEvent-title">Group Title</label>
+                  <label for="courseEvent-title">Group Title (required)</label>
                   <input type="text" class="form-control" id="courseEvent-title" aria-describedby="emailHelp" placeholder="Title">
                   <small class="form-text text-muted">Grab people's attention with an interesting title!</small>
                 </div>
@@ -269,7 +283,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-info" onclick="createGroup(); refresh('main-panel-content')" data-dismiss="modal">Create Group</button>
+              <button type="button" class="btn btn-info" onclick="createGroup(); refresh('main-panel-content')">Create Group</button>
             </div>
           </div>
         </div>

@@ -157,7 +157,12 @@ function handleGroups(groups) {
 
 function joinGroup(id) {
   var netid = document.getElementById("netid").value;
-  var courseEvent = {courseEventID: id, netid };
+
+  split = id.indexOf(" ");
+  courseID = id.substring(0, split);
+  idToRefresh = id.substring(split + 1);
+
+  var courseEvent = {courseEventID: courseID, netid };
 
   fetch('/api/courseEvents/join', {
     method: 'POST',
@@ -165,7 +170,11 @@ function joinGroup(id) {
     headers: new Headers ({
       'Content-Type': 'application/json'
     })
-  }).then(window.location = '/chat?room=' + id);
+  }).then(() => refresh(idToRefresh));
+}
+
+function chatGroup(id) {
+  (window.location = '/chat?room=' + id);
 }
 
 function leaveGroup(id) {
@@ -243,11 +252,15 @@ function getDashJoined() {
 }
 
 function searchCourseGroups(value) {
+  document.getElementById("create-groups").style.visibility = "visible";
+
   split = value.indexOf(" ");
   id = value.substring(0, split);
   name = value.substring(split + 1);
+
   document.getElementById("courseid").value = id;
   document.getElementById("coursename").value = name;
+
   getSearchedCourseGroups(id);
 }
 
@@ -267,13 +280,13 @@ function getButtonStatus(event) {
 
 function getButtonStatusHTML(event, status, idToPopulate) {
   if (status == 'owner') {
-    return ("<button class=\"join-chat\" id=\"" + event['_id'] + "\" onclick=\"joinGroup(this.id)\">CHAT</button><button class=\"delete-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"deleteGroup(this.id)\">DELETE</button></div></div>");
+    return ("<button class=\"chat\" id=\"" + event['_id'] + "\" onclick=\"chatGroup(this.id)\">CHAT</button><button class=\"join-del-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"deleteGroup(this.id)\">DELETE</button></div></div>");
   }
   else if (status == 'member') {
-   return ("<button class=\"join-chat\" id=\"" + event['_id'] + "\" onclick=\"joinGroup(this.id)\">CHAT</button><button class=\"delete-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"leaveGroup(this.id)\">LEAVE</button></div></div>");
+   return ("<button class=\"chat\" id=\"" + event['_id'] + "\" onclick=\"chatGroup(this.id)\">CHAT</button><button class=\"join-del-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"leaveGroup(this.id)\">LEAVE</button></div></div>");
   }
   else {
-    return ("<button class=\"join-chat\" id=\"" + event['_id'] + "\" onclick=\"joinGroup(this.id)\" style=\"right: 3%\">JOIN</button></div></div>");
+    return ("<button class=\"join-del-leave\" id=\"" + event['_id'] + " " + idToPopulate + "\" onclick=\"joinGroup(this.id)\">JOIN</button></div></div>");
   }
 }
 
