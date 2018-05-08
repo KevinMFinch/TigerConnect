@@ -515,6 +515,21 @@ body, html {
     display: block;
 }
 
+.share-link{
+  float:right;
+  background: none;
+  border: none;
+}
+
+.share-link:hover {
+  color: #20a08a;
+}
+
+#text-link {
+  min-width: 80%;
+}
+
+
 .collapsing {
     -webkit-transition: none;
     transition: none;

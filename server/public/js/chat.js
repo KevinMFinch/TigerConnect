@@ -55,6 +55,8 @@ socket.on('connect', function() {
   var netid = document.getElementById('netid').value;
   params.name = netid;
 
+  // fetch('https://tigerbook.herokuapp.com/api/v1/getkey/').then(res => res.text()).then((text) => console.log(text)) //.then((body) => console.log(body));
+
   socket.emit('join', params, function (err) {
     if (err) {
       alert(err);
@@ -64,7 +66,7 @@ socket.on('connect', function() {
       console.log('no error');
       fetch('/api/chatRoom/messages/' + params.room)
         .then(res => res.json())
-        .then(messages => handleMessages(messages))
+        .then(messages => handleMessages(messages));
     }
   });
 });
@@ -77,7 +79,8 @@ socket.on('updateUserList', function(users) {
   var ol = jQuery('<ol></ol>');
 
   users.forEach(function (user) {
-    ol.append(jQuery('<li></li>').text(user));
+    var html = `<a href='https://tigerbook.herokuapp.com/student/${user}'><li>${user}</a></li>`
+    ol.append(html);
   });
 
   jQuery('#users').html(ol);
@@ -94,7 +97,7 @@ socket.on('newMessage', function(message) {
   } else {
     className = 'speech-bubble-receive';
   }
-
+  
   var html = `<li class="message mt-2 ${className}">` +
                '<div class="message__title">' +
                   '<h4>' + message.from + '</h4>' +
