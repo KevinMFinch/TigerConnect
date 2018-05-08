@@ -5,6 +5,7 @@ function validateGroup(){
 function createGroup() {
 	if (!validateGroup()) {
 		document.getElementById("courseEvent-title").classList.add("form-invalid");
+		document.getElementById("title-notice").innerHTML = "A title is required!"
 	}
 	else {
 		$('#createGroupModal').modal('hide');

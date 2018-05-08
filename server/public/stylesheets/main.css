@@ -539,6 +539,10 @@ body, html {
   min-width: 80%;
 }
 
+#title-invalid {
+  color: red;
+}
+
 .collapsing {
     -webkit-transition: none;
     transition: none;
