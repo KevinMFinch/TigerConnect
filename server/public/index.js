@@ -252,11 +252,15 @@ function getDashJoined() {
 }
 
 function searchCourseGroups(value) {
+  document.getElementById("create-groups").style.visibility = "visible";
+
   split = value.indexOf(" ");
   id = value.substring(0, split);
   name = value.substring(split + 1);
+
   document.getElementById("courseid").value = id;
   document.getElementById("coursename").value = name;
+
   getSearchedCourseGroups(id);
 }
 
