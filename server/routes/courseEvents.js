@@ -73,7 +73,7 @@ router.get('/:courseID', (req, res) => {
     if (!courseEvents) {
       return res.json({message: 'No course events for that courseID'});
     }
-    return res.json({courseEvents});
+    res.json({courseEvents});
   }, (e) => {
     console.log(e);
     res.json({message: 'Error occured when looking for groups'});
