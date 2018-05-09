@@ -12,21 +12,45 @@ getAllCourses = () => {
 // TODO: SEARCHED COURSES SEEM TO GIVE ALL WHEN NO COURSES ARE FOUND?
 
 var timeout = null;
+var clearForever = false;
 
 getSearchedCourses = (query) => {
-  clearTimeout(timeout);
+  event.preventDefault();
 
-  timeout = setTimeout(function () {
-      if (query == "") {
-        document.getElementById("class-placement").innerHTML = "";
-      }
-      else {
-        var searchQuery = '/api/courses/' + query;
-        fetch(searchQuery)
-          .then(res => res.json())
-          .then(course => handleCourses(course));
-      }
-    }, 200);
+  if (event.keyCode === 13) {
+    var searchQuery = '/api/courses/' + query;
+    if (query == "") {
+      document.getElementById("class-placement").innerHTML = "";
+    }
+    else {
+      fetch(searchQuery)
+        .then(res => res.json())
+        .then(course => handleCourses(course));
+    }
+  }
+
+
+
+  // if (timeout) {
+  //   console.log("yo!");
+  //   clearTimeout(timeout);
+  // }
+  //
+  // timeout = setTimeout(function () {
+  //     console.log("yo!2");
+  //     if (query == "") {
+  //       document.getElementById("class-placement").innerHTML = "";
+  //     }
+  //     else {
+  //       console.log("This is the query: " + query);
+  //       var searchQuery = '/api/courses/' + query;
+  //       fetch(searchQuery)
+  //         .then(res => res.json())
+  //         .then(course => handleCourses(course));
+  //       timeout = null;
+  //     }
+  //   }, 150);
+
 }
 
 getSearchedCourseGroups = query => {
@@ -78,6 +102,7 @@ getUserTotalGroups = query => {
 }
 
 function handleCourses(course) {
+  console.log("WE GOT HERE!");
   var innerHTMLChange = "";
   for(var i = 0; i < course.length; i++) {
     innerHTMLChange = innerHTMLChange + "<div class=\"class\" id=\"" + course[i]['_id'] + " " + course[i]['department'] + course[i]['courseNumber'] + "\" onclick=\"searchCourseGroups(this.id); setSelected(this)\">";
