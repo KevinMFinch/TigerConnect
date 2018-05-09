@@ -74,7 +74,8 @@ getPinnedExpanded = query => {
 
   fetch(searchQuery)
     .then(res => res.json())
-    .then(expanded => handlePinnedExpanded(expanded));
+    .then(expanded => handlePinnedExpanded(expanded))
+    .then(getPinnedCourses(document.getElementById("netid").value));
 }
 
 getUserCreatedGroups = query => {
@@ -109,6 +110,7 @@ function handleCourses(course) {
     innerHTMLChange = innerHTMLChange + "<button  id=\"" + course[i]['_id'] + "\" class=\"pin mt-2 ml-auto mr-2\" onclick=\"addPinnedClass(this.id)\"><i class=\"fas fa-thumbtack\"></i></button>" + "<h5 class=\"class-title ml-4 pl-1 mt-2\">" + course[i]['department'] + course[i]['courseNumber'] + "</h5></button>";
     innerHTMLChange = innerHTMLChange + "<p class=\"hidden-sm ml-4 pl-1 mt-2 mr-4 small text-white\">" + course[i]['name'] + "</p></div>";
   }
+  innerHTMLChange = innerHTMLChange + `<div class="row" style="height:50%"></div>`;
   document.getElementById("class-placement-mobile").innerHTML = innerHTMLChange;
   document.getElementById("class-placement").innerHTML = innerHTMLChange;
 }
@@ -345,7 +347,6 @@ function searchCourses(value) {
 
 function getPinned() {
   getPinnedExpanded(document.getElementById("netid").value);
-  getPinnedCourses(document.getElementById("netid").value);
 }
 
 function getDashCreated() {
