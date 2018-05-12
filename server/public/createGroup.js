@@ -13,8 +13,8 @@ function createGroup() {
 		var timeVal;
 		var locationVal;
 
-		(document.getElementById("courseEvent-time").value == "")? timeVal = "N/A" : timeVal = document.getElementById("courseEvent-time").value;
-		(document.getElementById("courseEvent-location").value == "")? locationVal = "N/A" : locationVal = document.getElementById("courseEvent-location").value;
+		(document.getElementById("courseEvent-time").value == "")? timeVal = "N/A" : timeVal = cleanInput(document.getElementById("courseEvent-time").value);
+		(document.getElementById("courseEvent-location").value == "")? locationVal = "N/A" : locationVal = cleanInput(document.getElementById("courseEvent-location").value);
 
 		fetch("/api/courseEvents/", {
 			method : 'POST',
@@ -22,12 +22,12 @@ function createGroup() {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				title: document.getElementById("courseEvent-title").value,
-				advertiser: document.getElementById("netid").value,
+				title: cleanInput(document.getElementById("courseEvent-title").value),
+				advertiser: cleanInput(document.getElementById("netid").value),
 				time: timeVal,
 				location: locationVal,
-				description: document.getElementById("courseEvent-description").value,
-				courseID: document.getElementById("courseid").value
+				description: cleanInput(document.getElementById("courseEvent-description").value),
+				courseID: cleanInput(document.getElementById("courseid").value)
 			})
 		}).then(res => res.json()).then(() => refresh('main-panel-content'));
 		document.getElementById("courseEvent-title").value = "";
@@ -37,3 +37,8 @@ function createGroup() {
 		document.getElementById("courseEvent-title").classList.remove("form-invalid");
 	}
 }
+
+function cleanInput(input) {
+	return input.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
+
