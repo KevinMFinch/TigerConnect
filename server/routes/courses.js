@@ -6,13 +6,14 @@ var {ObjectID} = require('mongodb');
 var {mongoose} = require('../db/mongoose');
 const {Course} = require('../models/Course');
 
-
+// _GET all courses in database
 router.get('/', (req, res) => {
   Course.find().then((courses) => {
     res.send(courses);
   });
 });
 
+// _GET courses by courseID
 router.get('/byID/:courseID', (req, res) => {
   var courseID = req.params.courseID;
 
@@ -31,6 +32,7 @@ router.get('/byID/:courseID', (req, res) => {
   });
 });
 
+// _GET courses based on search query
 router.get('/:query', (req, res) => {
   var query = decodeURIComponent(req.params.query);
   // Matches something like COS333

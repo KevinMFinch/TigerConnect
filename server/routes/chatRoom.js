@@ -5,6 +5,7 @@ var router = express.Router();
 var {mongoose} = require('../db/mongoose');
 const {ChatRoom} = require('../models/ChatRoom');
 
+// get message logs for a specific chat roomID
 router.get('/messages/:roomID', (req, res) => {
   var roomID = req.params.roomID;
   ChatRoom.findOne({roomID}).then((chatRoom) => {

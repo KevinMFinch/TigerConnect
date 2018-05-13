@@ -9,17 +9,21 @@
 
       gtag('config', 'UA-118872746-1');
     </script>
+
+    <!-- BEGIN -->
     <title>TigerConnect</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
+    <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
-
+    <!-- Moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
+    <!-- stylesheets -->
     <link rel='stylesheet' href='/stylesheets/main.css'>
     <script src="index.js"></script>
     <script src="/js/link.js"></script>
@@ -27,12 +31,13 @@
     <script src="/js/course.js"></script>
     <script src="/js/group.js"></script>
     <script src="/js/dashboard.js"></script>
-    <script src="createGroup.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
   </head>
+
   <body>
     <!-- Hidden, stored values -->
     <input id="netid" type="hidden" value={{netid}}>
@@ -43,7 +48,7 @@
       <!-- Navbar - responsive for desktop and mobile -->
       {{> navbar}}
 
-      <!-- TODO: Mobile design -->
+      <!-- TODO: Mobile design is WIP -->
       <div class="row d-md-none d-lg-none d-xl-none" id="mobile-view">
 
         <!-- Sidebar -->
@@ -94,7 +99,6 @@
             <div class="row" id="search-box">
               <input type="search" onkeyup="searchCourses(this.value)" id="desktop-course-search" class="mx-auto my-auto form-control" placeholder="Find your courses! (e.g. MAT103)" aria-label="courses">
             </div>
-            {{!-- <div class="row search-divider ml-4"></div> --}}
 
             <!-- Pinned courses -->
             <div class="pinned-bar row vertical-center mr-0" id="pinned-bar-desk" data-toggle="collapse" data-target=".collapsePinned" aria-expanded="false" aria-controls="collapsePinned" href="" onclick="togglePinnedExpandedState();">
@@ -109,10 +113,7 @@
             </div>
             <div class="pinnedSection" style="max-height:35%; overflow-x: hidden; overflow-y: scroll">
               <div id="pinned-toggle-expand-sub">
-                {{!-- <div class="collapsePinned collapse vertical-center" id="pinned-placement">
-                  <div class="container-fluid p-0">
-                  </div>
-                </div> --}}
+                <!-- POPULATE pinned courses -->
               </div>
             </div>
             <div class="row pinned-divider"></div>
@@ -137,7 +138,6 @@
                 <h5 class="my-auto" style="color:#b9bcbe; font-size:24px;" id="toolbar-coursename"></h5>
               </div>
               <button type="button" class="ml-auto mr-4 btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true" style="visibility: hidden"><i class="fas fa-plus-circle"></i> Create Group</button>
-              {{!-- <button type="button" class="mr-10 btn btn-secondary" id="filter-groups" aria-disabled="true"><i class="fas fa-filter"></i> Filter Groups</button> --}}
             </div>
 
             <!-- Inner content, e.g. onboarding, dashboard, cards -->
@@ -149,6 +149,7 @@
                   <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:5%; padding-bottom:0%;">Welcome to TigerConnect!</h1>
                 </div>
 
+                <!-- Groups You've Created -->
                 <div class="row dash-header" style="margin-top:5%;" data-toggle="collapse" data-target=".collapseDashCreate" aria-expanded="false" aria-controls="collapseDashCreate" onclick="refresh('dash-user-created');">
                   <span class="dashcreate__icon dashcreate__icon--open my-auto" style="font-size:3vw;padding-left:2%;">
                     <i class="fa fa-caret-right"></i>
@@ -164,6 +165,7 @@
                   </div>
                 </div>
 
+                <!-- Groups You've Joined -->
                 <div class="row mt-5 dash-header" data-toggle="collapse" data-target=".collapseDashJoin" aria-expanded="false" aria-controls="collapseDashJoin" onclick="refresh('dash-user-joined');">
                   <span class="dashjoin__icon dashjoin__icon--open my-auto" style="font-size:3vw;padding-left:2%;">
                     <i class="fa fa-caret-right"></i>
@@ -186,7 +188,9 @@
                 <div class="row h-25 text-center">
                   <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:7%; padding-bottom:0%; height:12%;">Welcome to TigerConnect!</h1>
                 </div>
+
                 <div class="row h-75 text-center">
+                  <!-- 1. Choose Course -->
                   <div class="col-3 my-4 onboard-well" style="margin-left: 8%; overflow: hidden">
                     <div class="icon-top mx-auto">
                       <i class="far fa-hand-point-up my-4 center-icon"></i>
@@ -195,6 +199,7 @@
                     <hr class="mx-auto"/>
                     <h5 style="font-size: 1.4vw;"><i class="fas fa-thumbtack" style="font-size: 1.2vw;"></i>&nbsp Pin it for later.</h5>
                   </div>
+                  <!-- 2. Find Groups -->
                   <div class="col-3 my-4 onboard-well" style="margin-left:4%; margin-right:4%; overflow: hidden">
                     <div class="icon-top mx-auto">
                       <i class="fas fa-search-plus my-4 center-icon"></i>
@@ -203,6 +208,7 @@
                     <hr class="mx-auto"/>
                     <h5 style="font-size: 1.4vw;"><i class="fas fa-link"></i>&nbsp Share direct links to groups.</h5>
                   </div>
+                  <!-- 3. Join/Create Groups -->
                   <div class="col-3 my-4 onboard-well" style="margin-right: 8%; overflow: hidden">
                     <div class="icon-top mx-auto">
                       <i class="fas fa-pencil-alt my-4 center-icon"></i>
@@ -231,25 +237,27 @@
             </div>
             <div class="modal-body">
               <form>
+                <!-- form: title -->
                 <div class="form-group">
                   <label for="courseEvent-title">Group Title (required)</label>
-
                   <input type="text" class="form-control" id="courseEvent-title" aria-describedby="emailHelp" placeholder="Title" maxlength="55">
                   <small id="title-notice" class="form-text text-muted">Grab people's attention with an interesting title!</small>
-
                 </div>
+                <!-- form: location -->
                 <div class="form-group">
                   <label for="courseEvent-location">Location</label>
                   <input type="text" class="form-control" id="courseEvent-location" placeholder="Location" rows="1" maxlength="60">
                   <small class="form-text text-muted">Where do you want to meet?</small>
                 </div>
+                <!-- form: date & time -->
                 <div class="form-group">
                   <label for="inputTime">Date & Time</label>
-                              <div class='input-group date' id='datepicker'>
-                                  <input type='text' class="form-control" id="courseEvent-time" maxlength="60"/>
-                              </div>
+                  <div class='input-group date' id='datepicker'>
+                      <input type='text' class="form-control" id="courseEvent-time" maxlength="60"/>
+                  </div>
                   <small class="form-text text-muted">When do you want to meet?</small>
                 </div>
+                <!-- form: description -->
                 <div class="form-group">
                   <label for="textarea">Group Description</label>
                   <textarea class="form-control" id="courseEvent-description" rows="3" maxlength="150"></textarea>
@@ -257,6 +265,7 @@
                 </div>
               </form>
             </div>
+            <!-- form: footer buttons -->
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-info" onclick="createGroup();">Create Group</button>
@@ -276,7 +285,7 @@
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="text-link" placeholder="YO" readonly>
+                  <input type="text" class="form-control" id="text-link" placeholder="shareable link" readonly>
                   <small class="form-text text-muted">A quick link you can use to share the group with your friends!</small>
                 </div>
               </form>

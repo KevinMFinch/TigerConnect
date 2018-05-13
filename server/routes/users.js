@@ -7,6 +7,40 @@ const {User} = require('../models/User');
 const {CourseEvent} = require('../models/CourseEvent');
 const {Course} = require('../models/Course');
 
+/* ============ USERS ============ */
+
+// _GET all users
+router.get('/', (req, res) => {
+  User.find({}).then((users) => {
+    if (!users) {
+      return res.json({message: "No users"});
+    } else {
+      res.json(users);
+    }
+  }, (e) => {
+    console.log('error');
+    res.send(e);
+  });
+});
+
+// _GET user with netid
+router.get('/:netid', (req, res) => {
+  var netid = req.params.netid;
+  console.log(req);
+  User.findOne({netid}).then((user) => {
+    if (!user) {
+      return res.json({message: "no user found"});
+    }
+    res.json(user);
+  }, (e) => {
+    res.status(404).send(e);
+  });
+});
+
+
+/* ============ GROUPS ============ */
+
+// _GET all groups (created AND joined) for user with netid
 router.get('/groups/:netid', (req, res) => {
   var netid = req.params.netid;
 
@@ -20,6 +54,7 @@ router.get('/groups/:netid', (req, res) => {
   })
 });
 
+// _GET groups (ONLY created) by user with netid
 router.get('/createdGroups/:netid', (req, res) => {
   var netid = req.params.netid;
 
@@ -31,6 +66,7 @@ router.get('/createdGroups/:netid', (req, res) => {
   });
 });
 
+// _GET groups (ONLY joined) by user with netid
 router.get('/joinedGroups/:netid', (req, res) => {
   var netid = req.params.netid;
   // Groups that a user is in but has not created
@@ -42,6 +78,10 @@ router.get('/joinedGroups/:netid', (req, res) => {
   });
 });
 
+
+/* ============ PINNED ============ */
+
+// _POST user's current pinned bar expansion state
 router.post('/setPinnedExpanded', (req, res) => {
   var netid = req.body.netid;
   var expanded = req.body.expanded;
@@ -63,6 +103,7 @@ router.post('/setPinnedExpanded', (req, res) => {
   });
 });
 
+// _GET user's most recent pinned bar expansion state
 router.get('/getPinnedExpanded/:netid', (req, res) => {
   var netid = req.params.netid;
 
@@ -77,6 +118,7 @@ router.get('/getPinnedExpanded/:netid', (req, res) => {
   });
 });
 
+// _GET courses pinned by user with netid
 router.get('/pinnedCourses/:netid', (req, res) => {
   var netid = req.params.netid;
 
@@ -103,32 +145,7 @@ router.get('/pinnedCourses/:netid', (req, res) => {
   })
 });
 
-router.get('/:netid', (req, res) => {
-  var netid = req.params.netid;
-  console.log(req);
-  User.findOne({netid}).then((user) => {
-    if (!user) {
-      return res.json({message: "no user found"});
-    }
-    res.json(user);
-  }, (e) => {
-    res.status(404).send(e);
-  });
-});
-
-router.get('/', (req, res) => {
-  User.find({}).then((users) => {
-    if (!users) {
-      return res.json({message: "No users"});
-    } else {
-      res.json(users);
-    }
-  }, (e) => {
-    console.log('error');
-    res.send(e);
-  });
-});
-
+// _POST pin course for user netid
 router.post('/pincourse', (req, res) => {
   var netid = req.body.netid;
   var courseID = req.body.courseID;
@@ -149,6 +166,7 @@ router.post('/pincourse', (req, res) => {
   });
 });
 
+// _POST unpin course for user netid
 router.post('/unpincourse', (req, res) => {
   var netid = req.body.netid;
   var courseID = req.body.courseID;
