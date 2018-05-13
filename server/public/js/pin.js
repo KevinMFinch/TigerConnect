@@ -31,6 +31,7 @@ function unpinClass(id) {
 /* =========== External call =========== */
 function getPinned() {
   getPinnedExpanded(document.getElementById("netid").value);
+  getPinnedCourses(document.getElementById("netid").value);
 }
 
 /* =========== Populate pinned =========== */
@@ -84,8 +85,7 @@ getPinnedExpanded = query => {
 
   fetch(searchQuery)
     .then(res => res.json())
-    .then(expanded => handlePinnedExpanded(expanded))
-    .then(getPinnedCourses(document.getElementById("netid").value));
+    .then(expanded => handlePinnedExpanded(expanded));
 }
 
 function handlePinnedExpanded(expanded) {
