@@ -23,6 +23,10 @@
     <link rel='stylesheet' href='/stylesheets/main.css'>
     <script src="index.js"></script>
     <script src="/js/link.js"></script>
+    <script src="/js/pin.js"></script>
+    <script src="/js/course.js"></script>
+    <script src="/js/group.js"></script>
+    <script src="/js/dashboard.js"></script>
     <script src="createGroup.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -145,7 +149,7 @@
                   <h1 class="text-center mx-auto" style="font-size:3.5vw; padding-top:5%; padding-bottom:0%;">Welcome to TigerConnect!</h1>
                 </div>
 
-                <div class="row dash-header" style="margin-top:5%;" data-toggle="collapse" data-target=".collapseDashCreate" aria-expanded="false" aria-controls="collapseDashCreate">
+                <div class="row dash-header" style="margin-top:5%;" data-toggle="collapse" data-target=".collapseDashCreate" aria-expanded="false" aria-controls="collapseDashCreate" onclick="refresh('dash-user-created');">
                   <span class="dashcreate__icon dashcreate__icon--open my-auto" style="font-size:3vw;padding-left:2%;">
                     <i class="fa fa-caret-right"></i>
                   </span>
@@ -160,7 +164,7 @@
                   </div>
                 </div>
 
-                <div class="row mt-5 dash-header" data-toggle="collapse" data-target=".collapseDashJoin" aria-expanded="false" aria-controls="collapseDashJoin">
+                <div class="row mt-5 dash-header" data-toggle="collapse" data-target=".collapseDashJoin" aria-expanded="false" aria-controls="collapseDashJoin" onclick="refresh('dash-user-joined');">
                   <span class="dashjoin__icon dashjoin__icon--open my-auto" style="font-size:3vw;padding-left:2%;">
                     <i class="fa fa-caret-right"></i>
                   </span>
