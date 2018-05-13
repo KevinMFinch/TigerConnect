@@ -22,6 +22,7 @@ var server = http.createServer(app);
 var io = socketIO(server);
 var users = new Users();
 
+// Import the route handlers from the other files
 var courseEvents = require('./routes/courseEvents');
 var courses = require('./routes/courses');
 var auth = require('./routes/auth');
@@ -29,11 +30,14 @@ var usersRoute = require('./routes/users');
 var chatRoom = require('./routes/chatRoom');
 var control = require('./routes/control');
 
+// Set the hbs view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
+// Setup to serve static files
 app.use(express.static(path.join(__dirname, 'public')));
+
 // Configure the app to save a cookie with two attributes (for netid and status)
 app.use(session({ keys: ['key1', 'key2'] }));
 
@@ -76,16 +80,19 @@ app.get('*', (req, res) => {
 });
 
 /*------------- Chat stuff ----------*/
+
+// A socket connected to the server
 io.on('connection', (socket) => {
   console.log('New user connected');
 
+  // A client wants to join a room with particular params
   socket.on('join', (params, callback) => {
     if (!isRealString(params.name) || !isRealString(params.room)) {
       return callback('Name and room name are required.')
     }
 
     console.log(`joined room ${JSON.stringify(params)}`);
-
+    // Add the socket to the chat room
     socket.join(params.room);
     ChatRoom.findOne({roomID: params.room}).then((chatRoom) => {
       console.log('cr', chatRoom);
@@ -98,18 +105,21 @@ io.on('connection', (socket) => {
     }, (e) => {
       console.log(500);
     });
-    // Remove from all other rooms, may be a problem? Not sure
+
     users.removeUser(socket.id);
     users.addUser(socket.id, params.name, params.room);
 
+    // Tell client to update user list
     io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
+    // Broadcast to channel that the new user joined
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
     socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined the room`));
 
     callback();
   });
 
+  // A client created a new message
   socket.on('createMessage', (message, callback) => {
       var user = users.getUser(socket.id);
 
@@ -121,6 +131,7 @@ io.on('connection', (socket) => {
           {$push: {messages: createdMessage}},
           {new:true}
         ).then((chatRoom) => {
+          // Send new message to chat room
           io.to(user.room).emit('newMessage', createdMessage);
           callback();
         }, (e) => {
@@ -131,6 +142,7 @@ io.on('connection', (socket) => {
       callback();
   });
 
+  // A user left the chat
   socket.on('disconnect', () => {
     var user = users.removeUser(socket.id);
 
