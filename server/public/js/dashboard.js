@@ -1,3 +1,24 @@
+/* several references to functions contained group.js */
+
+// if user has no groups yet, display onboard
+// otherwise, show dashboard for easy group access
+function chooseOnboardOrDash(groups) {
+  if (groups.length > 0) {
+    document.getElementById("dashboard").setAttribute("style", "display: inline;");
+    document.getElementById("onboarding").setAttribute("style", "display: none;");
+  } else {
+    document.getElementById("dashboard").setAttribute("style", "display: none;");
+    document.getElementById("onboarding").setAttribute("style", "display: inline;");
+  }
+}
+
+function getOnboardOrDash() {
+  getUserTotalGroups(document.getElementById("netid").value);
+}
+
+function getDashCreated() {
+  getUserCreatedGroups(document.getElementById("netid").value);
+}
 
 function handleDashCreated(groups) {
   var events = groups['events'];
@@ -6,6 +27,10 @@ function handleDashCreated(groups) {
   } else {
     populateGroups(events, "dash-user-created");
   }
+}
+
+function getDashJoined() {
+  getUserJoinedGroups(document.getElementById("netid").value);
 }
 
 function handleDashJoined(groups) {
@@ -17,28 +42,7 @@ function handleDashJoined(groups) {
   }
 }
 
-function chooseOnboardOrDash(groups) {
-  if (groups.length > 0) {
-    document.getElementById("dashboard").setAttribute("style", "display: inline;");
-    document.getElementById("onboarding").setAttribute("style", "display: none;");
-  } else {
-    document.getElementById("dashboard").setAttribute("style", "display: none;");
-    document.getElementById("onboarding").setAttribute("style", "display: inline;");
-  }
-}
-
-function getDashCreated() {
-  getUserCreatedGroups(document.getElementById("netid").value);
-}
-
-function getDashJoined() {
-  getUserJoinedGroups(document.getElementById("netid").value);
-}
-
-function getOnboardOrDash() {
-  getUserTotalGroups(document.getElementById("netid").value);
-}
-
+/* ======== REFRESH ======== */
 
 function refresh(idToRefresh) {
   console.log('refresh');

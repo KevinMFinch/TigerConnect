@@ -141,6 +141,19 @@ body, html {
   border-bottom-color: #33495a;
 }
 
+[aria-expanded="false"] .pinnedbar__icon--open {
+    display: block;
+}
+[aria-expanded="false"] .pinnedbar__icon--close {
+    display: none;
+}
+[aria-expanded="true"] .pinnedbar__icon--open {
+    display: none;
+}
+[aria-expanded="true"] .pinnedbar__icon--close {
+    display: block;
+}
+
 .pin {
   float: right;
   color: #aebac4;
@@ -152,13 +165,10 @@ body, html {
   text-align: left;
   cursor: pointer;
 }
-
-/* TODO: add pins to a column row in bootstrap... */
 .pin:hover {
   color: #21a08a;
   cursor: pointer;
 }
-
 .pin:focus {
   outline: none;
   cursor: pointer;
@@ -168,7 +178,6 @@ body, html {
   color: #21a08a;
   cursor: pointer;
 }
-
 .pinned:hover {
   color: #aebac4;
   cursor: pointer;
@@ -179,12 +188,10 @@ body, html {
   cursor: pointer;
 }
 
-
 .class:hover {
   background-color: #263744;
   cursor: pointer;
 }
-
 .class:focus {
   background-color:black;
   cursor: pointer;
@@ -234,9 +241,6 @@ body, html {
 .onboarding {
   display: none;
 }
-.dashboard {
-  display: none;
-}
 .onboard-well {
   height: 67%;
   margin-top: 2%;
@@ -245,7 +249,7 @@ body, html {
   background-color: #bec5cc;
   overflow: scroll;
 }
-hr {
+hr { /* for onboarding */
   display: block;
   height: 1px;
   border: 0;
@@ -256,30 +260,9 @@ hr {
   border-color: #22252a;
 }
 
-.horizontal-scroll {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
+.dashboard {
+  display: none;
 }
-
-.group-shortcut {
-  height: 80%;
-  width: 30%;
-  margin-top: 2%;
-  border: 1px solid #212529;
-  border-radius: 8px;
-  background-color: #bec5cc;
-  margin-left: 2%;
-  margin-bottom:0;
-  padding-left: 2%;
-  padding-right: 2%;
-  padding-top:1%;
-  display:inline-block;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  white-space: normal;
-}
-
 .dash-header{
   font-size: 2vw;
   color: white;
@@ -290,11 +273,29 @@ hr {
 .dash-header:hover{
   background-color: #263744;
 }
-
-.dash-user-created {
+[aria-expanded="false"] .dashcreate__icon--open {
+    display: block;
 }
-
-.dash-user-joined {
+[aria-expanded="false"] .dashcreate__icon--close {
+    display: none;
+}
+[aria-expanded="true"] .dashcreate__icon--open {
+    display: none;
+}
+[aria-expanded="true"] .dashcreate__icon--close {
+    display: block;
+}
+[aria-expanded="false"] .dashjoin__icon--open {
+    display: block;
+}
+[aria-expanded="false"] .dashjoin__icon--close {
+    display: none;
+}
+[aria-expanded="true"] .dashjoin__icon--open {
+    display: none;
+}
+[aria-expanded="true"] .dashjoin__icon--close {
+    display: block;
 }
 
 .panel > .panel-heading {
@@ -302,7 +303,6 @@ hr {
     background-color: #162028;;
     color: white;
 }
-
 .panel > .panel-body {
     background-image: none;
     background-color: #ffc94c;;;
@@ -403,6 +403,14 @@ hr {
   /*background-color: #162129;*/
 }
 
+.group-container:hover {
+  padding-top: 3%;
+  padding-bottom: .5%;
+  padding-left: 5%;
+  padding-right: 7%;
+}
+
+/* buttons for groups */
 .chat {
   margin-top:10%;
   position: absolute;
@@ -439,15 +447,36 @@ hr {
 .join:hover {
   background-color: #3c5467;
 }
-
 .join-chat:hover {
   background-color: #303f4b;
 }
-
 .delete-leave:hover {
   background-color: #303f4b;
 }
 
+/* shareable links for groups */
+.share-link{
+  float:right;
+  background: none;
+  border: none;
+}
+.share-link:hover {
+  color: #20a08a;
+  cursor: pointer;
+}
+
+#text-link {
+  min-width: 80%;
+}
+
+/* collapsing menus */
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
+
+/* responsiveness */
 @media screen and (max-width: 767px) {
     .main-panel {
         width: 100%;
@@ -456,13 +485,6 @@ hr {
     .join {
       right: 40%;
     }
-}
-
-.group-container:hover {
-  padding-top: 3%;
-  padding-bottom: .5%;
-  padding-left: 5%;
-  padding-right: 7%;
 }
 
 /* Mobile view  */
@@ -492,69 +514,4 @@ hr {
 
 @media screen and (min-width: 401px) {
   /*#mobile-view { display: none; }*/   /* hide it elsewhere */
-}
-
-
-[aria-expanded="false"] .pinnedbar__icon--open {
-    display: block;
-}
-[aria-expanded="false"] .pinnedbar__icon--close {
-    display: none;
-}
-[aria-expanded="true"] .pinnedbar__icon--open {
-    display: none;
-}
-[aria-expanded="true"] .pinnedbar__icon--close {
-    display: block;
-}
-
-[aria-expanded="false"] .dashcreate__icon--open {
-    display: block;
-}
-[aria-expanded="false"] .dashcreate__icon--close {
-    display: none;
-}
-[aria-expanded="true"] .dashcreate__icon--open {
-    display: none;
-}
-[aria-expanded="true"] .dashcreate__icon--close {
-    display: block;
-}
-
-[aria-expanded="false"] .dashjoin__icon--open {
-    display: block;
-}
-[aria-expanded="false"] .dashjoin__icon--close {
-    display: none;
-}
-[aria-expanded="true"] .dashjoin__icon--open {
-    display: none;
-}
-[aria-expanded="true"] .dashjoin__icon--close {
-    display: block;
-}
-
-.share-link{
-  float:right;
-  background: none;
-  border: none;
-}
-
-.share-link:hover {
-  color: #20a08a;
-  cursor: pointer;
-}
-
-#text-link {
-  min-width: 80%;
-}
-
-#title-invalid {
-  color: red;
-}
-
-.collapsing {
-    -webkit-transition: none;
-    transition: none;
-    display: none;
 }

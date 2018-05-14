@@ -1,3 +1,5 @@
+/* ======== Search ======== */
+
 function searchCourseGroups(value) {
   document.getElementById("create-groups").style.visibility = "visible";
 
@@ -19,8 +21,10 @@ getSearchedCourseGroups = query => {
       .then(groups => handleGroups(groups));
 }
 
+/* ======== Display ======== */
+
+// display main panel content display for groups
 function handleGroups(groups) {
-  // var innerHTMLChange = "";
   var events = groups['courseEvents'];
   if (events.length == 0) {
     document.getElementById("main-panel-content").innerHTML = "<div class=\"main-panel-empty mx-auto\" align=\"center\"><h1 class=\"text-center mx-auto\" style=\"padding-top:20%;\">Be the first to create a group for " + document.getElementById("coursename").value + "!</h1></div>";
@@ -31,7 +35,7 @@ function handleGroups(groups) {
   document.getElementById("currentCourse").innerHTML = document.getElementById("coursename").value;
 }
 
-
+// helper function to populate group cards
 function populateGroups(events, idToPopulate) {
   console.log('populate', events, idToPopulate);
   var innerHTMLChange = "";
@@ -52,8 +56,6 @@ function populateGroups(events, idToPopulate) {
     innerHTMLChange = innerHTMLChange + "<div class=\"group-footer\"><p class=\"group-desc-text\" title=\"" + m.format('dddd, LL [at] LT') + "\">Created by " + events[i]['advertiser'] + " • " + timeCreated + "</p></div>";
     var status = getButtonStatus(events[i]);
 
-// <button type="button" class="ml-auto mr-4 btn btn-primary" data-toggle="modal" data-target="#createGroupModal" id="create-groups" aria-disabled="true" style="visibility: hidden">
-
     innerHTMLChange = innerHTMLChange + getButtonStatusHTML(events[i], status, idToPopulate);
   }
 
@@ -66,6 +68,7 @@ function populateGroups(events, idToPopulate) {
     document.getElementById(idToPopulate).innerHTML = innerHTMLChange;
 }
 
+// change buttons based on user status
 
 function getButtonStatusHTML(event, status, idToPopulate) {
   if (status == 'owner') {
@@ -93,6 +96,51 @@ function getButtonStatus(event) {
   }
 }
 
+/* ======== Functionality ======== */
+
+function createGroup() {
+    if (!validateGroup()) {
+        document.getElementById("courseEvent-title").classList.add("form-invalid");
+        document.getElementById("title-notice").innerHTML = "A title is required!"
+    }
+    else {
+        $('#createGroupModal').modal('hide');
+
+        var timeVal;
+        var locationVal;
+
+        (document.getElementById("courseEvent-time").value == "")? timeVal = "N/A" : timeVal = cleanInput(document.getElementById("courseEvent-time").value);
+        (document.getElementById("courseEvent-location").value == "")? locationVal = "N/A" : locationVal = cleanInput(document.getElementById("courseEvent-location").value);
+
+        fetch("/api/courseEvents/", {
+            method : 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: cleanInput(document.getElementById("courseEvent-title").value),
+                advertiser: cleanInput(document.getElementById("netid").value),
+                time: timeVal,
+                location: locationVal,
+                description: cleanInput(document.getElementById("courseEvent-description").value),
+                courseID: cleanInput(document.getElementById("courseid").value)
+            })
+        }).then(res => res.json()).then(() => refresh('main-panel-content'));
+        document.getElementById("courseEvent-title").value = "";
+        document.getElementById("courseEvent-time").value = "";
+        document.getElementById("courseEvent-location").value = "";
+        document.getElementById("courseEvent-description").value = "";
+        document.getElementById("courseEvent-title").classList.remove("form-invalid");
+    }
+}
+// create helper: prevent against HTML injection
+function cleanInput(input) {
+    return input.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
+// create helper: validation
+function validateGroup(){
+    return (document.getElementById("courseEvent-title").value.length != 0);
+}
 
 function joinGroup(id) {
   var netid = document.getElementById("netid").value;
@@ -157,6 +205,16 @@ function deleteGroup(id) {
   });
 }
 
+function handleDelete(id) {
+  document.getElementById('delete-button').value = id;
+}
+
+function chatGroup(id) {
+  (window.location = '/chat?room=' + id);
+}
+
+/* ======== Dashboard ======== */
+
 getUserCreatedGroups = query => {
     var searchQuery = '/api/users/createdGroups/' + query;
 
@@ -181,10 +239,3 @@ getUserTotalGroups = query => {
     .then(groups => chooseOnboardOrDash(groups));
 }
 
-function handleDelete(id) {
-  document.getElementById('delete-button').value = id;
-}
-
-function chatGroup(id) {
-  (window.location = '/chat?room=' + id);
-}
